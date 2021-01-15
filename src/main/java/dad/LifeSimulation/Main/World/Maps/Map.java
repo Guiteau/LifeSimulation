@@ -15,6 +15,6 @@ public class Map  implements GameFunctions{
 			e.update();
 		}
 	}
-	
+	//prueba 2
 
 }
