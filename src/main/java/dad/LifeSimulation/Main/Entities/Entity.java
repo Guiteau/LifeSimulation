@@ -18,9 +18,7 @@ public abstract class Entity implements GameFunctions{
 	}
 
 	
-	
 
-	//ENTITY
 
 	public boolean colliding(Entity _entidad) {
 		return 

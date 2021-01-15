@@ -15,7 +15,6 @@ public class Map  implements GameFunctions{
 			e.update();
 		}
 	}
-	// julio
 	
 
 }
