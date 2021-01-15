@@ -16,9 +16,8 @@ public abstract class Entity implements GameFunctions{
 		this.tangible = _tangible;
 
 	}
-
-	//PRUEBA
-
+	
+	//DIEGO
 
 	public boolean colliding(Entity _entidad) {
 		return 
