@@ -1,11 +1,11 @@
-package dad.LifeSimulation.Main.Entities.Character.Principal;
+package dad.LifeSimulation.Main.Entities.Actor.Principal;
 
-import dad.LifeSimulation.Main.Entities.Character.Character;
+import dad.LifeSimulation.Main.Entities.Actor.Actor;
 import dad.LifeSimulation.Main.Utils.Coordinates;
 import dad.LifeSimulation.Main.Utils.Dimension;
 import dad.LifeSimulation.Main.Utils.Statistics;
 
-public class Protagonist extends Character {
+public class Protagonist extends Actor {
 
 	protected Boolean hostilToEnemies;
 

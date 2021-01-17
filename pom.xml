@@ -4,4 +4,10 @@
   <artifactId>LifeSimulation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>LifeSimulation</name>
+  <properties>
+		<maven.compiler.target>14</maven.compiler.target>
+		<maven.compiler.source>14</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<exec.mainClass></exec.mainClass>
+	</properties>
 </project>
