@@ -19,14 +19,10 @@ public class Spikes extends Floor {
 	}
 
 	public void update() {
-		List<Entity> temporalList = this.map.getNearEntities(this.coordinates);
-		for (Entity e : temporalList) {
-			if (e instanceof Actor) {
-				Actor auxActor = (Actor) e;
-				auxActor.getStatistics().damageReceive(DAMAGE);
-			}
-		}
-
+		List<Actor> temporalList = this.map.getActorsIn(this.coordinates);
+		
+		for (Actor actor : temporalList)
+			actor.getStatistics().damageReceive(DAMAGE);
 	}
 
 }
