@@ -1,9 +1,7 @@
 package dad.LifeSimulation.Main.Entities.Element.Harmful;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import dad.LifeSimulation.Main.Entities.Entity;
 import dad.LifeSimulation.Main.Entities.Actor.Actor;
 import dad.LifeSimulation.Main.Entities.Element.Floor;
 import dad.LifeSimulation.Main.Entities.Element.Type;
@@ -19,14 +17,9 @@ public class Spikes extends Floor {
 	}
 
 	public void update() {
-		List<Entity> temporalList = this.map.getNearEntities(this.coordinates);
-		for (Entity e : temporalList) {
-			if (e instanceof Actor) {
-				Actor auxActor = (Actor) e;
-				auxActor.getStatistics().damageReceive(DAMAGE);
-			}
-		}
-
+		List<Actor> temporalList = map.getActorsIn(this);
+		
+		for (Actor actor : temporalList)
+			actor.getStatistics().damageReceive(DAMAGE);
 	}
-
 }
