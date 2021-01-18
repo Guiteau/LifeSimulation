@@ -42,21 +42,21 @@ public class Map implements GameFunctions {
 		insertEntity((Entity)actor);
 	}
 	
-	public List<Actor> getActorsIn(Coordinates _coordinates)
+	public List<Actor> getActorsIn(Entity entity)
 	{
 		List<Actor> aux = new ArrayList<>();
 		for (Actor e : actors) {
-			if (_coordinates.compareTo(e.getCoordinates()) == 1) {
+			if (e.colliding(entity)) {
 				aux.add(e);
 			}
 		}
 		return aux;
 	}
 
-	public List<Entity> getEntitiesIn(Coordinates _coordinates) {
+	public List<Entity> getEntitiesIn(Entity entity) {
 		List<Entity> aux = new ArrayList<>();
 		for (Entity e : entities) {
-			if (_coordinates.compareTo(e.getCoordinates()) == 1) {
+			if (e.colliding(entity)) {
 				aux.add(e);
 			}
 		}
