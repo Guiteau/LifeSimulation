@@ -45,4 +45,21 @@ public class Statistics {
 		this.damage = damage;
 	}
 
+	public void damageReceive(int _dmg) {
+		this.health = health - (_dmg - armor);
+	}
+
+	public void healthReceive(int _health) {
+		this.health += _health;
+	}
+
+	public void armorReceive(int _armor) {
+		this.armor += _armor;
+	}
+
+	public void energyReceive(int _energy) {
+		this.energy += _energy;
+
+	}
+
 }

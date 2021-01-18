@@ -3,17 +3,20 @@ package dad.LifeSimulation.Main.Entities;
 import dad.LifeSimulation.Main.Utils.Coordinates;
 import dad.LifeSimulation.Main.Utils.Dimension;
 import dad.LifeSimulation.Main.Utils.GameFunctions;
+import dad.LifeSimulation.Main.World.Maps.Map;
 
 public abstract class Entity implements GameFunctions{
 
 	protected Coordinates coordinates;
 	protected Dimension dimension;
 	protected Boolean tangible;
+	protected Map map;
 
 	public Entity(Coordinates _coordinates, Dimension _dimension, Boolean _tangible) {
 		this.coordinates = _coordinates;
 		this.dimension = _dimension;
 		this.tangible = _tangible;
+		this.map=null;
 
 	}
 	
