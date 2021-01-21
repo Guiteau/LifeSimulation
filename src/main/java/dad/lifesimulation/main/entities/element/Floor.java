@@ -1,8 +1,8 @@
-package dad.LifeSimulation.Main.Entities.Element;
+package dad.lifesimulation.main.entities.element;
 
-import dad.LifeSimulation.Main.Entities.Entity;
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
+import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
 
 public abstract class Floor extends Entity {
 	protected Type type ;

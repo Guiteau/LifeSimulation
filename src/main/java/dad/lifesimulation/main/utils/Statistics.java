@@ -1,4 +1,4 @@
-package dad.LifeSimulation.Main.Utils;
+package dad.lifesimulation.main.utils;
 
 public class Statistics {
 	private int energy;

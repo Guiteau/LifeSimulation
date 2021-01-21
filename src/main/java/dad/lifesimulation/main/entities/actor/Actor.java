@@ -1,9 +1,9 @@
-package dad.LifeSimulation.Main.Entities.Actor;
+package dad.lifesimulation.main.entities.actor;
 
-import dad.LifeSimulation.Main.Entities.Entity;
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
-import dad.LifeSimulation.Main.Utils.Statistics;
+import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
+import dad.lifesimulation.main.utils.Statistics;
 
 public abstract class Actor extends Entity {
 	protected Statistics statistics;
