@@ -1,13 +1,13 @@
-package dad.LifeSimulation.Main.World.Maps;
+package dad.lifesimulation.main.world.maps;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dad.LifeSimulation.Main.Entities.Entity;
-import dad.LifeSimulation.Main.Entities.Actor.Actor;
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
-import dad.LifeSimulation.Main.Utils.GameFunctions;
+import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
+import dad.lifesimulation.main.utils.GameFunctions;
 
 public class Map implements GameFunctions {
 	protected Dimension dimension;
