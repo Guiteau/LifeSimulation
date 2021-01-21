@@ -1,9 +1,9 @@
-package dad.LifeSimulation.Main.Entities;
+package dad.lifesimulation.main.entities;
 
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
-import dad.LifeSimulation.Main.Utils.GameFunctions;
-import dad.LifeSimulation.Main.World.Maps.Map;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
+import dad.lifesimulation.main.utils.GameFunctions;
+import dad.lifesimulation.main.world.maps.Map;
 
 public abstract class Entity implements GameFunctions{
 

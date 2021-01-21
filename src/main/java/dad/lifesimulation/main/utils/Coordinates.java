@@ -1,4 +1,4 @@
-package dad.LifeSimulation.Main.Utils;
+package dad.lifesimulation.main.utils;
 
 public class Coordinates implements Comparable<Coordinates> {
 	private int X;

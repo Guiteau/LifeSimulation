@@ -1,4 +1,4 @@
-package dad.LifeSimulation.Main.Entities.Element;
+package dad.lifesimulation.main.entities.element;
 
 public enum Type {
 	NEUTRAL,

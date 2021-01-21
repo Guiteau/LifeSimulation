@@ -1,9 +1,9 @@
-package dad.LifeSimulation.Main.Entities.Actor.Enemies;
+package dad.lifesimulation.main.entities.actor.enemies;
 
-import dad.LifeSimulation.Main.Entities.Actor.Actor;
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
-import dad.LifeSimulation.Main.Utils.Statistics;
+import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
+import dad.lifesimulation.main.utils.Statistics;
 
 public class Assasin extends Actor {
 	private boolean hostilToPlayers;

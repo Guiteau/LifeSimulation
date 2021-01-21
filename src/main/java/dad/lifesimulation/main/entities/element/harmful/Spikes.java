@@ -1,12 +1,12 @@
-package dad.LifeSimulation.Main.Entities.Element.Harmful;
+package dad.lifesimulation.main.entities.element.harmful;
 
 import java.util.List;
 
-import dad.LifeSimulation.Main.Entities.Actor.Actor;
-import dad.LifeSimulation.Main.Entities.Element.Floor;
-import dad.LifeSimulation.Main.Entities.Element.Type;
-import dad.LifeSimulation.Main.Utils.Coordinates;
-import dad.LifeSimulation.Main.Utils.Dimension;
+import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.entities.element.Floor;
+import dad.lifesimulation.main.entities.element.Type;
+import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Dimension;
 
 public class Spikes extends Floor {
 	private final int DAMAGE = 5;
