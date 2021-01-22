@@ -1,4 +1,4 @@
-package dad.lifesimulation.main.entities.actor.enemies;
+package dad.lifesimulation.main.entities.actor.cell;
 
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Coordinates;
