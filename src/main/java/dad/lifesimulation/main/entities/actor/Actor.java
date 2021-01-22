@@ -6,9 +6,10 @@ import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.Statistics;
 
 public abstract class Actor extends Entity {
+	
 	protected Statistics statistics;
 	protected Boolean hostilToOthers;
-
+	
 	public Actor(Coordinates _coordinates, Dimension _dimension, Boolean _tangible, Statistics _statistics,
 			Boolean hostilToOthers) {
 		super(_coordinates, _dimension, _tangible);
@@ -16,6 +17,11 @@ public abstract class Actor extends Entity {
 		this.hostilToOthers = hostilToOthers;
 	}
 
+	/**
+	 * 
+	 * @return objeto de tipo estadísticas de la entidad Actor(contiene atributos con valores enteros)
+	 */
+	
 	public Statistics getStatistics() {
 		return statistics;
 	}

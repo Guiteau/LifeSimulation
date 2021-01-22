@@ -25,22 +25,42 @@ public class Map implements GameFunctions {
 		entities = new ArrayList<>();
 	}
 	
+	/**
+	 * Actualiza la lista de objetos Entity
+	 */
+	
 	public void update() {
 		for (Entity e : entities) {
 			e.update();
 		}
 	}
 	
+	/**
+	 * 
+	 * @param entity objeto de tipo entidad que se añade a la lista de entidades
+	 */
+	
 	public void insertEntity(Entity entity)
 	{
 		entities.add(entity);
 	}
+	
+	/**
+	 * 
+	 * @param actor objeto de tipo actor que se añade a la lista de actores
+	 */
 	
 	public void insertEntity(Actor actor)
 	{
 		actors.add(actor);
 		insertEntity((Entity)actor);
 	}
+	
+	/**
+	 * 
+	 * @param entity objeto de tipo entidad
+	 * @return lista de actores que estén colisionando con la entidad
+	 */
 	
 	public List<Actor> getActorsIn(Entity entity)
 	{
@@ -53,6 +73,12 @@ public class Map implements GameFunctions {
 		return aux;
 	}
 
+	/**
+	 * 
+	 * @param entity objeto de tipo entidad
+	 * @return lista de entidades que estén colisionando con la entidad
+	 */
+	
 	public List<Entity> getEntitiesIn(Entity entity) {
 		List<Entity> aux = new ArrayList<>();
 		for (Entity e : entities) {
