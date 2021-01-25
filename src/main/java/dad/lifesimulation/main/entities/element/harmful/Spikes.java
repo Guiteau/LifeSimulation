@@ -15,6 +15,11 @@ public class Spikes extends Floor {
 		super(_coordinates, _dimension, Type.HARMFUL);
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Se carga una lista de entidades de tipo actor que estén colisionando
+	 * con el objeto Spikes y se le aplica el daño (5)
+	 */
 
 	public void update() {
 		List<Actor> temporalList = map.getActorsIn(this);
