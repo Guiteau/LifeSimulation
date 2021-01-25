@@ -5,7 +5,6 @@ import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
-import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GameFunctions;
 
@@ -87,6 +86,12 @@ public class Map implements GameFunctions {
 			}
 		}
 		return aux;
+	}
+	
+	public void setEntities(List<Entity> listEntities){
+		
+		listEntities.stream().forEach(this::insertEntity);
+		
 	}
 
 }
