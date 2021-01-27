@@ -7,11 +7,13 @@ import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GameFunctions;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Map implements GameFunctions {
 	protected Dimension dimension;
 	protected List<Entity> entities;
 	protected List<Actor> actors;
+	protected List<Entity> drawables;
 	// 0jugador
 	// 0 entidad pox poy update x-0 y-0
 
@@ -22,6 +24,7 @@ public class Map implements GameFunctions {
 	{
 		actors = new ArrayList<>();
 		entities = new ArrayList<>();
+		drawables = new ArrayList<>();
 	}
 	
 	/**
@@ -42,6 +45,8 @@ public class Map implements GameFunctions {
 	public void insertEntity(Entity entity)
 	{
 		entities.add(entity);
+		if (entity.isDrawable())
+			drawables.add(entity);
 	}
 	
 	/**
@@ -92,6 +97,10 @@ public class Map implements GameFunctions {
 		
 		listEntities.stream().forEach(this::insertEntity);
 		
+	}
+
+	public void drawElements(GraphicsContext graphicsContext2D) {
+		drawables.stream().forEach(x->x.render(graphicsContext2D));
 	}
 
 }
