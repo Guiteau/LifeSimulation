@@ -13,19 +13,39 @@ public class Dimension {
 		this.height = 1;
 		this.width = 1;
 	}
+	
+	/**
+	 * 
+	 * @return altura de un objeto
+	 */
 
 	public int getHeight() {
 		return height;
 	}
+	
+	/**
+	 * 
+	 * @param height altura a establecer en un objeto
+	 */
 
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	
+	/**
+	 * 
+	 * @return anchura de un objeto
+	 */
 
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * 
+	 * @param _width anchura a establecer en un objeto
+	 */
+	
 	public void setWidth(int _width) {
 		this.width = _width;
 	}
