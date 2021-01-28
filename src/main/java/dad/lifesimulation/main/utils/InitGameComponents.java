@@ -1,9 +1,8 @@
 package dad.lifesimulation.main.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.JohnDoe;
@@ -25,32 +24,38 @@ public class InitGameComponents {
 	
 	public Map createMap() {
 		Map map = new Map();
-		List<Entity> entities = new ArrayList<>(100);
-		entities.stream().forEach(x->this.assignRole(x));
+		//List<Entity> entities = new ArrayList<>(100);
+		List<Entity> entities = new ArrayList<>();
+		
+		for (int i = 0 ; i< 100; i++)
+			entities.add(this.assignRole());
+		
+		//entities.stream().forEach(this::assignRole);
 
 		map.setEntities(entities);
 		
 		return map;
 	}
 
-	public Entity assignRole(Entity entidad) {
+	public Entity assignRole() {
 
 		// 80% Spikes
 		// 20% Enemies
-
+		Entity entity;
+		
 		double random = Math.random();
 
 		if (random <= 0.20) {
 
-			entidad = randomAssasin();
+			entity = randomAssasin();
 
 		} else {
 
-			entidad = randomSpikes();
+			entity = randomSpikes();
 
 		}
-
-		return entidad;
+		
+		return entity;
 	}
 
 	public JohnDoe randomJohnDoe() {
@@ -91,7 +96,7 @@ public class InitGameComponents {
 		Spikes spikes = new Spikes(coordinates, dimension);
 
 
-		spikes.loadImage(new Image("/resources/images/spikes.png"));
+		spikes.loadImage(new Image("/images/spikes.png"));
 
 		return spikes;
 

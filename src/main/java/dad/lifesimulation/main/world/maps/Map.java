@@ -32,9 +32,13 @@ public class Map implements GameFunctions {
 	 */
 	
 	public void update() {
+		
+		entities.stream().forEach(x->x.update());
+		/*
 		for (Entity e : entities) {
 			e.update();
 		}
+		*/
 	}
 	
 	/**
