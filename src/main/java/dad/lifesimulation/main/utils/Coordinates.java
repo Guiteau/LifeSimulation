@@ -18,6 +18,11 @@ public class Coordinates implements Comparable<Coordinates> {
 		return X;
 	}
 	
+	@Override
+	public String toString() {
+		return "Coordinates [X=" + X + ", Y=" + Y + "]";
+	}
+
 	/**
 	 * 
 	 * @return valor de coordenada Y
