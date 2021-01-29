@@ -15,6 +15,7 @@ public abstract class Actor extends Entity {
 		super(_coordinates, _dimension, _tangible);
 		this.statistics = _statistics;
 		this.hostilToOthers = hostilToOthers;
+		this.drawable = true;
 	}
 
 	/**
@@ -25,5 +26,4 @@ public abstract class Actor extends Entity {
 	public Statistics getStatistics() {
 		return statistics;
 	}
-
 }

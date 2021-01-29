@@ -1,51 +1,77 @@
 package dad.lifesimulation.main.utils;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.actor.JohnDoe;
 import dad.lifesimulation.main.entities.actor.cell.Assasin;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.world.maps.Map;
+import javafx.scene.image.Image;
 
 public class InitGameComponents {
 
-	public static final int MAPHEIGHT = 300;
-	public static final int MAPWIDTH = 400;
+	public final int MAPHEIGHT;
+	public final int MAPWIDTH;
 
-	public void init() {
+	public InitGameComponents(int width, int height)
+	{
+		MAPHEIGHT = height;
+		MAPWIDTH = width;
+	}
+	
+	public Map createMap() {
+		Map map = new Map();
+		//List<Entity> entities = new ArrayList<>(100);
+		List<Entity> entities = new ArrayList<>();
+		
+		for (int i = 0 ; i< 100; i++)
+			entities.add(this.assignRole());
+		
+		//entities.stream().forEach(this::assignRole);
 
-		Map mapa = new Map();
+		map.setEntities(entities);
 		
-		Stream<Entity> streamEntities = Stream.of(new Entity[100]);
-
-		streamEntities.forEach(this::assignRole);
-		
-		streamEntities.collect(Collectors.toList());
-		
-		
+		return map;
 	}
 
-	public void assignRole(Entity entidad) {
+	public Entity assignRole() {
 
 		// 80% Spikes
 		// 20% Enemies
-
+		Entity entity;
+		
 		double random = Math.random();
 
 		if (random <= 0.20) {
 
-			entidad = randomAssasin();
+			entity = randomAssasin();
 
 		} else {
 
-			entidad = randomSpikes();
-			
-		} 
+			entity = randomSpikes();
 
+		}
+		
+		return entity;
 	}
 
-	public static Assasin randomAssasin() {
+	public JohnDoe randomJohnDoe() {
+		Dimension dimension = new Dimension(5, 3);
+
+		Coordinates coordinates = new Coordinates(Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()),
+				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
+
+		Statistics statistics = new Statistics(100, 100, 30, 5);
+
+		JohnDoe asesino = new JohnDoe(coordinates, dimension, statistics, true);
+
+		return asesino;
+	}
+
+	public Assasin randomAssasin() {
 
 		Dimension dimension = new Dimension(5, 3);
 
@@ -60,7 +86,7 @@ public class InitGameComponents {
 
 	}
 
-	public static Spikes randomSpikes() {
+	public Spikes randomSpikes() {
 
 		Dimension dimension = new Dimension(Die.getDiscretValue(1, 3), Die.getDiscretValue(1, 3));
 
@@ -68,7 +94,10 @@ public class InitGameComponents {
 				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
 
 		Spikes spikes = new Spikes(coordinates, dimension);
-		
+
+
+		spikes.loadImage(new Image("/images/spikes.png"));
+
 		return spikes;
 
 	}

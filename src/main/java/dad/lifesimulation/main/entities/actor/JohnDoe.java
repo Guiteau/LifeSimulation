@@ -1,34 +1,35 @@
-package dad.lifesimulation.main.entities.actor.cell;
+package dad.lifesimulation.main.entities.actor;
 
-import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.Statistics;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Assasin extends Actor {
-	private boolean hostilToPlayers;
+public class JohnDoe extends Actor {
 
-	public Assasin(Coordinates _coordinates, Dimension _dimension, Statistics _statistics,
-			Boolean hostilToOthers, Boolean _hostilToPlayers) {
+	public JohnDoe(Coordinates _coordinates, Dimension _dimension, Statistics _statistics,
+			Boolean hostilToOthers) {
 		super(_coordinates, _dimension, true, _statistics, hostilToOthers);
-		this.hostilToPlayers = _hostilToPlayers;
-		
+		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.RED);
+		gc.setFill(Color.LIGHTBLUE);
 		gc.setStroke(Color.BLACK);
 
 		gc.fillRect(coordinates.getX(), coordinates.getY(), dimension.getWidth(), dimension.getHeight());
-		
+	}
+
+	@Override
+	public String toString() {
+		return "JohnDoe [coordinates=" + coordinates + "]";
 	}
 
 }
