@@ -31,8 +31,10 @@ public class DetectionRange extends Entity {
 			}
 		}
 		// posible solucion a los espacios vacios teniendo en cuenta que el mapa
-		// mirar clase test del pquete  entities 
-		
+		// mirar clase test del paquete  entities 
+		if (aux.isEmpty()) {
+			//mirar la clase test
+		}
 
 	}
 
