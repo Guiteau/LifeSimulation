@@ -15,7 +15,7 @@ public class Agressive extends Actor {
 	}
 
 	public void update() {
-	
+
 		
 	}
 	

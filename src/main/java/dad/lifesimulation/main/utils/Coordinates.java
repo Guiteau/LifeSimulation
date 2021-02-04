@@ -4,7 +4,7 @@ public class Coordinates implements Comparable<Coordinates> {
 	private int X;
 	private int Y;
 
-	Coordinates(int _posX, int _posY) {
+	public Coordinates(int _posX, int _posY) {
 		this.Y = _posY;
 		this.X = _posX;
 	}
@@ -64,6 +64,11 @@ public class Coordinates implements Comparable<Coordinates> {
 	 */
 	public Coordinates addToCoordinates(int _addX, int _addY) {
 		return new Coordinates(this.X += _addX,this.Y += _addY);
+	}
+	@Override
+	public String toString() {
+		return "X=|"+this.getX()+"|"+"Y=|"+this.getY();
+		
 	}
 
 }

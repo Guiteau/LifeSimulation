@@ -11,6 +11,7 @@ public abstract class Actor extends Entity {
 	
 	protected Orientation orientation;
 	
+	
 	public Actor(Coordinates _coordinates, Dimension _dimension, Boolean _tangible, Statistics _statistics,
 			Orientation _orientation) {
 		super(_coordinates, _dimension, _tangible);
@@ -29,13 +30,7 @@ public abstract class Actor extends Entity {
 	/**
 	 * 
 	 * */
-	protected  void  moveDFS() {
-		
-	}
 	
-	protected  void  moveBFS() {
-		
-	} 
 	protected void randomMove() {
 		
 	}
