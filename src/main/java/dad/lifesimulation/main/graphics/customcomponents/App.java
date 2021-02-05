@@ -20,7 +20,7 @@ public class App extends Application {
 		InitGameComponents level_creator = new InitGameComponents((int) controller.getCanvasElement().getWidth(),
 				(int) controller.getCanvasElement().getHeight());
 
-		Map map = level_creator.createMap();
+		Map map = level_creator.createMap(100);
 
 		map.drawElements(controller.getCanvasElement().getGraphicsContext2D());
 

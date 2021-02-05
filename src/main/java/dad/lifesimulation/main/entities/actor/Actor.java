@@ -10,9 +10,9 @@ public abstract class Actor extends Entity {
 	protected Statistics statistics;
 	protected Boolean hostilToOthers;
 	
-	public Actor(Coordinates _coordinates, Dimension _dimension, Boolean _tangible, Statistics _statistics,
+	public Actor(Coordinates _coordinates, Dimension _dimension,  Statistics _statistics,
 			Boolean hostilToOthers) {
-		super(_coordinates, _dimension, _tangible);
+		super(_coordinates, _dimension, false);
 		this.statistics = _statistics;
 		this.hostilToOthers = hostilToOthers;
 		this.drawable = true;
