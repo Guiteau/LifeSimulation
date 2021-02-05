@@ -8,14 +8,19 @@ import dad.lifesimulation.main.utils.Statistics;
 public abstract class Actor extends Entity {
 	
 	protected Statistics statistics;
-	protected Boolean hostilToOthers;
 	
+	protected Orientation orientation;
+	
+	
+
+
 	public Actor(Coordinates _coordinates, Dimension _dimension,  Statistics _statistics,
 			Boolean hostilToOthers) {
 		super(_coordinates, _dimension, false);
 		this.statistics = _statistics;
 		this.hostilToOthers = hostilToOthers;
 		this.drawable = true;
+
 	}
 
 	/**
@@ -26,4 +31,19 @@ public abstract class Actor extends Entity {
 	public Statistics getStatistics() {
 		return statistics;
 	}
+	/**
+	 * 
+	 * */
+	
+	protected void randomMove() {
+		
+	}
+
+	public Orientation getOrientation() {
+		return orientation;
+	}
+
+	
+	
+
 }
