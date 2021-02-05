@@ -17,6 +17,11 @@ public class Coordinates implements Comparable<Coordinates> {
 	public int getX() {
 		return X;
 	}
+	
+	@Override
+	public String toString() {
+		return "Coordinates [X=" + X + ", Y=" + Y + "]";
+	}
 
 	/**
 	 * 
@@ -65,10 +70,6 @@ public class Coordinates implements Comparable<Coordinates> {
 	public Coordinates addToCoordinates(int _addX, int _addY) {
 		return new Coordinates(this.X += _addX,this.Y += _addY);
 	}
-	@Override
-	public String toString() {
-		return "X=|"+this.getX()+"|"+"Y=|"+this.getY();
-		
-	}
+
 
 }

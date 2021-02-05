@@ -23,23 +23,6 @@ public class CanvasExample{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/canvasTest.fxml"));
 		loader.setController(this);
 		loader.load();
-		
-		GraphicsContext gc = canvasElement.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
-		gc.setStroke(Color.GREEN);
-		gc.rect(200, 100, 100, 50);
-		
-	/*	Rectangle rectangle = new Rectangle(100, 100, 300, 150);
-		rectangle.setFill(Color.BLUE);*/
-		
-		
-		
-     	gc.fillRect(200, 100, 100, 50);
-		
-	//	Rectangle rectangle = new Rectangle();
-		
-		
-		
 	}
 
 	public AnchorPane getView() {

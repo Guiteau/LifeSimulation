@@ -12,11 +12,15 @@ public abstract class Actor extends Entity {
 	protected Orientation orientation;
 	
 	
-	public Actor(Coordinates _coordinates, Dimension _dimension, Boolean _tangible, Statistics _statistics,
-			Orientation _orientation) {
-		super(_coordinates, _dimension, _tangible);
+
+
+	public Actor(Coordinates _coordinates, Dimension _dimension,  Statistics _statistics,
+			Boolean hostilToOthers) {
+		super(_coordinates, _dimension, false);
 		this.statistics = _statistics;
-		this.orientation=_orientation;
+		this.hostilToOthers = hostilToOthers;
+		this.drawable = true;
+
 	}
 
 	/**
