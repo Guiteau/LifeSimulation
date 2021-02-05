@@ -19,6 +19,7 @@ public class Spikes extends Floor {
 	public Spikes(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, Type.HARMFUL);
 		// TODO Auto-generated constructor stub
+		drawable = true;
 	}
 	
 	/**

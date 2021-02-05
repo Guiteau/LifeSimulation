@@ -12,7 +12,7 @@ public class Assasin extends Actor {
 
 	public Assasin(Coordinates _coordinates, Dimension _dimension, Statistics _statistics,
 			Boolean hostilToOthers, Boolean _hostilToPlayers) {
-		super(_coordinates, _dimension, true, _statistics, hostilToOthers);
+		super(_coordinates, _dimension, _statistics, hostilToOthers);
 		this.hostilToPlayers = _hostilToPlayers;
 		
 	}

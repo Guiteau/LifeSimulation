@@ -22,15 +22,13 @@ public class InitGameComponents {
 		MAPWIDTH = width;
 	}
 	
-	public Map createMap() {
+	public Map createMap(int n_elements) {
 		Map map = new Map();
-		//List<Entity> entities = new ArrayList<>(100);
+		
 		List<Entity> entities = new ArrayList<>();
 		
-		for (int i = 0 ; i< 100; i++)
+		for (int i = 0; i< n_elements; i++)
 			entities.add(this.assignRole());
-		
-		//entities.stream().forEach(this::assignRole);
 
 		map.setEntities(entities);
 		
@@ -38,7 +36,6 @@ public class InitGameComponents {
 	}
 
 	public Entity assignRole() {
-
 		// 80% Spikes
 		// 20% Enemies
 		Entity entity;
@@ -88,7 +85,7 @@ public class InitGameComponents {
 
 	public Spikes randomSpikes() {
 
-		Dimension dimension = new Dimension(Die.getDiscretValue(1, 3), Die.getDiscretValue(1, 3));
+		Dimension dimension = new Dimension(Die.getDiscretValue(10, 20), Die.getDiscretValue(10, 20));
 
 		Coordinates coordinates = new Coordinates(Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()),
 				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
