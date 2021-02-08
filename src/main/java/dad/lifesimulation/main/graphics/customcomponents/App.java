@@ -1,5 +1,7 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
+import dad.lifesimulation.main.entities.actor.CellAdapter;
+import dad.lifesimulation.main.entities.actor.JohnDoe;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.world.maps.CanvasExample;
 import dad.lifesimulation.main.world.maps.Map;
@@ -21,7 +23,15 @@ public class App extends Application {
 				(int) controller.getCanvasElement().getHeight());
 
 		Map map = level_creator.createMap(100);
+		
+		CellAdapter ca = new CellAdapter();
+		JohnDoe jd = level_creator.randomJohnDoe();
+		
+		ca.loadCell(jd);
+		
+		map.insertEntity(jd);
 
+		
 		map.drawElements(controller.getCanvasElement().getGraphicsContext2D());
 
 		Scene escena = new Scene(controller.getView());
@@ -29,7 +39,12 @@ public class App extends Application {
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.show();
-
+		
+		
+		while(true)
+		{
+			jd.move();
+		}
 	}
 
 	public static void main(String[] args) {

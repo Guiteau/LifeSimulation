@@ -10,7 +10,7 @@ public class JohnDoe extends Actor {
 
 	public JohnDoe(Coordinates _coordinates, Dimension _dimension, Statistics _statistics,
 			Boolean hostilToOthers) {
-		super(_coordinates, _dimension, _statistics, hostilToOthers);
+		super(_coordinates, _dimension, _statistics, hostilToOthers, Orientation.SOUTH);
 		// TODO Auto-generated constructor stub
 	}
 

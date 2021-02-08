@@ -10,8 +10,8 @@ import dad.lifesimulation.main.utils.Statistics;
 public class Agressive extends Actor {
 	public Agressive(Coordinates _coordinates, Dimension _dimension, Statistics _statistics 
 			 ) {
-		super(_coordinates, _dimension, true, _statistics,Orientation.SOUTH);
-
+		super(_coordinates, _dimension, _statistics, true, Orientation.SOUTH);
+		//Actor(_coordinates, _dimension, _statistics, hostilToOthers)
 	}
 
 	public void update() {
