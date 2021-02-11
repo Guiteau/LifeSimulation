@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.Die;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.Statistics;
 
@@ -94,24 +95,34 @@ public abstract class Actor extends Entity {
 	 * */
 	
 	protected void randomMove() {
-		List <Entity> north = map.getEntitiesIn(this.detectionRangeNorth);
-		List <Entity> south = map.getEntitiesIn(this.detectionRangeSouth);
-		List <Entity> east = map.getEntitiesIn(this.detectionRangeEast);
-		List <Entity> west = map.getEntitiesIn(this.detectionRangeWest);
-		if (north.isEmpty()) {
+		List<Orientation> availableOrientations =freeOrientation();
+		if (!availableOrientations.isEmpty()) {
+			move(availableOrientations.get(Die.getDiscretValue(0, availableOrientations.size())));
 			
 		}
-		if (south.isEmpty()) {
 			
-		}
-		if (east.isEmpty()) {
-			
-		}
-		if (west.isEmpty()) {
-			
-		}
+		
+	
+		
 	}
 	
+	@SuppressWarnings("unused")
+	private List<Orientation> freeOrientation() {
+		List<Orientation>freeDirections= new ArrayList<>();
+
+		if (map.getEntitiesIn(this.detectionRangeNorth).isEmpty())
+			freeDirections.add(Orientation.NORTH);
+		if (map.getEntitiesIn(this.detectionRangeSouth).isEmpty())
+			freeDirections.add(Orientation.SOUTH);
+		if (map.getEntitiesIn(this.detectionRangeEast).isEmpty())
+			freeDirections.add(Orientation.EAST);
+		if (map.getEntitiesIn(this.detectionRangeWest).isEmpty())
+			freeDirections.add(Orientation.WEST);
+		
+		
+		
+		return freeDirections;
+	}
 	@SuppressWarnings("unused")
 	private void move(Orientation _orientation) {
 		
