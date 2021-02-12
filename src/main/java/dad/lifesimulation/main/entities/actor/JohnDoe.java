@@ -16,20 +16,13 @@ public class JohnDoe extends Actor {
 
 	@Override
 	public void update() {
-		
+		randomMove();
 	}
 
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.setFill(Color.LIGHTBLUE);
-		gc.setStroke(Color.BLACK);
-
-		gc.fillRect(coordinates.getX(), coordinates.getY(), dimension.getWidth(), dimension.getHeight());
-	}
+	
 
 	@Override
 	public String toString() {
 		return "JohnDoe [coordinates=" + coordinates + "]";
 	}
-
 }
