@@ -55,7 +55,6 @@ public class StatisticComponent extends GridPane implements Initializable {
 		this.armorProperty.bindBidirectional(lbArmor.textProperty());
 		this.energyProperty.bindBidirectional(lbEnergy.textProperty());
 		this.censusProeprty.bindBidirectional(lbCensus.textProperty());
-
 	}
 	
 

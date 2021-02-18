@@ -21,11 +21,8 @@ public class App extends Application {
 		InitGameComponents level_creator = new InitGameComponents((int) controller.getCanvasElement().getWidth(),
 				(int) controller.getCanvasElement().getHeight());
 
-		Map map = level_creator.createMap(100);
+		Map map = level_creator.createLevel(100);
 		
-		JohnDoe jd = level_creator.randomJohnDoe();
-				
-		map.insertEntity(jd);
 		
 		map.drawElements(controller.getCanvasElement().getGraphicsContext2D());
 

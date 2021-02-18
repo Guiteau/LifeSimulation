@@ -1,17 +1,13 @@
 package dad.lifesimulation.main.entities.actor;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Die;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.Statistics;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public abstract class Actor extends Entity {
 
@@ -22,20 +18,17 @@ public abstract class Actor extends Entity {
 	protected DetectionRange detectionRangeSouth;
 	protected DetectionRange detectionRangeWest;
 	protected DetectionRange detectionRangeEast;
-	protected List<DetectionRange> detectionRangeList;
-	protected Color color;
-	
+	protected List<DetectionRange> detectionRangeList;	
 
 	public Actor(Coordinates _coordinates, Dimension _dimension, Statistics _statistics, Boolean hostilToOthers,
-			Orientation _orientation, Color color) {
+			Orientation _orientation) {
 		super(_coordinates, _dimension, false);
 		this.statistics = _statistics;
 		this.hostilToOthers = hostilToOthers;
-		this.drawable = true;
 		this.orientation = _orientation;
 		detectionRangeList = new ArrayList<>();
 		generateDetectionRange();
-		this.color = color;
+		
 	}
 
 	private void generateDetectionRange() {
@@ -141,13 +134,6 @@ public abstract class Actor extends Entity {
 		return orientation;
 	}
 	
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.setFill(this.color);
-		gc.setStroke(Color.BLACK);
-
-		gc.fillRect(coordinates.getX(), coordinates.getY(), dimension.getWidth(), dimension.getHeight());
-	}
 
 
 }
