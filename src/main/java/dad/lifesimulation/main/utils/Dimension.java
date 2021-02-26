@@ -9,7 +9,7 @@ public class Dimension {
 
 	private PropertyChangeSupport support;
 	
-	public Dimension(int _height, int _width) {
+	public Dimension(int _width, int _height) {
 		this.height = _height;
 		this.width = _width;
 		support = new PropertyChangeSupport(this);

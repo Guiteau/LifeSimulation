@@ -26,9 +26,10 @@ public class App extends Application {
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
 		
 		levelGUI_creator.setColor(EntityFinalType.CELL, Color.AQUA);
-		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.PALEGREEN);
+		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.GRAY);
 		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
 		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
+		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
 		
 		levelGUI_creator.createRandomLevel();
 		

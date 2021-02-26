@@ -48,7 +48,8 @@ public class DrawableFactory {
 	
 	public void createRandomLevel()
 	{
-		initializer.generateRandomMap(100);
+		//initializer.generateRandomMap(100);
+		initializer.generateSimpleMap();
 		initializer.getAllEntities().stream().forEach(x -> {
 			try {
 				storeNewDrawableEntity(x);
@@ -101,6 +102,17 @@ public class DrawableFactory {
 		return drawableEntities;
 	}
 	
+	public void createWallEntity(Coordinates coord, Dimension dim) {
+		Entity wall = initializer.getNewWall(coord, dim);
+		
+		try {
+			storeNewDrawableEntity(wall);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void createCellEntity(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
 		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
 		
@@ -125,6 +137,8 @@ public class DrawableFactory {
 	
 	public void render()
 	{
+		graphicsContext.setFill(Color.WHITE);
+		graphicsContext.fillRect(0, 0, graphicsContext.getCanvas().getWidth(), graphicsContext.getCanvas().getHeight());
 		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
 	}
 }

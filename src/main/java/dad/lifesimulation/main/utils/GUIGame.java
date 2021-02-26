@@ -17,6 +17,7 @@ public class GUIGame extends GameFunctions {
 		System.out.println("...Estoy imprimiendo por pantalla");
 		synchronized (pauseLock) {
 			while (!exit.get()) {
+				
 				levelGUI_creator.render();
 				try {
 					Thread.sleep(500);
