@@ -18,6 +18,6 @@ public abstract class abstractComponent extends GridPane implements Initializabl
 	
 	abstract void loadData();
 	
-	abstract void changeView();
+	abstract void changeView(GridPane _view);
 	
 }

@@ -133,7 +133,7 @@ public class StatisticComponent extends emptyComponent {
 	public void loadData() {	
 	}
 	@Override
-	void changeView() {
+	void changeView(GridPane _view) {
 	
 	}
 
