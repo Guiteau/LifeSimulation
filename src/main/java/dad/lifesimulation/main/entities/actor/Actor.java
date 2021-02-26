@@ -133,6 +133,11 @@ public abstract class Actor extends Entity {
 	public Orientation getOrientation() {
 		return orientation;
 	}
+
+	@Override
+	public void update() {
+		randomMove();
+	}
 	
 
 
