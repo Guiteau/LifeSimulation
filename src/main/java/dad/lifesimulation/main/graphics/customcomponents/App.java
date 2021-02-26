@@ -2,6 +2,7 @@ package dad.lifesimulation.main.graphics.customcomponents;
 
 import dad.lifesimulation.main.entities.actor.CellAdapter;
 import dad.lifesimulation.main.entities.actor.JohnDoe;
+import dad.lifesimulation.main.graphics.customcomponents.component.StatisticComponent;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.world.maps.CanvasExample;
 import dad.lifesimulation.main.world.maps.Map;
