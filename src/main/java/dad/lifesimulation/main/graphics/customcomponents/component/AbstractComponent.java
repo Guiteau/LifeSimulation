@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
-public abstract class abstractComponent extends GridPane implements Initializable {
+public abstract class AbstractComponent extends GridPane implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

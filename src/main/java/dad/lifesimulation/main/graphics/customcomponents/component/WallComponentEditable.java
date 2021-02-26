@@ -6,12 +6,21 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class emptyComponent extends abstractComponent {
-	@FXML
-	private GridPane view;
+public class WallComponentEditable extends AbstractComponent {
+	
+    @FXML
+    private GridPane wallComponentEditable;
+
+    @FXML
+    private TextField textFieldTangible, textFieldCoordinates, textFieldDimensions;
+
+    
+	public GridPane getWallComponentEditable() {
+		return wallComponentEditable;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -19,9 +28,9 @@ public class emptyComponent extends abstractComponent {
 
 	}
 
-	public emptyComponent() {
+	public WallComponentEditable() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/BaseComponetView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/wallComponentEditable.fxml"));
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
@@ -30,22 +39,23 @@ public class emptyComponent extends abstractComponent {
 			e.printStackTrace();
 		}
 	}
-	
-	public GridPane getView() {
-		return this.view;
-	}
-	public void setView(GridPane _view) {
-		this.view=_view;
-	}
+
 	@Override
-	protected void loadData() {};
+	void displayData() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
-	protected void displayData() {}
+	void loadData() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	void changeView() {
 		// TODO Auto-generated method stub
 		
-	};
+	}
 
 }
