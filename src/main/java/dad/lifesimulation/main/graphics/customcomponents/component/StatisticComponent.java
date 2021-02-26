@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class StatisticComponent extends emptyComponent {
+public class StatisticComponent extends EmptyComponent {
 
 	private StringProperty cellTypeProperty = new SimpleStringProperty();
 	private StringProperty healthPointsProperty = new SimpleStringProperty();
