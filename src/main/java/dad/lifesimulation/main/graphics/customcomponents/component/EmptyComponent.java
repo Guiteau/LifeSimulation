@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
-public class emptyComponent extends abstractComponent {
+public class EmptyComponent extends AbstractComponent {
 	@FXML
 	private GridPane view;
 
@@ -19,7 +19,7 @@ public class emptyComponent extends abstractComponent {
 
 	}
 
-	public emptyComponent() {
+	public EmptyComponent() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/BaseComponetView.fxml"));
 			loader.setRoot(this);

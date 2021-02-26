@@ -6,72 +6,77 @@ import java.util.List;
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Dimension;
-import dad.lifesimulation.main.utils.GameFunctions;
-import javafx.scene.canvas.GraphicsContext;
 
-public class Map implements GameFunctions {
+public class Map {
 	protected Dimension dimension;
 	protected List<Entity> entities;
 	protected List<Actor> actors;
-	protected List<Entity> drawables;
-	// 0jugador
-	// 0 entidad pox poy update x-0 y-0
 
-	// 1 entidad2 pox poy update x-0 y-0
-	//
-	
-	public Map()
-	{
+	public Map() {
 		actors = new ArrayList<>();
 		entities = new ArrayList<>();
-		drawables = new ArrayList<>();
 	}
 	
+	public void clear()
+	{
+		actors.clear();
+		entities.clear();
+		dimension = null;
+	}
+	
+	public List<Entity> getAllEntities()
+	{
+		return entities;
+	}
+
+	public Dimension getDimension() {
+		return dimension;
+	}
+
+	public void setDimension(Dimension dimension) {
+		this.dimension = dimension;
+	}
+
 	/**
 	 * Actualiza la lista de objetos Entity
 	 */
-	
+
 	public void update() {
-		
-		entities.stream().forEach(x->x.update());
-		/*
-		for (Entity e : entities) {
-			e.update();
-		}
-		*/
-	}
-	
-	/**
-	 * 
-	 * @param entity objeto de tipo entidad que se añade a la lista de entidades
-	 */
-	
-	public void insertEntity(Entity entity)
-	{
-		entities.add(entity);
-		if (entity.isDrawable())
-			drawables.add(entity);
+
+		entities.stream().forEach(x -> x.update());
 	}
 	
 	/**
 	 * 
 	 * @param actor objeto de tipo actor que se añade a la lista de actores
 	 */
-	
-	public void insertEntity(Actor actor)
-	{
+
+	public void insertEntity(Actor actor) {
+		System.out.println("Metiste un actor" + actor.getClass());
+		
 		actors.add(actor);
-		insertEntity((Entity)actor);
+		insertEntity((Entity) actor);
 	}
-	
+
+	/**
+	 * 
+	 * @param entity objeto de tipo entidad que se añade a la lista de entidades
+	 */
+
+	public void insertEntity(Entity entity) {
+		entity.setMap(this);
+		entities.add(entity);
+	}
+
+
+
 	/**
 	 * 
 	 * @param entity objeto de tipo entidad
 	 * @return lista de actores que estén colisionando con la entidad
 	 */
-	
-	public List<Actor> getActorsIn(Entity entity)
-	{
+
+	public List<Actor> getActorsIn(Entity entity) {
 		List<Actor> aux = new ArrayList<>();
 		for (Actor e : actors) {
 			if (e.colliding(entity)) {
@@ -86,7 +91,7 @@ public class Map implements GameFunctions {
 	 * @param entity objeto de tipo entidad
 	 * @return lista de entidades que estén colisionando con la entidad
 	 */
-	
+
 	public List<Entity> getEntitiesIn(Entity entity) {
 		List<Entity> aux = new ArrayList<>();
 		for (Entity e : entities) {
@@ -96,15 +101,25 @@ public class Map implements GameFunctions {
 		}
 		return aux;
 	}
-	
-	public void setEntities(List<Entity> listEntities){
-		
-		listEntities.stream().forEach(this::insertEntity);
-		
+
+	public void setEntities(List<Entity> listEntities) {
+		//listEntities.stream().forEach(this::insertEntity);
+		for (Entity e : listEntities)
+		{
+			insertEntity(e);
+		}
 	}
 
-	public void drawElements(GraphicsContext graphicsContext2D) {
-		drawables.stream().forEach(x->x.render(graphicsContext2D));
+	public List<Entity> getDrawableEntities() {
+		List<Entity> aux = new ArrayList<>();
+
+		entities.stream().forEach(e -> {
+			if (e.isDrawable()) {
+				aux.add(e);
+			}
+		});
+
+		return aux;
 	}
 
 }

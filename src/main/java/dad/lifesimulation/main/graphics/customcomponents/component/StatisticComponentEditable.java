@@ -10,7 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class StatisticComponentEditable extends emptyComponent {
+public class StatisticComponentEditable extends EmptyComponent {
 
 	@FXML
 	private GridPane view;
