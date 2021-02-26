@@ -2,9 +2,10 @@ package dad.lifesimulation.main.entities.element.helpful;
 
 import java.util.List;
 
+import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.element.Floor;
-import dad.lifesimulation.main.entities.element.Type;
+import dad.lifesimulation.main.entities.element.FloorType;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 
@@ -14,8 +15,8 @@ public class MagicFood extends Floor {
 	private final int ARMOR_BONUS = 5;
 
 	public MagicFood(Coordinates _coordinates, Dimension _dimension) {
-		super(_coordinates, _dimension, Type.HELPFUL);
-		// TODO Auto-generated constructor stub
+		super(_coordinates, _dimension, FloorType.HELPFUL);
+		entityType=EntityFinalType.FOOD;
 	}
 
 	@Override

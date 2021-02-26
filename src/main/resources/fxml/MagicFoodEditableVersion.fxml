@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+  </rowConstraints>
+   <children>
+      <TextField fx:id="healthTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="60.0" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets bottom="2.0" top="2.0" />
+         </GridPane.margin></TextField>
+      <TextField fx:id="armorTF" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="2.0" top="2.0" />
+         </GridPane.margin></TextField>
+      <TextField fx:id="energyTF" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="2.0" top="2.0" />
+         </GridPane.margin></TextField>
+      <Label text="Health Bonus" />
+      <Label text="Armor  Bonus" GridPane.rowIndex="1" />
+      <Label text="Energy Bonus" GridPane.rowIndex="2" />
+   </children>
+</GridPane>
