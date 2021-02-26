@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class WallComponentEditable extends AbstractComponent {
+public class WallComponentEditable extends EmptyComponent {
 	
     @FXML
     private GridPane wallComponentEditable;
@@ -41,19 +41,19 @@ public class WallComponentEditable extends AbstractComponent {
 	}
 
 	@Override
-	void displayData() {
+	public void displayData() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	void loadData() {
+	public void loadData() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	void changeView() {
+	public void changeView(GridPane _view) {
 		// TODO Auto-generated method stub
 		
 	}

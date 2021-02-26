@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class MagicFoodEditableVerison extends emptyComponent {
+public class MagicFoodEditableVerison extends EmptyComponent {
 
 	@FXML
 	private GridPane view;
