@@ -24,6 +24,7 @@ public abstract class Actor extends Entity {
 	protected DetectionRange detectionRangeWest;
 	protected DetectionRange detectionRangeEast;
 	protected List<DetectionRange>detectionRangeList;
+	
 	public Actor(Coordinates _coordinates, Dimension _dimension,  Statistics _statistics,
 			Boolean hostilToOthers, Orientation _orientation) {
 		super(_coordinates, _dimension, false);
@@ -159,7 +160,7 @@ public abstract class Actor extends Entity {
 
 	@Override
 	public void update() {
-		
+		randomMove();
 	}
 	
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.JohnDoe;
-import dad.lifesimulation.main.entities.actor.cell.Agressive;
+import dad.lifesimulation.main.entities.actor.cell.Cell;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.world.maps.Map;
 import javafx.scene.image.Image;
@@ -68,7 +68,7 @@ public class InitGameComponents {
 		return asesino;
 	}
 
-	public Agressive randomAssasin() {
+	public Cell randomAssasin() {
 
 		Dimension dimension = new Dimension(5, 3);
 
@@ -77,7 +77,7 @@ public class InitGameComponents {
 
 		Statistics statistics = new Statistics(100, 100, 30, 5);
 
-		Agressive asesino = new Agressive(coordinates, dimension, statistics);
+		Cell asesino = new Cell(coordinates, dimension, statistics);
 
 		return asesino;
 
