@@ -1,7 +1,9 @@
 package dad.lifesimulation.main.entities;
 
-public enum EntityType {
+public enum EntityFinalType {
 	CELL,
 	SPIKE,
+	WALL,
+	FOOD,
 	UNKNOWN
 }

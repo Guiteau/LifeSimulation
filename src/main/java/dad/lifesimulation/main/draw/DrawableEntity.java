@@ -11,12 +11,13 @@ public class DrawableEntity implements Drawn_I {
 	private Entity entity;
 	protected Optional<Image> maybe_image;
 	protected Color color;
-		
+	
 	public DrawableEntity(Entity entity, Color color)
 	{
 		this.entity = entity;
 		entity.setDrawable(true);
 		this.color = color;
+		maybe_image = Optional.empty();
 	}
 	
 	public DrawableEntity(Entity entity, Image image)
@@ -39,7 +40,7 @@ public class DrawableEntity implements Drawn_I {
 					entity.getDimension().getHeight());
 		else {
 			gc.setFill(color);
-			gc.rect(entity.getCoordinates().getX(), entity.getCoordinates().getY(), entity.getDimension().getWidth(), entity.getDimension().getHeight());
+			gc.fillRect(entity.getCoordinates().getX(), entity.getCoordinates().getY(), entity.getDimension().getWidth(), entity.getDimension().getHeight());
 		}
 	}
 }

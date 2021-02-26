@@ -1,33 +1,48 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
-import dad.lifesimulation.main.entities.actor.JohnDoe;
+import dad.lifesimulation.main.draw.DrawableFactory;
+import dad.lifesimulation.main.entities.EntityFinalType;
+import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.world.maps.CanvasExample;
-import dad.lifesimulation.main.world.maps.Map;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
 	private CanvasExample controller;
+	private GUIGame guigame;
+	private InitGameComponents processingGame;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		new StatisticComponent();
 
 		controller = new CanvasExample();
-
-		InitGameComponents level_creator = new InitGameComponents((int) controller.getCanvasElement().getWidth(),
-				(int) controller.getCanvasElement().getHeight());
-
-		Map map = level_creator.createLevel(100);
+		
+		DrawableFactory levelGUI_creator = new DrawableFactory();
+		
+		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
+		
+		levelGUI_creator.setColor(EntityFinalType.CELL, Color.AQUA);
+		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.PALEGREEN);
+		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
+		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
+		
+		levelGUI_creator.createRandomLevel();
+		
+		processingGame = levelGUI_creator.getInitGameComponents();
+		guigame = new GUIGame(levelGUI_creator);
+		
+		Thread thread_drawer = new Thread(guigame, "thread_drawer");
+		Thread thread_thinker = new Thread(processingGame, "thread_thinker");
+		
+		thread_drawer.start();
+		thread_thinker.start();
 		
 		
-		map.drawElements(controller.getCanvasElement().getGraphicsContext2D());
-
 		Scene escena = new Scene(controller.getView());
-
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.show();
@@ -35,6 +50,23 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	@Override
+	public void stop()
+	{
+		System.out.println("Nos fuimos");
+		
+		
+		if (guigame.isPaused())
+			guigame.toPause(false);
+		
+		guigame.toExit(true);
+		
+		if (processingGame.isPaused())
+			processingGame.toPause(false);
+		
+		processingGame.toExit(true);
 	}
 
 }

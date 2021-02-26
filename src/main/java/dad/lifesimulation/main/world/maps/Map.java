@@ -6,9 +6,8 @@ import java.util.List;
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Dimension;
-import dad.lifesimulation.main.utils.GameFunctions;
 
-public class Map implements GameFunctions {
+public class Map {
 	protected Dimension dimension;
 	protected List<Entity> entities;
 	protected List<Actor> actors;
@@ -45,9 +44,18 @@ public class Map implements GameFunctions {
 	public void update() {
 
 		entities.stream().forEach(x -> x.update());
-		/*
-		 * for (Entity e : entities) { e.update(); }
-		 */
+	}
+	
+	/**
+	 * 
+	 * @param actor objeto de tipo actor que se añade a la lista de actores
+	 */
+
+	public void insertEntity(Actor actor) {
+		System.out.println("Metiste un actor" + actor.getClass());
+		
+		actors.add(actor);
+		insertEntity((Entity) actor);
 	}
 
 	/**
@@ -56,18 +64,11 @@ public class Map implements GameFunctions {
 	 */
 
 	public void insertEntity(Entity entity) {
+		entity.setMap(this);
 		entities.add(entity);
 	}
 
-	/**
-	 * 
-	 * @param actor objeto de tipo actor que se añade a la lista de actores
-	 */
 
-	public void insertEntity(Actor actor) {
-		actors.add(actor);
-		insertEntity((Entity) actor);
-	}
 
 	/**
 	 * 
@@ -102,7 +103,11 @@ public class Map implements GameFunctions {
 	}
 
 	public void setEntities(List<Entity> listEntities) {
-		listEntities.stream().forEach(this::insertEntity);
+		//listEntities.stream().forEach(this::insertEntity);
+		for (Entity e : listEntities)
+		{
+			insertEntity(e);
+		}
 	}
 
 	public List<Entity> getDrawableEntities() {

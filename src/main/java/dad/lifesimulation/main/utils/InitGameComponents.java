@@ -1,15 +1,15 @@
 package dad.lifesimulation.main.utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.world.maps.Map;
 
-public class InitGameComponents {
+public class InitGameComponents extends GameFunctions {
 
 	private Map map;
 
@@ -19,12 +19,23 @@ public class InitGameComponents {
 	}
 
 	public Map generateRandomMap(int n_elements) {
-		List<Entity> entities = new ArrayList<>();
 
 		for (int i = 0; i < n_elements; i++)
-			entities.add(randomEntity());
-
-		map.setEntities(entities);
+		{
+			switch (Die.getDiscretValue(1, 3)) {
+			case 1:
+				map.insertEntity(randomSpikes());
+				break;
+			case 2:
+				map.insertEntity((Actor)aggresiveCell("las agresivas"));
+				break;
+			case 3:
+				map.insertEntity((Actor)pacificCell("las pacíficas"));
+				break;
+			default:
+				
+			}
+		}
 
 		return map;
 	}
@@ -32,9 +43,8 @@ public class InitGameComponents {
 	public void clearMap() {
 		map.clear();
 	}
-	
-	public List<Entity> getAllEntities()
-	{
+
+	public List<Entity> getAllEntities() {
 		return map.getAllEntities();
 	}
 
@@ -60,7 +70,7 @@ public class InitGameComponents {
 	public Spikes getNewSpikes(Coordinates coord, Dimension dim) {
 		Spikes spikes = new Spikes(coord, dim);
 
-		map.insertEntity(spikes);
+		// map.insertEntity(spikes);
 
 		return spikes;
 	}
@@ -69,20 +79,10 @@ public class InitGameComponents {
 		Dimension dimension = randomDimension(10, 10);
 		Coordinates coordinates = randomCoordinates(dimension);
 		Spikes spikes = new Spikes(coordinates, dimension);
-		map.insertEntity(spikes);
 		return spikes;
 	}
 
-	public Cell randomCell(String cell_id) {
-		switch (Die.getDiscretValue(1, 2)) {
-		case 1:
-			return aggresiveCell(cell_id);
-		case 2:
-			return pacificCell(cell_id);
-		default:
-			return null;
-		}
-	}
+
 
 	public Cell aggresiveCell(String cell_id) {
 		Dimension dimension = randomDimension(3, 3);
@@ -91,7 +91,7 @@ public class InitGameComponents {
 		Orientation orientation = randomOrientation();
 		Cell cell = new Cell(coordinates, dimension, statistiscs, true, orientation);
 
-		map.insertEntity(cell);
+		// map.insertEntity(cell);
 		return cell;
 	}
 
@@ -103,7 +103,6 @@ public class InitGameComponents {
 
 		Cell cell = new Cell(coordinates, dimension, statistiscs, false, orientation);
 
-		map.insertEntity(cell);
 		return cell;
 	}
 
@@ -134,5 +133,33 @@ public class InitGameComponents {
 	private Coordinates randomCoordinates(Dimension dimensionEntity) {
 		return new Coordinates(Die.getDiscretValue(0, map.getDimension().getWidth() - dimensionEntity.getWidth()),
 				Die.getDiscretValue(0, map.getDimension().getHeight() - dimensionEntity.getHeight()));
+	}
+
+	@Override
+	public void run() {
+		System.out.println("...Estoy procesando el juego");
+		synchronized (pauseLock) {
+			while (!exit.get()) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				map.update();
+
+				try {
+					if (pause.get()) {
+						synchronized (pauseLock) {
+							System.out.println("Pausé el juego");
+							pauseLock.wait();
+						}
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("...Terminé de procesar el juego");
 	}
 }

@@ -2,7 +2,7 @@ package dad.lifesimulation.main.entities.element.harmful;
 
 import java.util.List;
 
-import dad.lifesimulation.main.entities.EntityType;
+import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.element.Floor;
 import dad.lifesimulation.main.entities.element.FloorType;
@@ -17,7 +17,7 @@ public class Spikes extends Floor {
 		super(_coordinates, _dimension, FloorType.HARMFUL);
 		// TODO Auto-generated constructor stub
 		drawable = true;
-		entityType = EntityType.SPIKE;
+		entityType = EntityFinalType.SPIKE;
 	}
 	
 	/**

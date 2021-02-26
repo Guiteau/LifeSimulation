@@ -12,7 +12,7 @@ public class Coordinates implements Comparable<Coordinates> {
 	public Coordinates(int _posX, int _posY) {
 		this.Y = _posY;
 		this.X = _posX;
-		support = new PropertyChangeSupport(support);
+		support = new PropertyChangeSupport(this);
 	}
 
 	/**
