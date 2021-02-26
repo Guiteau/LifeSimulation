@@ -1,16 +1,26 @@
 package dad.lifesimulation.main.utils;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class Statistics {
 	private int energy;
 	private int health;
 	private int armor;
 	private int damage;
+	private PropertyChangeSupport support;
 
+	public Statistics() {
+		support = new PropertyChangeSupport(this);
+	}
+	
 	public Statistics(int energy, int health, int armor, int damage) {
 		this.energy = energy;
 		this.health = health;
 		this.armor = armor;
 		this.damage = damage;
+		
+		support = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -22,14 +32,6 @@ public class Statistics {
 		return energy;
 	}
 
-	/**
-	 * 
-	 * @param energy a establecer en un objeto
-	 */
-
-	public void setEnergy(int energy) {
-		this.energy = energy;
-	}
 
 	/**
 	 * 
@@ -42,15 +44,6 @@ public class Statistics {
 
 	/**
 	 * 
-	 * @param health a establecer en un objeto
-	 */
-
-	public void setHealth(int health) {
-		this.health = health;
-	}
-
-	/**
-	 * 
 	 * @return armadura que tiene un objeto
 	 */
 
@@ -58,14 +51,6 @@ public class Statistics {
 		return armor;
 	}
 
-	/**
-	 * 
-	 * @param armor a establecer en un objeto
-	 */
-
-	public void setArmor(int armor) {
-		this.armor = armor;
-	}
 
 	/**
 	 * 
@@ -78,20 +63,11 @@ public class Statistics {
 
 	/**
 	 * 
-	 * @param damage a establecer en un objeto
-	 */
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
-	/**
-	 * 
 	 * @param _dmg cantidad de daño que recibe un objeto
 	 */
 
 	public void damageReceive(int _dmg) {
-		this.health = health - (_dmg - armor);
+		this.setDamage(this.getHealth() + _dmg);
 	}
 
 	/**
@@ -100,7 +76,7 @@ public class Statistics {
 	 */
 
 	public void healthReceive(int _health) {
-		this.health += _health;
+		this.setHealth(this.getHealth() + _health);
 	}
 
 	/**
@@ -109,7 +85,7 @@ public class Statistics {
 	 */
 
 	public void armorReceive(int _armor) {
-		this.armor += _armor;
+		this.setArmor(this.getArmor() + _armor);
 	}
 
 	/**
@@ -117,9 +93,60 @@ public class Statistics {
 	 * @param _energy cantidad de energía que recibe un objeto
 	 */
 
-	public void energyReceive(int _energy) {
-		this.energy += _energy;
-
+	public void energyReceive(int energy) {
+		this.setEnergy(this.getEnergy() + energy);
 	}
 
+	
+	/**
+	 * 
+	 * @param damage a establecer en un objeto
+	 */
+
+	public void setDamage(int damage) {
+		int oldDamage = this.damage;
+		this.damage = damage;
+		support.firePropertyChange("damage", oldDamage, damage);
+	}
+	
+	/**
+	 * 
+	 * @param armor a establecer en un objeto
+	 */
+
+	public void setArmor(int armor) {
+		int oldArmor = this.armor;
+		this.armor = armor;
+		support.firePropertyChange("damage", oldArmor, armor);
+	}
+
+	/**
+	 * 
+	 * @param health a establecer en un objeto
+	 */
+
+	public void setHealth(int health) {
+		int oldHealth = this.health;
+		this.health = health;
+		support.firePropertyChange("damage", oldHealth, health);
+	}
+
+	/**
+	 * 
+	 * @param energy a establecer en un objeto
+	 */
+
+	public void setEnergy(int energy) {
+		int oldEnergy = this.energy;
+		this.energy = energy;
+		support.firePropertyChange("damage", oldEnergy, energy);
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
 }

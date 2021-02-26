@@ -4,7 +4,6 @@ package dad.lifesimulation.main.entities.actor.cell;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.utils.Coordinates;
-
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.Statistics;
 
@@ -16,11 +15,5 @@ public class Cell extends Actor {
 	}
 
 	public void update() {
-
-		
 	}
-	
-
-	
-
 }

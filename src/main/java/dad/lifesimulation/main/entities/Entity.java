@@ -1,46 +1,26 @@
 package dad.lifesimulation.main.entities;
 
-import java.util.Optional;
-
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
-import dad.lifesimulation.main.utils.GameFunctions;
 import dad.lifesimulation.main.world.maps.Map;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 
-public abstract class Entity implements GameFunctions, Drawn_I {
+public abstract class Entity{
 
 	protected Coordinates coordinates;
 	protected Dimension dimension;
 	protected Boolean tangible;
 	protected Boolean drawable;
+	protected EntityFinalType entityType;
 	protected Map map;
-	protected Optional<Image> maybe_image;
 
-	@Override
-	public void loadImage(Image image) {
-		maybe_image = Optional.of(image);
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		if (maybe_image.isPresent())
-			gc.drawImage(maybe_image.get(), coordinates.getX(), coordinates.getY(), dimension.getWidth(),
-					dimension.getHeight());
-		else {
-			gc.setFill(Color.WHITESMOKE);
-			gc.setStroke(Color.BLACK);
-			gc.rect(coordinates.getX(), coordinates.getY(), dimension.getWidth(), dimension.getHeight());
-		}
-	}
-
+	public abstract void update();
+	
 	public Entity(Coordinates _coordinates, Dimension _dimension, Boolean _tangible) {
 		this.coordinates = _coordinates;
 		this.dimension = _dimension;
 		this.tangible = _tangible;
 		this.map = null;
+		this.entityType = EntityFinalType.UNKNOWN;
 		this.drawable = false;
 	}
 
@@ -109,9 +89,23 @@ public abstract class Entity implements GameFunctions, Drawn_I {
 		this.tangible = tangible;
 	}
 	
-	@Override
+	public void setDrawable(Boolean drawable)
+	{
+		this.drawable = drawable;
+	}
+	
 	public boolean isDrawable()
 	{
-		return drawable;
+		return this.drawable;
+	}
+	
+	public EntityFinalType getEntityType()
+	{
+		return this.entityType;
+	}
+	
+	public void setMap(Map map)
+	{
+		this.map = map;
 	}
 }

@@ -1,102 +1,165 @@
 package dad.lifesimulation.main.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
-import dad.lifesimulation.main.entities.actor.JohnDoe;
-import dad.lifesimulation.main.entities.actor.cell.Cell;
+import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.entities.actor.Cell;
+import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.world.maps.Map;
-import javafx.scene.image.Image;
 
-public class InitGameComponents {
+public class InitGameComponents extends GameFunctions {
 
-	public final int MAPHEIGHT;
-	public final int MAPWIDTH;
+	private Map map;
 
-	public InitGameComponents(int width, int height)
-	{
-		MAPHEIGHT = height;
-		MAPWIDTH = width;
+	public InitGameComponents(Dimension dim) {
+		map = new Map();
+		map.setDimension(dim);
 	}
-	
-	public Map createMap(int n_elements) {
-		Map map = new Map();
-		
-		List<Entity> entities = new ArrayList<>();
-		
-		for (int i = 0; i< n_elements; i++)
-			entities.add(this.assignRole());
 
-		map.setEntities(entities);
-		
+	public Map generateRandomMap(int n_elements) {
+
+		for (int i = 0; i < n_elements; i++)
+		{
+			switch (Die.getDiscretValue(1, 3)) {
+			case 1:
+				map.insertEntity(randomSpikes());
+				break;
+			case 2:
+				map.insertEntity((Actor)aggresiveCell("las agresivas"));
+				break;
+			case 3:
+				map.insertEntity((Actor)pacificCell("las pacíficas"));
+				break;
+			default:
+				
+			}
+		}
+
 		return map;
 	}
 
-	public Entity assignRole() {
-		// 80% Spikes
-		// 20% Enemies
-		Entity entity;
-		
-		double random = Math.random();
+	public void clearMap() {
+		map.clear();
+	}
 
-		if (random <= 0.20) {
+	public List<Entity> getAllEntities() {
+		return map.getAllEntities();
+	}
 
-			entity = randomAssasin();
+	public Cell getNewCell(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
+		Cell cell = new Cell(coord, dim, stats, hostil, Orientation.SOUTH);
+		map.insertEntity(cell);
+		return cell;
+	}
 
-		} else {
-
-			entity = randomSpikes();
-
+	public Entity randomEntity() {
+		switch (Die.getDiscretValue(1, 3)) {
+		case 1:
+			return randomSpikes();
+		case 2:
+			return aggresiveCell("las agresivas");
+		case 3:
+			return pacificCell("las pacíficas");
+		default:
+			return null;
 		}
-		
-		return entity;
 	}
 
-	public JohnDoe randomJohnDoe() {
-		Dimension dimension = new Dimension(5, 3);
+	public Spikes getNewSpikes(Coordinates coord, Dimension dim) {
+		Spikes spikes = new Spikes(coord, dim);
 
-		Coordinates coordinates = new Coordinates(Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()),
-				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
+		// map.insertEntity(spikes);
 
-		Statistics statistics = new Statistics(100, 100, 30, 5);
-
-		JohnDoe asesino = new JohnDoe(coordinates, dimension, statistics, true);
-
-		return asesino;
-	}
-
-	public Cell randomAssasin() {
-
-		Dimension dimension = new Dimension(5, 3);
-
-		Coordinates coordinates = new Coordinates(Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()),
-				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
-
-		Statistics statistics = new Statistics(100, 100, 30, 5);
-
-		Cell asesino = new Cell(coordinates, dimension, statistics);
-
-		return asesino;
-
+		return spikes;
 	}
 
 	public Spikes randomSpikes() {
-
-		Dimension dimension = new Dimension(Die.getDiscretValue(10, 20), Die.getDiscretValue(10, 20));
-
-		Coordinates coordinates = new Coordinates(Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()),
-				Die.getDiscretValue(0, MAPWIDTH - dimension.getWidth()));
-
+		Dimension dimension = randomDimension(10, 10);
+		Coordinates coordinates = randomCoordinates(dimension);
 		Spikes spikes = new Spikes(coordinates, dimension);
-
-
-		spikes.loadImage(new Image("/images/spikes.png"));
-
 		return spikes;
-
 	}
 
+
+
+	public Cell aggresiveCell(String cell_id) {
+		Dimension dimension = randomDimension(3, 3);
+		Coordinates coordinates = randomCoordinates(dimension);
+		Statistics statistiscs = randomStatistics(8);
+		Orientation orientation = randomOrientation();
+		Cell cell = new Cell(coordinates, dimension, statistiscs, true, orientation);
+
+		// map.insertEntity(cell);
+		return cell;
+	}
+
+	public Cell pacificCell(String cell_id) {
+		Dimension dimension = randomDimension(3, 3);
+		Coordinates coordinates = randomCoordinates(dimension);
+		Statistics statistiscs = randomStatistics(8);
+		Orientation orientation = randomOrientation();
+
+		Cell cell = new Cell(coordinates, dimension, statistiscs, false, orientation);
+
+		return cell;
+	}
+
+	private Orientation randomOrientation() {
+		switch (Die.getDiscretValue(1, 4)) {
+		case 1:
+			return Orientation.NORTH;
+		case 2:
+			return Orientation.SOUTH;
+		case 3:
+			return Orientation.EAST;
+		case 4:
+			return Orientation.WEST;
+		default:
+			return Orientation.SOUTH;
+		}
+	}
+
+	private Statistics randomStatistics(int maxValue) {
+		return new Statistics(Die.getDiscretValue(1, maxValue), Die.getDiscretValue(1, maxValue),
+				Die.getDiscretValue(1, maxValue), Die.getDiscretValue(1, maxValue));
+	}
+
+	private Dimension randomDimension(int maxX, int maxY) {
+		return new Dimension(Die.getDiscretValue(1, maxX), Die.getDiscretValue(1, maxY));
+	}
+
+	private Coordinates randomCoordinates(Dimension dimensionEntity) {
+		return new Coordinates(Die.getDiscretValue(0, map.getDimension().getWidth() - dimensionEntity.getWidth()),
+				Die.getDiscretValue(0, map.getDimension().getHeight() - dimensionEntity.getHeight()));
+	}
+
+	@Override
+	public void run() {
+		System.out.println("...Estoy procesando el juego");
+		synchronized (pauseLock) {
+			while (!exit.get()) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				map.update();
+
+				try {
+					if (pause.get()) {
+						synchronized (pauseLock) {
+							System.out.println("Pausé el juego");
+							pauseLock.wait();
+						}
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("...Terminé de procesar el juego");
+	}
 }
