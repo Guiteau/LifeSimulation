@@ -30,22 +30,24 @@ public class EmptyComponent extends AbstractComponent {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public GridPane getView() {
 		return this.view;
 	}
-	public void setView(GridPane _view) {
-		this.view=_view;
-	}
-	@Override
-	protected void loadData() {};
-	@Override
-	protected void displayData() {}
 
 	@Override
-	void changeView() {
-		// TODO Auto-generated method stub
-		
+	protected void loadData() {
 	};
+
+	@Override
+	protected void displayData() {
+	}
+	@Override
+	void changeView(GridPane _view) {
+		this.view = _view;
+
+	}
+
+	
 
 }
