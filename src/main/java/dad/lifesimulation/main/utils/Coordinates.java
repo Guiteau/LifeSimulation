@@ -1,12 +1,18 @@
 package dad.lifesimulation.main.utils;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 public class Coordinates implements Comparable<Coordinates> {
 	private int X;
 	private int Y;
+	
+	private PropertyChangeSupport support;
 
 	public Coordinates(int _posX, int _posY) {
 		this.Y = _posY;
 		this.X = _posX;
+		support = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -37,8 +43,10 @@ public class Coordinates implements Comparable<Coordinates> {
 	 * @param x valor de coordenada X
 	 */
 
-	public void setX(int x) {
-		X = x;
+	public void setX(int X) {
+		int oldX = this.X;
+		this.X = X;
+		support.firePropertyChange("X", oldX, X);
 	}
 
 	/**
@@ -46,8 +54,10 @@ public class Coordinates implements Comparable<Coordinates> {
 	 * @param y valor de coordenada Y
 	 */
 
-	public void setY(int y) {
-		Y = y;
+	public void setY(int Y) {
+		int oldY = this.Y;
+		this.Y = Y;
+		support.firePropertyChange("Y", oldY, Y);
 	}
 
 	/**
@@ -67,9 +77,16 @@ public class Coordinates implements Comparable<Coordinates> {
 	 * @param _addY (int) valor entero para sumar al atributo this.Y
 	 */
 	public void addToCoordinates(int _addX, int _addY) {
-		this.X += _addX;
-		this.Y += _addY;
+		this.setX(this.getX()+_addX);
+		this.setY(this.getY()+_addY);
 	}
 
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
 
 }

@@ -5,9 +5,9 @@ import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 
 public abstract class Floor extends Entity {
-	protected Type type ;
+	protected FloorType type ;
 
-	public Floor(Coordinates _coordinates, Dimension _dimension,Type _type) {
+	public Floor(Coordinates _coordinates, Dimension _dimension,FloorType _type) {
 		super(_coordinates, _dimension, false);
 		this.type=_type;
 	

@@ -32,7 +32,4 @@ public class CanvasExample{
 	public Canvas getCanvasElement() {
 		return canvasElement;
 	}
-    
-    
-	
 }

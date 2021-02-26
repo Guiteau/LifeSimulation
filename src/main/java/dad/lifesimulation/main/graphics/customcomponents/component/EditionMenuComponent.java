@@ -47,7 +47,7 @@ public class EditionMenuComponent extends EmptyComponent {
 	protected void displayData() {}
 	
 	@Override
-	void changeView() {
+	void changeView(GridPane _view) {
 		// TODO Auto-generated method stub
 		
 	};

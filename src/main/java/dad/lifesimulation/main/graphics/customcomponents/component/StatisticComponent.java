@@ -58,7 +58,6 @@ public class StatisticComponent extends EmptyComponent {
 		this.armorProperty.bindBidirectional(lbArmor.textProperty());
 		this.energyProperty.bindBidirectional(lbEnergy.textProperty());
 		this.censusProeprty.bindBidirectional(lbCensus.textProperty());
-
 	}
 	@Override
 	public GridPane getView() {
@@ -133,7 +132,7 @@ public class StatisticComponent extends EmptyComponent {
 	public void loadData() {	
 	}
 	@Override
-	void changeView() {
+	void changeView(GridPane _view) {
 	
 	}
 

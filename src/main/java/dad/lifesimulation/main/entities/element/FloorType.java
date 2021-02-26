@@ -1,9 +1,7 @@
 package dad.lifesimulation.main.entities.element;
 
-public enum Type {
+public enum FloorType {
 	NEUTRAL,
 	HARMFUL,
 	HELPFUL
-	
-
 }
