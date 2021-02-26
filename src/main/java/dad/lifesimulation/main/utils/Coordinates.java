@@ -65,10 +65,10 @@ public class Coordinates implements Comparable<Coordinates> {
 	 * 
 	 * @param _addX (int) valor entero para sumar al atributo this.X
 	 * @param _addY (int) valor entero para sumar al atributo this.Y
-	 * @return (Object type Coordinates) devuelve un nuevo objeto
 	 */
-	public Coordinates addToCoordinates(int _addX, int _addY) {
-		return new Coordinates(this.X += _addX,this.Y += _addY);
+	public void addToCoordinates(int _addX, int _addY) {
+		this.X += _addX;
+		this.Y += _addY;
 	}
 
 

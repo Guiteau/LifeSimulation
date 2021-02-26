@@ -1,4 +1,4 @@
-package dad.lifesimulation.main.graphics.customcomponents;
+package dad.lifesimulation.main.graphics.customcomponents.component;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class StatisticComponent extends GridPane implements Initializable {
+public class StatisticComponent extends emptyComponent {
 
 	private StringProperty cellTypeProperty = new SimpleStringProperty();
 	private StringProperty healthPointsProperty = new SimpleStringProperty();
@@ -34,6 +34,9 @@ public class StatisticComponent extends GridPane implements Initializable {
 
 	@FXML
 	private Label lbCensus;
+	
+	@FXML
+    private GridPane statisticPanel;
 
 	public StatisticComponent() {
 		
@@ -57,8 +60,12 @@ public class StatisticComponent extends GridPane implements Initializable {
 		this.censusProeprty.bindBidirectional(lbCensus.textProperty());
 
 	}
+	@Override
+	public GridPane getView() {
+		return this.statisticPanel;
+		
+	}
 	
-
 
 	public final StringProperty cellTypePropertyProperty() {
 		return this.cellTypeProperty;
@@ -118,6 +125,16 @@ public class StatisticComponent extends GridPane implements Initializable {
 
 	public final void setCensusProeprty(final String censusProeprty) {
 		this.censusProeprtyProperty().set(censusProeprty);
+	}
+	@Override
+	public void displayData() {	
+	}
+	@Override
+	public void loadData() {	
+	}
+	@Override
+	void changeView() {
+	
 	}
 
 }
