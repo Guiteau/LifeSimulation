@@ -32,6 +32,7 @@ public class DrawableEntity implements Drawn_I {
 	public void loadImage(Image image) {
 		maybe_image = Optional.of(image);
 	}
+	
 
 	@Override
 	public void render(GraphicsContext gc) {
@@ -41,6 +42,7 @@ public class DrawableEntity implements Drawn_I {
 		else {
 			gc.setFill(color);
 			gc.fillRect(entity.getCoordinates().getX(), entity.getCoordinates().getY(), entity.getDimension().getWidth(), entity.getDimension().getHeight());
+			
 		}
 	}
 }

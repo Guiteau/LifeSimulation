@@ -12,28 +12,33 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-	private CanvasExample controller;
+	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		controller = new CanvasExample();
+		controller = new PrincipalComponent();
 		
 		DrawableFactory levelGUI_creator = new DrawableFactory();
 		
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
 		
 		levelGUI_creator.setColor(EntityFinalType.CELL, Color.AQUA);
-		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.PALEGREEN);
+		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.GRAY);
 		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
 		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
+		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
 		
 		levelGUI_creator.createRandomLevel();
 		
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
+		
+		controller.setGame(processingGame);
+		controller.setGUIGame(guigame);
+		controller.setFactory(levelGUI_creator);
 		
 		Thread thread_drawer = new Thread(guigame, "thread_drawer");
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");

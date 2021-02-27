@@ -14,12 +14,8 @@ public class Cell extends Actor{
 		super(_coordinates, _dimension, _statistics, hostilToOthers, _orientation);
 		this.cell_id = cell_id;
 		this.entityType = EntityFinalType.CELL;
+		tangible = true;
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void update() {
-		
 	}
 	
 	

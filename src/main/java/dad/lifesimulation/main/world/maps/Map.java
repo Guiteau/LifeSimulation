@@ -95,7 +95,7 @@ public class Map {
 	public List<Entity> getEntitiesIn(Entity entity) {
 		List<Entity> aux = new ArrayList<>();
 		for (Entity e : entities) {
-			if (e.colliding(entity)) {
+			if (entity.colliding(e)) {
 				aux.add(e);
 			}
 		}
