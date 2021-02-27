@@ -6,47 +6,47 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class StatisticComponentEditable extends EmptyComponent {
+public class CellStatsViewEditable extends EmptyComponent {
 
-	@FXML
-	private GridPane view;
+    @FXML
+    private GridPane view;
 
-	@FXML
-	private TextField healthInput;
+    @FXML
+    private CheckBox cellTypeCHB;
 
-	@FXML
-	private TextField armorInput;
+    @FXML
+    private TextField healthPointsTF;
 
-	@FXML
-	private TextField energyInput;
+    @FXML
+    private TextField energyPointsTF;
 
-	@FXML
-	private ComboBox<?> cbCellTypeInput;
+    @FXML
+    private TextField armorPointsTF;
 
-	@FXML
-	private TextField heightDimensionInput;
+    @FXML
+    private TextField xCoordTF;
 
-	@FXML
-	private TextField widthDimensionInput;
+    @FXML
+    private TextField yCoordTF;
 
-	@FXML
-	private TextField xCoordinateInput;
+    @FXML
+    private TextField widthTF;
 
-	@FXML
-	private TextField yCoordinateInput;
+    @FXML
+    private TextField heightTF;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
 
-	public StatisticComponentEditable() {
+	public CellStatsViewEditable() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statisticViewEditableVersion.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CellStatsViewEditable.fxml"));
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();

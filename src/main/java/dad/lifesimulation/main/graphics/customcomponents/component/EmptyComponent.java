@@ -20,7 +20,7 @@ public class EmptyComponent extends AbstractComponent {
 	
 	public EmptyComponent() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/BaseComponentView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmptyComponentView.fxml"));
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
