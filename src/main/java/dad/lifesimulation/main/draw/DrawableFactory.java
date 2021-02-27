@@ -157,4 +157,16 @@ public class DrawableFactory {
 		graphicsContext.fillRect(0, 0, graphicsContext.getCanvas().getWidth(), graphicsContext.getCanvas().getHeight());
 		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
 	}
+
+	public void createFood(Coordinates coordinates, Dimension dimension) {
+Entity cell = initializer.getNewFood(coordinates, dimension);
+		
+		try {
+			storeNewDrawableEntity(cell);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

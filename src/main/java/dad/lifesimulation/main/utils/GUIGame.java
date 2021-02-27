@@ -2,8 +2,9 @@ package dad.lifesimulation.main.utils;
 
 
 import dad.lifesimulation.main.draw.DrawableFactory;
+import javafx.animation.AnimationTimer;
 
-public class GUIGame extends GameFunctions {
+public class GUIGame extends AnimationTimer {
 
 	DrawableFactory levelGUI_creator;
 
@@ -12,6 +13,7 @@ public class GUIGame extends GameFunctions {
 		
 	}
 
+	/*
 	@Override
 	public void run() {
 		System.out.println("...Estoy imprimiendo por pantalla");
@@ -38,6 +40,12 @@ public class GUIGame extends GameFunctions {
 			}
 		}
 		System.out.println("...Terminé de imprimir por pantalla");
+	}
+	*/
+	
+	@Override
+	public void handle(long now) {
+		levelGUI_creator.render();
 	}
 
 	
