@@ -6,15 +6,15 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class CellStatsViewEditable extends EmptyComponent {
+public class CellStatsViewEditable  implements Initializable {
 
-    @FXML
-    private GridPane view;
-
+	@FXML
+	private GridPane view;
     @FXML
     private CheckBox cellTypeCHB;
 
@@ -47,23 +47,20 @@ public class CellStatsViewEditable extends EmptyComponent {
 	public CellStatsViewEditable() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CellStatsViewEditable.fxml"));
-			loader.setRoot(this);
+			//loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
+			this.xCoordTF.textProperty().set("se inicio correctamente");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Override
-	protected void loadData() {
-
+	public GridPane getView() {
+		return this.view;
 	}
-
-	@Override
-	protected void displayData() {
-
+	public String test() {
+		return this.xCoordTF.textProperty().get();
 	}
-	
 }
