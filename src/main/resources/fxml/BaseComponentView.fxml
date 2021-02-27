@@ -4,15 +4,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="view" minHeight="-Infinity"
-	minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-	xmlns:fx="http://javafx.com/fxml/1"
-	xmlns="http://javafx.com/javafx/11.0.1" 
-	fx:controller="dad.lifesimulation.main.graphics.customcomponents.component.EmptyComponent">
+<fx:root fx:id="view" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
 		<ColumnConstraints hgrow="ALWAYS" />
 	</columnConstraints>
 	<rowConstraints>
 		<RowConstraints vgrow="ALWAYS" />
 	</rowConstraints>
-</GridPane>
+</fx:root>

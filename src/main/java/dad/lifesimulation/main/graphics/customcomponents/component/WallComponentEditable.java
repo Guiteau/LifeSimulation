@@ -52,10 +52,6 @@ public class WallComponentEditable extends EmptyComponent {
 		
 	}
 
-	@Override
-	public void changeView(GridPane _view) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

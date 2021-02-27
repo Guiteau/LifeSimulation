@@ -46,11 +46,8 @@ public class EditionMenuComponent extends EmptyComponent {
 	@Override
 	protected void displayData() {}
 	
-	@Override
-	void changeView(GridPane _view) {
-		// TODO Auto-generated method stub
-		
-	};
+
+	
 	
     @FXML
     void onButtonCellAction(ActionEvent event) {
