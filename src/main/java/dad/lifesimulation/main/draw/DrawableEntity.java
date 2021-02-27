@@ -45,4 +45,9 @@ public class DrawableEntity implements Drawn_I {
 			
 		}
 	}
+	
+	public Entity getEntity()
+	{
+		return entity;
+	}
 }
