@@ -121,5 +121,19 @@ public class Map {
 
 		return aux;
 	}
+	
+	public void delete(Entity entity)
+	{
+		if (entities.contains(entity))
+			entities.remove(entity);
+		
+		if (actors.contains(entity))
+			actors.remove(entity);
+		
+	}
+
+	public void delete(List<Entity> entitiesIn) {
+		entitiesIn.stream().forEach(this::delete);
+	}
 
 }

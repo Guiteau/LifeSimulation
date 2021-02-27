@@ -5,6 +5,7 @@ import java.util.List;
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Cell;
+import dad.lifesimulation.main.entities.actor.DetectionRange;
 import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.entities.element.helpful.MagicFood;
@@ -206,5 +207,16 @@ public class InitGameComponents extends GameFunctions {
 			map.insertEntity(magicFood);
 		
 		return magicFood;
+	}
+
+	public void deleteIn(Coordinates coordinates) {
+		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
+		map.delete(map.getEntitiesIn(dr));
+	}
+	
+	public List<Entity> getEntitiesIn(Coordinates coordinates)
+	{
+		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
+		return map.getEntitiesIn(dr);
 	}
 }
