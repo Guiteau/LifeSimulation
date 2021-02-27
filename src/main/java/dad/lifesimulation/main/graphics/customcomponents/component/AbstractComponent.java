@@ -8,16 +8,13 @@ import javafx.scene.layout.GridPane;
 
 public abstract class AbstractComponent extends GridPane implements Initializable {
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
 	
 	abstract void displayData();
 	
 	abstract void loadData();
 	
-	abstract void changeView(GridPane _view);
+	
 	
 }

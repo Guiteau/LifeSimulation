@@ -65,9 +65,5 @@ public class StatisticComponentEditable extends EmptyComponent {
 	protected void displayData() {
 
 	}
-	@Override
-	void changeView(GridPane _view) {
-		
-	}
-
+	
 }
