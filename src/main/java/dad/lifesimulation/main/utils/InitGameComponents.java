@@ -7,6 +7,7 @@ import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
+import dad.lifesimulation.main.entities.element.helpful.MagicFood;
 import dad.lifesimulation.main.entities.element.neutral.ImpenetrableWall;
 import dad.lifesimulation.main.world.maps.Map;
 
@@ -196,5 +197,14 @@ public class InitGameComponents extends GameFunctions {
 			map.insertEntity(wall);
 		
 		return wall;
+	}
+
+	public MagicFood getNewFood(Coordinates coordinates, Dimension dimension) {
+		MagicFood magicFood = new MagicFood(coordinates, dimension);
+		
+		if (automaticMapInsert)
+			map.insertEntity(magicFood);
+		
+		return magicFood;
 	}
 }
