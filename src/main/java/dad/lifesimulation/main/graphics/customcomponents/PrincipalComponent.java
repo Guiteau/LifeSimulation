@@ -69,9 +69,9 @@ public class PrincipalComponent {
     void btFastForward(ActionEvent event) {
 
     }
-
-    @FXML
-    void onClickedCanvas(MouseEvent event) {
+    
+    private void editor (MouseEvent event)
+    {
     	if (btnAddCell.isSelected())
     	{
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
@@ -102,11 +102,22 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     	}
     	
+    	if (btnDeleteEntity.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		drawableFactory.deleteIn(coordinates);
+    	}
+    }
+
+    @FXML
+    void onClickedCanvas(MouseEvent event) {
+    	
+    	//ditor(event);
     }
 
     @FXML
     void onPressedCanvas(MouseEvent event) {
-
+    	editor(event);
     }
     
     @FXML

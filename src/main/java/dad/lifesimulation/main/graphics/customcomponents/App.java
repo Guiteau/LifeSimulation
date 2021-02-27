@@ -41,8 +41,6 @@ public class App extends Application {
 		controller.setGUIGame(guigame);
 		controller.setFactory(levelGUI_creator);
 		
-		//Thread thread_drawer = new Thread(guigame, "thread_drawer");
-		
 		guigame.start();
 		
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");
