@@ -60,7 +60,7 @@
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/cellResized.png" />
+                  <Image url="@../images/cellResized.png" />
                </image>
             </ImageView>
          </graphic>
@@ -72,7 +72,7 @@
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/spikeVerticalResized.png" />
+                  <Image url="@../images/spikeVerticalResized.png" />
                </image>
             </ImageView>
          </graphic>
@@ -81,7 +81,7 @@
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/wall_resized.png" />
+                  <Image url="@../images/wall_resized.png" />
                </image>
             </ImageView>
          </graphic>
@@ -90,7 +90,7 @@
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/foodResized.png" />
+                  <Image url="@../images/foodResized.png" />
                </image>
             </ImageView>
          </graphic>
@@ -99,14 +99,14 @@
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/rubberResized.png" />
+                  <Image url="@../images/rubberResized.png" />
                </image>
             </ImageView>
          </graphic>
       </ToggleButton>
       <ImageView pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <image>
-            <Image url="@../../../../../../../../Users/El%20DragonAlado%20de%20RA/Desktop/paraBorradorTuSsabe/lifeSimulation.png" />
+            <Image url="@../images/lifeSimulation.png" />
          </image>
       </ImageView>
       <Canvas fx:id="canvas" height="505.0" onMouseClicked="#onClickedCanvas" onMousePressed="#onPressedCanvas" width="507.0" GridPane.columnSpan="4" GridPane.rowSpan="5" />
