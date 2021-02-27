@@ -10,13 +10,18 @@ import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -25,6 +30,7 @@ public class PrincipalComponent {
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
+	private Scene scene;
 	
 	@FXML
     private ToggleGroup editor;
@@ -70,8 +76,19 @@ public class PrincipalComponent {
 
     }
     
-    private void editor (MouseEvent event)
+    private void editorMode (MouseEvent event)
     {
+    	
+    	btnAddCell.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				Image cursorImage = new Image(getClass().getResource("/fxml/PrincipalComponent.fxml").toString());
+				scene.setCursor(Cursor.CROSSHAIR);
+				System.out.println("cambio");
+			}
+		});
+    	
     	if (btnAddCell.isSelected())
     	{
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
@@ -80,9 +97,12 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createCellEntity(coordinates, dimension, false);
     		drawableFactory.drawFromCanvas(true);
+    		
+    		
+    		
     	}
     	
-    	if (btnAddWall.isSelected())
+    	else if (btnAddWall.isSelected())
     	{
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
     		Dimension dimension = new Dimension(20, 20);
@@ -92,7 +112,7 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     	}
     	
-    	if (btnAddFood.isSelected())
+    	else if (btnAddFood.isSelected())
     	{
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
     		Dimension dimension = new Dimension(20, 20);
@@ -102,10 +122,14 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     	}
     	
-    	if (btnDeleteEntity.isSelected())
+    	else if (btnDeleteEntity.isSelected())
     	{
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
     		drawableFactory.deleteIn(coordinates);
+    	}
+    	else
+    	{
+    		
     	}
     }
 
@@ -117,7 +141,7 @@ public class PrincipalComponent {
 
     @FXML
     void onPressedCanvas(MouseEvent event) {
-    	editor(event);
+    	editorMode(event);
     }
     
     @FXML
@@ -188,5 +212,10 @@ public class PrincipalComponent {
 
 	public void setFactory(DrawableFactory levelGUI_creator) {
 		this.drawableFactory = levelGUI_creator;		
+	}
+	
+	public void setScene(Scene scene)
+	{
+		this.scene = scene;
 	}
 }
