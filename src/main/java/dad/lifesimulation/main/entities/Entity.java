@@ -62,10 +62,11 @@ public abstract class Entity {
 	 *                    recibidas a esta entidad
 	 */
 	public void setCoordinates(Coordinates _coordinates) {
-		Coordinates oldCoordinates=this.coordinates ;
-		this.coordinates = _coordinates;
-		support.firePropertyChange("coordinates",oldCoordinates,_coordinates);
 		
+		Coordinates oldCoordinates = this.coordinates;
+		this.coordinates = _coordinates;
+		support.firePropertyChange("coordinates", oldCoordinates, _coordinates);
+
 	}
 
 	/**

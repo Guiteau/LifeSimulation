@@ -12,11 +12,12 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
-public class CellStatsView extends EmptyComponent {
+public class CellStatsView implements Initializable {
 	Cell auxCell ;
 	
 	private StringProperty cellTypeProperty = new SimpleStringProperty();
@@ -25,9 +26,9 @@ public class CellStatsView extends EmptyComponent {
 	private StringProperty energyProperty = new SimpleStringProperty();
 	private StringProperty coordinatesProperty = new SimpleStringProperty();
 	private StringProperty dimensionProperty = new SimpleStringProperty();
-	 	@FXML
-	    private GridPane view;
-
+	 
+		@FXML
+		private GridPane view;
 	    @FXML
 	    private CheckBox cellTypeCHB;
 
@@ -50,10 +51,11 @@ public class CellStatsView extends EmptyComponent {
 	public CellStatsView() {
 		
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statisticView.fxml"));
-			loader.setRoot(this);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CellStatsView.fxml"));
+			
 			loader.setController(this);
 			loader.load();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,32 +65,25 @@ public class CellStatsView extends EmptyComponent {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		this.healthPointsProperty.bindBidirectional(healthPointsLB.textProperty());
-		this.armorProperty.bindBidirectional(armorPointsLB.textProperty());
-		this.energyProperty.bindBidirectional(energyPointsLB.textProperty());
-		this.coordinatesProperty.bindBidirectional(coordinatesLB.textProperty());
-		this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
+		this.healthPointsLB.textProperty().bindBidirectional(this.healthPointsProperty);
+		this.armorPointsLB.textProperty().bindBidirectional(this.armorProperty);
+		this.energyPointsLB.textProperty().bindBidirectional(this.energyProperty);
+		
+		//this.coordinatesProperty.bindBidirectional(coordinatesLB.textProperty());
+		//this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
 	}
 	
 	public void loadCell(Cell _cell) {
 		JavaBeanObjectPropertyBuilder<Coordinates>builder = null;
 		ObjectProperty <Coordinates>propCoordinates;
-		propCoordinates=new JavaBeanObjectPropertyBuilder<Coordinates>().create().bean(_cell.getCoordinates()).name("coordinates");
+		//propCoordinates=new JavaBeanObjectPropertyBuilder<Coordinates>().create().bean(_cell.getCoordinates()).name("coordinates");
 		
 		
 	}
-	@Override
-	public GridPane getView() {
-		return this;
-		
-	}	
-
 	
-	@Override
-	public void displayData() {	
-	}
-	@Override
-	public void loadData() {	
+	public GridPane getView() {
+		return this.view;
+		
 	}
 
 	public final StringProperty cellTypePropertyProperty() {
@@ -149,36 +144,10 @@ public class CellStatsView extends EmptyComponent {
 	public final void setEnergyProperty(final String energyProperty) {
 		this.energyPropertyProperty().set(energyProperty);
 	}
+		
+
+	
 	
 
-	public final StringProperty coordinatesPropertyProperty() {
-		return this.coordinatesProperty;
-	}
-	
-
-	public final String getCoordinatesProperty() {
-		return this.coordinatesPropertyProperty().get();
-	}
-	
-
-	public final void setCoordinatesProperty(final String coordinatesProperty) {
-		this.coordinatesPropertyProperty().set(coordinatesProperty);
-	}
-	
-
-	public final StringProperty dimensionPropertyProperty() {
-		return this.dimensionProperty;
-	}
-	
-
-	public final String getDimensionProperty() {
-		return this.dimensionPropertyProperty().get();
-	}
-	
-
-	public final void setDimensionProperty(final String dimensionProperty) {
-		this.dimensionPropertyProperty().set(dimensionProperty);
-	}
-	
 	
 }
