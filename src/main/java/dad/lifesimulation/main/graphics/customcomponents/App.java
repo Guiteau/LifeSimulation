@@ -5,6 +5,7 @@ import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.world.maps.CanvasExample;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -40,10 +41,12 @@ public class App extends Application {
 		controller.setGUIGame(guigame);
 		controller.setFactory(levelGUI_creator);
 		
-		Thread thread_drawer = new Thread(guigame, "thread_drawer");
+		//Thread thread_drawer = new Thread(guigame, "thread_drawer");
+		
+		guigame.start();
+		
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");
 		
-		thread_drawer.start();
 		thread_thinker.start();
 		
 		
@@ -60,14 +63,6 @@ public class App extends Application {
 	@Override
 	public void stop()
 	{
-		System.out.println("Nos fuimos");
-		
-		
-		if (guigame.isPaused())
-			guigame.toPause(false);
-		
-		guigame.toExit(true);
-		
 		if (processingGame.isPaused())
 			processingGame.toPause(false);
 		
