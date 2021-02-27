@@ -70,8 +70,6 @@ public class PrincipalComponent {
 
     }
 
-    
-
     @FXML
     void onClickedCanvas(MouseEvent event) {
     	if (btnAddCell.isSelected())
@@ -94,6 +92,16 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     	}
     	
+    	if (btnAddFood.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		Dimension dimension = new Dimension(20, 20);
+    		
+    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createFood(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(true);
+    	}
+    	
     }
 
     @FXML
@@ -105,16 +113,15 @@ public class PrincipalComponent {
     void onPlayPause(ActionEvent event) {
     	if (pause.isSelected())
     	{
-    		if (!guigame.isPaused())
-        		guigame.toPause(true);
-        	
+    		
+    		guigame.stop();
         	if (!processingGame.isPaused())
         		processingGame.toPause(true);
     	}
     	else
     	{
-    		if (guigame.isPaused())
-        		guigame.toPause(false);
+    		
+    		guigame.start();
         	
         	if (processingGame.isPaused())
         		processingGame.toPause(false);
