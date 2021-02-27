@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" type="GridPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="50.0" />
@@ -23,4 +23,4 @@
       <Label text="Energy Bonus" GridPane.rowIndex="2" />
       <Label fx:id="lbEnergy" text="N/A" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    </children>
-</GridPane>
+</fx:root>

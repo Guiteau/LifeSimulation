@@ -10,18 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 
 public class EmptyComponent extends AbstractComponent {
-	@FXML
-	private GridPane view;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	public EmptyComponent() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/BaseComponetView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/EmptyComponentView.fxml"));
 			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
@@ -32,7 +31,7 @@ public class EmptyComponent extends AbstractComponent {
 	}
 
 	public GridPane getView() {
-		return this.view;
+		return this;
 	}
 
 	@Override
@@ -42,11 +41,7 @@ public class EmptyComponent extends AbstractComponent {
 	@Override
 	protected void displayData() {
 	}
-	@Override
-	void changeView(GridPane _view) {
-		this.view = _view;
-
-	}
+	
 
 	
 

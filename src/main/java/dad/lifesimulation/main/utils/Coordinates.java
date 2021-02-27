@@ -8,7 +8,11 @@ public class Coordinates implements Comparable<Coordinates> {
 	private int Y;
 	
 	private PropertyChangeSupport support;
-
+	public Coordinates() {
+		this.Y = 0;
+		this.X = 0;
+		support = new PropertyChangeSupport(this);
+	}
 	public Coordinates(int _posX, int _posY) {
 		this.Y = _posY;
 		this.X = _posX;

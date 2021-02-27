@@ -45,9 +45,6 @@ public class SpikesComponentView extends EmptyComponent {
 	@Override
 	protected void displayData() {}
 
-	@Override
-	void changeView(GridPane _view) {
-		
-	};
+	
 	
 }
