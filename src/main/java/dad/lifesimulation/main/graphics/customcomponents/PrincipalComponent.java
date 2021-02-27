@@ -12,14 +12,19 @@ import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -29,6 +34,7 @@ public class PrincipalComponent {
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
 
+	private Scene scene;
 	@FXML
 	private ToggleGroup editor;
 
@@ -65,13 +71,78 @@ public class PrincipalComponent {
 	@FXML
 	private ToggleButton btnDeleteEntity;
 
+
 	@FXML
 	private Canvas canvas;
+
+    @FXML
+    void btFastForward(ActionEvent event) {
+
+    }
+    
+    private void editorMode (MouseEvent event)
+    {
+    	
+    	btnAddCell.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				Image cursorImage = new Image(getClass().getResource("/fxml/PrincipalComponent.fxml").toString());
+				scene.setCursor(Cursor.CROSSHAIR);
+				System.out.println("cambio");
+			}
+		});
+    	
+    	if (btnAddCell.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		Dimension dimension = new Dimension(20, 20);
+    		
+    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createCellEntity(coordinates, dimension, false);
+    		drawableFactory.drawFromCanvas(true);
+    		
+    		
+    		
+    	}
+    	
+    	else if (btnAddWall.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		Dimension dimension = new Dimension(20, 20);
+    		
+    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createWallEntity(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(true);
+    	}
+    	
+    	else if (btnAddFood.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		Dimension dimension = new Dimension(20, 20);
+    		
+    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createFood(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(true);
+    	}
+    	
+    	else if (btnDeleteEntity.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		drawableFactory.deleteIn(coordinates);
+    	}
+    	else
+    	{
+    		
+    	}
+    }
+
 
     @FXML
     private Tab visualizeTab;
 
     @FXML
+
     private Tab editableTab;
 
 	private CellStatsView cellView;
@@ -155,6 +226,34 @@ public class PrincipalComponent {
 
 	public PrincipalComponent() {
 		try {
+
+    void onPressedCanvas(MouseEvent event) {
+    	editorMode(event);
+    }
+    
+    @FXML
+    void onPlayPause(ActionEvent event) {
+    	if (pause.isSelected())
+    	{
+    		
+    		guigame.stop();
+        	if (!processingGame.isPaused())
+        		processingGame.toPause(true);
+    	}
+    	else
+    	{
+    		
+    		guigame.start();
+        	
+        	if (processingGame.isPaused())
+        		processingGame.toPause(false);
+    	}
+    		
+    }
+    
+    public PrincipalComponent() {
+    	try {
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent.fxml"));
 			//loader.setRoot(this);
 			loader.setController(this);
@@ -209,5 +308,10 @@ public class PrincipalComponent {
 
 	public void setFactory(DrawableFactory levelGUI_creator) {
 		this.drawableFactory = levelGUI_creator;
+	}
+	
+	public void setScene(Scene scene)
+	{
+		this.scene = scene;
 	}
 }

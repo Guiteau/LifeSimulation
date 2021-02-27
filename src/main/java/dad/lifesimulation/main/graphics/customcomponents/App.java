@@ -22,6 +22,7 @@ public class App extends Application {
 
 		controller = new PrincipalComponent();
 		
+		
 		DrawableFactory levelGUI_creator = new DrawableFactory();
 		
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
@@ -49,6 +50,7 @@ public class App extends Application {
 		
 		
 		Scene escena = new Scene(controller.getView());
+		controller.setScene(escena);
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.show();

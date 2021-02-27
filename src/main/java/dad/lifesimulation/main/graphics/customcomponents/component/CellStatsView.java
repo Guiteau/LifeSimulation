@@ -9,6 +9,7 @@ import dad.lifesimulation.main.utils.Coordinates;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.adapter.JavaBeanObjectProperty;
 import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,10 +74,19 @@ public class CellStatsView implements Initializable {
 		//this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
 	}
 	
+	
+	@SuppressWarnings("unchecked") //bad api
 	public void loadCell(Cell _cell) {
-		JavaBeanObjectPropertyBuilder<Coordinates>builder = null;
-		ObjectProperty <Coordinates>propCoordinates;
-		//propCoordinates=new JavaBeanObjectPropertyBuilder<Coordinates>().create().bean(_cell.getCoordinates()).name("coordinates");
+
+		
+		JavaBeanObjectProperty<Coordinates> propCoordinates;
+		try {
+			propCoordinates= JavaBeanObjectPropertyBuilder.create().bean(_cell.getCoordinates()).name("coordinates").build();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		
 	}
