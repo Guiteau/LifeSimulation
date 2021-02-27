@@ -76,7 +76,6 @@ public abstract class Actor extends Entity {
 		List<Orientation> availablePlaces = freePlaces();
 		if (!availablePlaces.isEmpty()) {
 			move(availablePlaces.get(Die.getDiscretValue(0, availablePlaces.size() - 1)));
-			//move(Orientation.NORTH);
 		}
 
 	}
@@ -141,7 +140,5 @@ public abstract class Actor extends Entity {
 	public void update() {
 		randomMove();
 	}
-	
-
 
 }

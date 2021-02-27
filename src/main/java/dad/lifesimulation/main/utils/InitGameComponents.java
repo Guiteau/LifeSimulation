@@ -13,13 +13,18 @@ import dad.lifesimulation.main.world.maps.Map;
 public class InitGameComponents extends GameFunctions {
 
 	private Map map;
+	private boolean automaticMapInsert;
 
 	public InitGameComponents(Dimension dim) {
 		map = new Map();
 		map.setDimension(dim);
+		automaticMapInsert = false;
 	}
 	
-	
+	public void setAutomaticMapInsert(boolean automaticMapInsert)
+	{
+		this.automaticMapInsert = automaticMapInsert;
+	}
 
 	public void generateSimpleMap() {
 		map.insertEntity(getNewWall(new Coordinates(47, 29), new Dimension(307, 55)));
@@ -58,6 +63,15 @@ public class InitGameComponents extends GameFunctions {
 
 	public Cell getNewCell(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
 		Cell cell = new Cell(coord, dim, stats, hostil, Orientation.SOUTH);
+		if (automaticMapInsert)
+			map.insertEntity(cell);
+		return cell;
+	}
+	
+	public Cell getNewCell(Coordinates coord, Dimension dim, boolean hostil) {
+		Cell cell = new Cell(coord, dim, randomStatistics(8), hostil, Orientation.SOUTH);
+		if (automaticMapInsert)
+			map.insertEntity(cell);
 		return cell;
 	}
 
@@ -77,6 +91,9 @@ public class InitGameComponents extends GameFunctions {
 	public Spikes getNewSpikes(Coordinates coord, Dimension dim) {
 		Spikes spikes = new Spikes(coord, dim);
 
+		if (automaticMapInsert)
+			map.insertEntity(spikes);
+		
 		return spikes;
 	}
 
@@ -84,6 +101,10 @@ public class InitGameComponents extends GameFunctions {
 		Dimension dimension = randomDimension(20, 50);
 		Coordinates coordinates = randomCoordinates(dimension);
 		Spikes spikes = new Spikes(coordinates, dimension);
+		
+		if (automaticMapInsert)
+			map.insertEntity(spikes);
+		
 		return spikes;
 	}
 
@@ -93,6 +114,9 @@ public class InitGameComponents extends GameFunctions {
 		Statistics statistiscs = randomStatistics(8);
 		Orientation orientation = randomOrientation();
 		Cell cell = new Cell(coordinates, dimension, statistiscs, true, orientation);
+		
+		if (automaticMapInsert)
+			map.insertEntity(cell);
 
 		return cell;
 	}
@@ -167,6 +191,9 @@ public class InitGameComponents extends GameFunctions {
 
 	public Entity getNewWall(Coordinates coord, Dimension dim) {
 		ImpenetrableWall wall = new ImpenetrableWall(coord, dim);
+		
+		if (automaticMapInsert)
+			map.insertEntity(wall);
 		
 		return wall;
 	}

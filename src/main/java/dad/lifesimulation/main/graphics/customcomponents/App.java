@@ -12,14 +12,14 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-	private CanvasExample controller;
+	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		controller = new CanvasExample();
+		controller = new PrincipalComponent();
 		
 		DrawableFactory levelGUI_creator = new DrawableFactory();
 		
@@ -35,6 +35,10 @@ public class App extends Application {
 		
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
+		
+		controller.setGame(processingGame);
+		controller.setGUIGame(guigame);
+		controller.setFactory(levelGUI_creator);
 		
 		Thread thread_drawer = new Thread(guigame, "thread_drawer");
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");

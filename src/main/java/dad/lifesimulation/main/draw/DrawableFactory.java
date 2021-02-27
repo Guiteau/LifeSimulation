@@ -38,6 +38,11 @@ public class DrawableFactory {
 		drawableEntities = new ArrayList<>();
 	}
 	
+	public void drawFromCanvas(boolean drawcanvas)
+	{
+		initializer.setAutomaticMapInsert(drawcanvas);
+	}
+	
 	public InitGameComponents getInitGameComponents() throws NotInitializer
 	{
 		if (initializer == null)
@@ -123,6 +128,17 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil) {
+		Entity cell = initializer.getNewCell(coord, dim, hostil);
+		
+		try {
+			storeNewDrawableEntity(cell);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void createSpikeEntity(Coordinates coord, Dimension dim) {
 		Entity spikes = initializer.getNewSpikes(coord, dim);
@@ -137,7 +153,7 @@ public class DrawableFactory {
 	
 	public void render()
 	{
-		graphicsContext.setFill(Color.WHITE);
+		graphicsContext.setFill(Color.BLACK);
 		graphicsContext.fillRect(0, 0, graphicsContext.getCanvas().getWidth(), graphicsContext.getCanvas().getHeight());
 		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
 	}
