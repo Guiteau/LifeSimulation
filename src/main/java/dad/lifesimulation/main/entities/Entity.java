@@ -10,6 +10,7 @@ public abstract class Entity{
 	protected Dimension dimension;
 	protected Boolean tangible;
 	protected Boolean drawable;
+	protected Boolean debugging;
 	protected EntityFinalType entityType;
 	protected Map map;
 
@@ -22,6 +23,7 @@ public abstract class Entity{
 		this.map = null;
 		this.entityType = EntityFinalType.UNKNOWN;
 		this.drawable = false;
+		this.debugging = false;
 	}
 
 	/**
@@ -107,5 +109,10 @@ public abstract class Entity{
 	public void setMap(Map map)
 	{
 		this.map = map;
+	}
+	
+	public boolean isDebuggin()
+	{
+		return debugging;
 	}
 }

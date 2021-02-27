@@ -73,15 +73,14 @@ public abstract class Actor extends Entity {
 	 * */
 
 	protected void randomMove() {
-		List<Orientation> availableOrientations = freeOrientation();
-		if (!availableOrientations.isEmpty()) {
-			move(availableOrientations.get(Die.getDiscretValue(0, availableOrientations.size())));
-
+		List<Orientation> availablePlaces = freePlaces();
+		if (!availablePlaces.isEmpty()) {
+			move(availablePlaces.get(Die.getDiscretValue(0, availablePlaces.size() - 1)));
 		}
 
 	}
 
-	private List<Orientation> freeOrientation() {
+	private List<Orientation> freePlaces() {
 		List<Orientation> freeDirections = new ArrayList<>();
 
 		if (map.getEntitiesIn(this.detectionRangeNorth).isEmpty())
@@ -93,6 +92,9 @@ public abstract class Actor extends Entity {
 		if (map.getEntitiesIn(this.detectionRangeWest).isEmpty())
 			freeDirections.add(Orientation.WEST);
 
+		if (freeDirections.size() < 4)
+			System.out.println("detecté algo");
+		
 		return freeDirections;
 	}
 
@@ -103,7 +105,7 @@ public abstract class Actor extends Entity {
 			this.detectionRangeList.stream().forEach(e -> {
 				e.getCoordinates().addToCoordinates(0, -1);
 			});
-			this.coordinates.addToCoordinates(0, 1);
+			this.coordinates.addToCoordinates(0, -1);
 			break;
 		case SOUTH:
 			this.detectionRangeList.stream().forEach(e -> {
@@ -138,7 +140,5 @@ public abstract class Actor extends Entity {
 	public void update() {
 		randomMove();
 	}
-	
-
 
 }

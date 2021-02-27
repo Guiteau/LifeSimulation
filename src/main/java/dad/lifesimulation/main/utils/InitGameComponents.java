@@ -7,37 +7,50 @@ import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.entities.actor.Orientation;
 import dad.lifesimulation.main.entities.element.harmful.Spikes;
+import dad.lifesimulation.main.entities.element.neutral.ImpenetrableWall;
 import dad.lifesimulation.main.world.maps.Map;
 
 public class InitGameComponents extends GameFunctions {
 
 	private Map map;
+	private boolean automaticMapInsert;
 
 	public InitGameComponents(Dimension dim) {
 		map = new Map();
 		map.setDimension(dim);
+		automaticMapInsert = false;
+	}
+	
+	public void setAutomaticMapInsert(boolean automaticMapInsert)
+	{
+		this.automaticMapInsert = automaticMapInsert;
 	}
 
-	public Map generateRandomMap(int n_elements) {
+	public void generateSimpleMap() {
+		map.insertEntity(getNewWall(new Coordinates(47, 29), new Dimension(307, 55)));
+		map.insertEntity(getNewWall(new Coordinates(34, 11), new Dimension(52, 209)));
+		map.insertEntity(getNewWall(new Coordinates(54,250), new Dimension(212, 35)));
+		map.insertEntity(getNewWall(new Coordinates(90, 235), new Dimension(37, 152)));
+		map.insertEntity(getNewCell(new Coordinates(120, 100), new Dimension(100, 100), randomStatistics(8), false));
+	}
 
-		for (int i = 0; i < n_elements; i++)
-		{
+	public void generateRandomMap(int n_elements) {
+
+		for (int i = 0; i < n_elements; i++) {
 			switch (Die.getDiscretValue(1, 3)) {
 			case 1:
 				map.insertEntity(randomSpikes());
 				break;
 			case 2:
-				map.insertEntity((Actor)aggresiveCell("las agresivas"));
+				map.insertEntity(aggresiveCell("las agresivas"));
 				break;
 			case 3:
-				map.insertEntity((Actor)pacificCell("las pacíficas"));
+				map.insertEntity(pacificCell("las pacíficas"));
 				break;
 			default:
-				
+
 			}
 		}
-
-		return map;
 	}
 
 	public void clearMap() {
@@ -50,7 +63,15 @@ public class InitGameComponents extends GameFunctions {
 
 	public Cell getNewCell(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
 		Cell cell = new Cell(coord, dim, stats, hostil, Orientation.SOUTH);
-		map.insertEntity(cell);
+		if (automaticMapInsert)
+			map.insertEntity(cell);
+		return cell;
+	}
+	
+	public Cell getNewCell(Coordinates coord, Dimension dim, boolean hostil) {
+		Cell cell = new Cell(coord, dim, randomStatistics(8), hostil, Orientation.SOUTH);
+		if (automaticMapInsert)
+			map.insertEntity(cell);
 		return cell;
 	}
 
@@ -70,33 +91,38 @@ public class InitGameComponents extends GameFunctions {
 	public Spikes getNewSpikes(Coordinates coord, Dimension dim) {
 		Spikes spikes = new Spikes(coord, dim);
 
-		// map.insertEntity(spikes);
-
+		if (automaticMapInsert)
+			map.insertEntity(spikes);
+		
 		return spikes;
 	}
 
 	public Spikes randomSpikes() {
-		Dimension dimension = randomDimension(10, 10);
+		Dimension dimension = randomDimension(20, 50);
 		Coordinates coordinates = randomCoordinates(dimension);
 		Spikes spikes = new Spikes(coordinates, dimension);
+		
+		if (automaticMapInsert)
+			map.insertEntity(spikes);
+		
 		return spikes;
 	}
 
-
-
 	public Cell aggresiveCell(String cell_id) {
-		Dimension dimension = randomDimension(3, 3);
+		Dimension dimension = randomDimension(20, 50);
 		Coordinates coordinates = randomCoordinates(dimension);
 		Statistics statistiscs = randomStatistics(8);
 		Orientation orientation = randomOrientation();
 		Cell cell = new Cell(coordinates, dimension, statistiscs, true, orientation);
+		
+		if (automaticMapInsert)
+			map.insertEntity(cell);
 
-		// map.insertEntity(cell);
 		return cell;
 	}
 
 	public Cell pacificCell(String cell_id) {
-		Dimension dimension = randomDimension(3, 3);
+		Dimension dimension = randomDimension(20, 50);
 		Coordinates coordinates = randomCoordinates(dimension);
 		Statistics statistiscs = randomStatistics(8);
 		Orientation orientation = randomOrientation();
@@ -141,7 +167,7 @@ public class InitGameComponents extends GameFunctions {
 		synchronized (pauseLock) {
 			while (!exit.get()) {
 				try {
-					Thread.sleep(500);
+					Thread.sleep(100);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -161,5 +187,14 @@ public class InitGameComponents extends GameFunctions {
 			}
 		}
 		System.out.println("...Terminé de procesar el juego");
+	}
+
+	public Entity getNewWall(Coordinates coord, Dimension dim) {
+		ImpenetrableWall wall = new ImpenetrableWall(coord, dim);
+		
+		if (automaticMapInsert)
+			map.insertEntity(wall);
+		
+		return wall;
 	}
 }
