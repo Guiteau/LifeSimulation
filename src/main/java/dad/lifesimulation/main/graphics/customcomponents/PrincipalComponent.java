@@ -114,7 +114,7 @@ public class PrincipalComponent {
     		
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createCellEntity(coordinates, dimension, false);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.drawFromCanvas(false);
     		
     		
     		
@@ -127,7 +127,7 @@ public class PrincipalComponent {
     		
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createWallEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.drawFromCanvas(false);
     	}
     	
     	else if (btnAddFood.isSelected())
@@ -136,8 +136,8 @@ public class PrincipalComponent {
     		Dimension dimension = new Dimension(20, 20);
     		
     		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createFood(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createFoodEntity(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(false);
     	}
     	
     	else if (btnDeleteEntity.isSelected())

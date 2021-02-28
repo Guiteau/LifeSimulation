@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Die;
 import dad.lifesimulation.main.utils.Dimension;
@@ -91,9 +92,6 @@ public abstract class Actor extends Entity {
 			freeDirections.add(Orientation.EAST);
 		if (map.getEntitiesIn(this.detectionRangeWest).isEmpty())
 			freeDirections.add(Orientation.WEST);
-
-		if (freeDirections.size() < 4)
-			System.out.println("detecté algo");
 		
 		return freeDirections;
 	}
@@ -139,6 +137,17 @@ public abstract class Actor extends Entity {
 	@Override
 	public void update() {
 		randomMove();
+		
+		List<Entity> entities = map.getEntitiesIn(this);
+		
+		for (Entity e : entities)
+		{
+			if (e.getEntityType() == EntityFinalType.FOOD)
+			{
+				e.interact(this);
+				e.setDeletable(true);
+			}
+		}
 	}
 
 }

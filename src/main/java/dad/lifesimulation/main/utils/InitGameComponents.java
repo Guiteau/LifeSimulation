@@ -228,8 +228,6 @@ public class InitGameComponents extends GameFunctions {
 		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
 		List<Actor> actors = map.getActorsIn(dr);
 		
-		System.out.println(actors);
-		
 		for (Actor a : actors)
 		{
 			if (a.getEntityType() == EntityFinalType.CELL)

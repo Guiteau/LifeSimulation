@@ -78,7 +78,7 @@ public class App extends Application {
 		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
 		
-		generatePdf();
+		//generatePdf();
 		
 	}
 	

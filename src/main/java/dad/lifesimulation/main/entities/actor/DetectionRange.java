@@ -18,4 +18,18 @@ public class DetectionRange extends Entity{
 		
 	}
 
+
+	@Override
+	public void interact(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void interact(Actor actor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

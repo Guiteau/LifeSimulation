@@ -2,6 +2,7 @@ package dad.lifesimulation.main.entities.element.harmful;
 
 import java.util.List;
 
+import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.element.Floor;
@@ -30,5 +31,17 @@ public class Spikes extends Floor {
 		
 		for (Actor actor : temporalList)
 			actor.getStatistics().damageReceive(DAMAGE);
+	}
+
+	@Override
+	public void interact(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void interact(Actor actor) {
+		// TODO Auto-generated method stub
+		
 	}
 }

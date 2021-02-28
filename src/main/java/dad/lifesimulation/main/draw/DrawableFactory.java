@@ -151,6 +151,18 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	public void createFoodEntity(Coordinates coord, Dimension dim)
+	{
+		Entity food = initializer.getNewFood(coord, dim);
+
+		try {
+			storeNewDrawableEntity(food);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void createSpikeEntity(Coordinates coord, Dimension dim) {
 		Entity spikes = initializer.getNewSpikes(coord, dim);
@@ -164,22 +176,21 @@ public class DrawableFactory {
 	}
 
 	public void render() {
+		
 		graphicsContext.setFill(Color.BLACK);
 		graphicsContext.fillRect(0, 0, graphicsContext.getCanvas().getWidth(), graphicsContext.getCanvas().getHeight());
+		
+		for (DrawableEntity de: drawableEntities)
+		{
+			if (de.getEntity().isDeletable())
+				drawableEntities.remove(de);
+			else
+				de.render(graphicsContext);
+		}
 		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
 	}
 
-	public void createFood(Coordinates coordinates, Dimension dimension) {
-		Entity cell = initializer.getNewFood(coordinates, dimension);
 
-		try {
-			storeNewDrawableEntity(cell);
-		} catch (NotColorOrImageChosen e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 	public void deleteIn(Coordinates coordinates) {
 		List<Entity> entities = initializer.getEntitiesIn(coordinates);

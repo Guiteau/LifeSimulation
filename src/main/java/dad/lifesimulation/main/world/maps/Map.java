@@ -44,7 +44,19 @@ public class Map {
 
 	public void update() {
 
-		entities.stream().forEach(x -> x.update());
+		List<Entity> entitiesToDelete = new ArrayList<>();
+		
+		for (Entity e : entities)
+		{
+			if (e.isDeletable())
+				entitiesToDelete.add(e);
+			else		
+				e.update();
+		}
+		
+		if (!entitiesToDelete.isEmpty())
+			delete(entitiesToDelete);
+		
 	}
 	
 	/**
@@ -135,7 +147,9 @@ public class Map {
 	}
 
 	public void delete(List<Entity> entitiesIn) {
-		entitiesIn.stream().forEach(this::delete);
+		System.out.println("Borrando");
+		for(Entity e: entitiesIn)
+			delete(e);
 	}
 
 }
