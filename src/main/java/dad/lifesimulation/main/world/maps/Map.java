@@ -5,6 +5,7 @@ import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.utils.DataProvider;
 import dad.lifesimulation.main.utils.Dimension;
 
 public class Map {
@@ -108,6 +109,7 @@ public class Map {
 		{
 			insertEntity(e);
 		}
+		
 	}
 
 	public List<Entity> getDrawableEntities() {
