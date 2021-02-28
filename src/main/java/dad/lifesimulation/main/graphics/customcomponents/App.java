@@ -38,7 +38,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+	
 		controller = new PrincipalComponent();
 		
 		
@@ -75,9 +75,11 @@ public class App extends Application {
 		controller.setScene(escena);
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
+		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
 		
 		generatePdf();
+		
 	}
 	
 	public List<EntityReport> generateReportList(List<Entity> entitiesList){
