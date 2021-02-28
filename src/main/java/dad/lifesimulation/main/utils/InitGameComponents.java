@@ -13,6 +13,7 @@ import dad.lifesimulation.main.entities.element.harmful.Spikes;
 import dad.lifesimulation.main.entities.element.helpful.MagicFood;
 import dad.lifesimulation.main.entities.element.neutral.ImpenetrableWall;
 import dad.lifesimulation.main.world.maps.Map;
+import javafx.scene.chart.PieChart.Data;
 
 public class InitGameComponents extends GameFunctions {
 
@@ -55,6 +56,7 @@ public class InitGameComponents extends GameFunctions {
 
 			}
 		}
+		
 	}
 
 	public void clearMap() {
