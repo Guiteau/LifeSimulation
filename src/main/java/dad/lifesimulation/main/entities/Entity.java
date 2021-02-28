@@ -16,7 +16,7 @@ public abstract class Entity {
 	protected Boolean debugging;
 	protected EntityFinalType entityType;
 	protected Map map;
-	private PropertyChangeSupport support;
+	protected PropertyChangeSupport support;
 
 	public abstract void update();
 

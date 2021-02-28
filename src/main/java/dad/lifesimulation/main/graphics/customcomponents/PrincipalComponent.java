@@ -2,15 +2,24 @@ package dad.lifesimulation.main.graphics.customcomponents;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dad.lifesimulation.main.draw.DrawableFactory;
+import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsViewEditable;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.adapter.JavaBeanDoubleProperty;
+import javafx.beans.property.adapter.JavaBeanDoublePropertyBuilder;
+import javafx.beans.property.adapter.JavaBeanIntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
+import javafx.beans.property.adapter.JavaBeanObjectProperty;
+import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -27,6 +36,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.util.converter.NumberStringConverter;
 
 public class PrincipalComponent {
 
@@ -34,6 +44,16 @@ public class PrincipalComponent {
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
 
+    @FXML
+    private Tab visualizeTab;
+
+    @FXML
+
+    private Tab editableTab;
+
+	private CellStatsView cellView;
+	private CellStatsViewEditable cellEditable;
+	
 	private Scene scene;
 	@FXML
 	private ToggleGroup editor;
@@ -133,59 +153,12 @@ public class PrincipalComponent {
     	}
     	else
     	{
-    		
+    		scene.setCursor(Cursor.DEFAULT);
     	}
     }
 
 
-    @FXML
-    private Tab visualizeTab;
 
-    @FXML
-
-    private Tab editableTab;
-
-	private CellStatsView cellView;
-	private CellStatsViewEditable cellEditable;
-
-	@FXML
-	void btFastForward(ActionEvent event) {
-
-	}
-
-	private void editor(MouseEvent event) {
-		if (btnAddCell.isSelected()) {
-			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
-			Dimension dimension = new Dimension(20, 20);
-
-			drawableFactory.drawFromCanvas(true);
-			drawableFactory.createCellEntity(coordinates, dimension, false);
-			drawableFactory.drawFromCanvas(true);
-		}
-
-		if (btnAddWall.isSelected()) {
-			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
-			Dimension dimension = new Dimension(20, 20);
-
-			drawableFactory.drawFromCanvas(true);
-			drawableFactory.createWallEntity(coordinates, dimension);
-			drawableFactory.drawFromCanvas(true);
-		}
-
-		if (btnAddFood.isSelected()) {
-			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
-			Dimension dimension = new Dimension(20, 20);
-
-			drawableFactory.drawFromCanvas(true);
-			drawableFactory.createFood(coordinates, dimension);
-			drawableFactory.drawFromCanvas(true);
-		}
-
-		if (btnDeleteEntity.isSelected()) {
-			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
-			drawableFactory.deleteIn(coordinates);
-		}
-	}
 
 	@FXML
 	void onClickedCanvas(MouseEvent event) {
@@ -193,13 +166,7 @@ public class PrincipalComponent {
 		// ditor(event);
 	}
 
-	@FXML
-	void onPressedCanvas(MouseEvent event) {
-		editor(event);
 
-		// this.pane=cellEditable.getView();
-
-	}
 
 	@FXML
 	void onEdit(ActionEvent event) {
@@ -224,31 +191,35 @@ public class PrincipalComponent {
 
 	}
 
-	public PrincipalComponent() {
-		try {
+	
 
+	@FXML
     void onPressedCanvas(MouseEvent event) {
-    	editorMode(event);
-    }
-    
-    @FXML
-    void onPlayPause(ActionEvent event) {
-    	if (pause.isSelected())
-    	{
-    		
-    		guigame.stop();
-        	if (!processingGame.isPaused())
-        		processingGame.toPause(true);
-    	}
+    	if (edit.isSelected())
+    		editorMode(event);
     	else
     	{
     		
-    		guigame.start();
-        	
-        	if (processingGame.isPaused())
-        		processingGame.toPause(false);
-    	}
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
     		
+    		Optional<Cell> maybe_cell = processingGame.getCellIn(coordinates);
+    		if (maybe_cell.isPresent())
+    		{
+    			System.out.println("cogí una célula");
+    			bindCell(maybe_cell.get());
+    		}
+    	}
+    }
+    
+    
+    private void bindCell(Cell cell)
+    {		
+    	cellView.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
+    	cellView.getDimensionProperty().setValue(cell.getDimension().toString());
+    	cellView.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
+    	cellView.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
+    	cellView.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
+    	System.out.println("Me bindeaste");
     }
     
     public PrincipalComponent() {
