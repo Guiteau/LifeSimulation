@@ -8,24 +8,17 @@ import java.util.ResourceBundle;
 import dad.lifesimulation.main.draw.DrawableFactory;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView;
+import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView2;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsViewEditable;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.adapter.JavaBeanDoubleProperty;
-import javafx.beans.property.adapter.JavaBeanDoublePropertyBuilder;
-import javafx.beans.property.adapter.JavaBeanIntegerProperty;
-import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
-import javafx.beans.property.adapter.JavaBeanObjectProperty;
-import javafx.beans.property.adapter.JavaBeanObjectPropertyBuilder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -36,21 +29,19 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.util.converter.NumberStringConverter;
 
 public class PrincipalComponent {
 
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
-
+ /**
     @FXML
     private Tab visualizeTab;
 
     @FXML
-
     private Tab editableTab;
-
+**/
 	private CellStatsView cellView;
 	private CellStatsViewEditable cellEditable;
 	
@@ -94,6 +85,9 @@ public class PrincipalComponent {
 
 	@FXML
 	private Canvas canvas;
+	
+	@FXML  
+	private CellStatsView2 statsPane;
 
     @FXML
     void btFastForward(ActionEvent event) {
@@ -107,7 +101,7 @@ public class PrincipalComponent {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				Image cursorImage = new Image(getClass().getResource("/fxml/PrincipalComponent.fxml").toString());
+				Image cursorImage = new Image(getClass().getResource("/fxml/test.fxml").toString());
 				scene.setCursor(Cursor.CROSSHAIR);
 				System.out.println("cambio");
 			}
@@ -151,6 +145,18 @@ public class PrincipalComponent {
     		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
     		drawableFactory.deleteIn(coordinates);
     	}
+    	
+    	else if (btnAddSpikes.isSelected())
+    	{
+    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+    		Dimension dimension = new Dimension(20, 20);
+    		
+    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createSpikeEntity(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(true);
+    	}
+    	
+    	
     	else
     	{
     		scene.setCursor(Cursor.DEFAULT);
@@ -214,18 +220,18 @@ public class PrincipalComponent {
     
     private void bindCell(Cell cell)
     {		
-    	cellView.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
-    	cellView.getDimensionProperty().setValue(cell.getDimension().toString());
-    	cellView.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
-    	cellView.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
-    	cellView.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
+    	this.statsPane.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
+    	this.statsPane.getDimensionProperty().setValue(cell.getDimension().toString());
+    	this.statsPane.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
+    	this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
+    	this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
     	System.out.println("Me bindeaste");
     }
     
     public PrincipalComponent() {
     	try {
-
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent.fxml"));
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
+			//FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent.fxml"));
 			//loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
@@ -257,8 +263,8 @@ public class PrincipalComponent {
 		System.out.println("_Inicializado");
 		cellEditable = new CellStatsViewEditable();
 		cellView = new CellStatsView();
-		this.editableTab.setContent(cellEditable.getView());
-		this.visualizeTab.setContent(cellView.getView());
+		//this.editableTab.setContent(cellEditable.getView());
+		//this.visualizeTab.setContent(cellView.getView());
 	}
 
 	public Canvas getCanvasElement() {

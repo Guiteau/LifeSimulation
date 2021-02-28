@@ -1,26 +1,44 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import dad.lifesimulation.main.draw.DrawableFactory;
+import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.EntityFinalType;
+import dad.lifesimulation.main.utils.DataProvider;
+import dad.lifesimulation.main.utils.EntityReport;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
-import dad.lifesimulation.main.world.maps.CanvasExample;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class App extends Application {
 
 	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
+	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
+	public static final String JRXML_FILE = "/reports/entities.jrxml";
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
+	
 		controller = new PrincipalComponent();
 		
 		
@@ -35,7 +53,9 @@ public class App extends Application {
 		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
 		
 		levelGUI_creator.createRandomLevel();
-		
+				
+		DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));	
+
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
 		
@@ -50,24 +70,66 @@ public class App extends Application {
 		thread_thinker.start();
 		
 		//Platform.runLater(thread_thinker);
-		
+
 		Scene escena = new Scene(controller.getView());
 		controller.setScene(escena);
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
+		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
+		
+		generatePdf();
+		
 	}
 	
+	public List<EntityReport> generateReportList(List<Entity> entitiesList){
+		
+		List<EntityReport> listReportEntities = new ArrayList<>();
+		
+		for (Entity e: entitiesList) {
+			
+			EntityReport entityReport = new EntityReport(Integer.toString(e.getCoordinates().getX()), Integer.toString(e.getCoordinates().getY()), 
+					e.getTangible(), e.getDimension().getWidth(), e.getDimension().getWidth(), e.getEntityType());
+			
+			listReportEntities.add(entityReport);
+			
+		}
+		
+		return listReportEntities;
+		
+	}
+
+	public static void generatePdf() throws JRException, IOException {
+
+		JasperReport report = JasperCompileManager
+				.compileReport(Main.class.getResourceAsStream("/reports/entities.jrxml"));
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("Entity", "Life Simulation");
+
+		JasperPrint print = JasperFillManager.fillReport(report, parameters,
+				new JRBeanCollectionDataSource(DataProvider.getEntitiesListDataProvider()));
+
+		JasperExportManager.exportReportToPdfFile(print, PDF_FILE);
+
+		try {
+			Desktop.getDesktop().open(new File(PDF_FILE));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void main(String[] args) throws JRException, IOException {
+		launch(args);
+	}
+
 	@Override
-	public void stop()
-	{
+	public void stop() {
 		if (processingGame.isPaused())
 			processingGame.toPause(false);
-		
+
 		processingGame.toExit(true);
 	}
 

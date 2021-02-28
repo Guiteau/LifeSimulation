@@ -68,4 +68,7 @@ public class Dimension {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
+    public String toString() {
+    	return "Width = "+this.width+" Height = "+this.height;
+    }
 }

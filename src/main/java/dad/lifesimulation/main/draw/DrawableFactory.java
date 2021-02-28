@@ -10,6 +10,7 @@ import java.util.Optional;
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.utils.Coordinates;
+import dad.lifesimulation.main.utils.DataProvider;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.utils.Statistics;
@@ -58,6 +59,7 @@ public class DrawableFactory {
 				e.printStackTrace();
 			}
 		});
+	
 	}
 	
 	private Optional<DrawableEntity> getDrawableEntityIfExist(Entity entity)
