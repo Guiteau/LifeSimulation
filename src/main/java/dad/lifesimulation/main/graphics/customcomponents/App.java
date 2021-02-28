@@ -7,6 +7,7 @@ import dad.lifesimulation.main.utils.InitGameComponents;
 import dad.lifesimulation.main.world.maps.CanvasExample;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -48,6 +49,7 @@ public class App extends Application {
 		
 		thread_thinker.start();
 		
+		//Platform.runLater(thread_thinker);
 		
 		Scene escena = new Scene(controller.getView());
 		controller.setScene(escena);

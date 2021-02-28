@@ -1,8 +1,10 @@
 package dad.lifesimulation.main.utils;
 
 import java.util.List;
+import java.util.Optional;
 
 import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.entities.actor.DetectionRange;
@@ -218,5 +220,20 @@ public class InitGameComponents extends GameFunctions {
 	{
 		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
 		return map.getEntitiesIn(dr);
+	}
+
+	public Optional<Cell> getCellIn(Coordinates coordinates) {
+		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
+		List<Actor> actors = map.getActorsIn(dr);
+		
+		System.out.println(actors);
+		
+		for (Actor a : actors)
+		{
+			if (a.getEntityType() == EntityFinalType.CELL)
+				return Optional.of((Cell)a);
+		}
+		
+		return Optional.empty();
 	}
 }

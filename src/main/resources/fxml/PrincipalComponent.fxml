@@ -110,7 +110,7 @@
       </TabPane>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowSpan="5">
          <children>
-            <Canvas fx:id="canvas" height="366.0" layoutX="2.0" width="400.0" />
+            <Canvas fx:id="canvas" height="366.0" layoutX="2.0" onMousePressed="#onPressedCanvas" width="400.0" />
          </children>
       </Pane>
    </children>

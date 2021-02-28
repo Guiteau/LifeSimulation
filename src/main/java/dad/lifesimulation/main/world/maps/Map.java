@@ -79,7 +79,7 @@ public class Map {
 	public List<Actor> getActorsIn(Entity entity) {
 		List<Actor> aux = new ArrayList<>();
 		for (Actor e : actors) {
-			if (e.colliding(entity)) {
+			if (entity.colliding(e)) {
 				aux.add(e);
 			}
 		}

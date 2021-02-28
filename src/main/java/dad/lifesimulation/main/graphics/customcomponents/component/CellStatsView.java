@@ -26,6 +26,24 @@ public class CellStatsView implements Initializable {
 	private StringProperty armorProperty = new SimpleStringProperty();
 	private StringProperty energyProperty = new SimpleStringProperty();
 	private StringProperty coordinatesProperty = new SimpleStringProperty();
+	
+	public StringProperty getCoordinatesProperty() {
+		return coordinatesProperty;
+	}
+
+	public StringProperty getDimensionProperty() {
+		return dimensionProperty;
+	}
+
+	public void setCoordinatesProperty(StringProperty coordinatesProperty) {
+		this.coordinatesProperty = coordinatesProperty;
+	}
+
+	public void setDimensionProperty(StringProperty dimensionProperty) {
+		this.dimensionProperty = dimensionProperty;
+	}
+
+
 	private StringProperty dimensionProperty = new SimpleStringProperty();
 	 
 		@FXML
@@ -70,8 +88,8 @@ public class CellStatsView implements Initializable {
 		this.armorPointsLB.textProperty().bindBidirectional(this.armorProperty);
 		this.energyPointsLB.textProperty().bindBidirectional(this.energyProperty);
 		
-		//this.coordinatesProperty.bindBidirectional(coordinatesLB.textProperty());
-		//this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
+		this.coordinatesProperty.bindBidirectional(coordinatesLB.textProperty());
+		this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
 	}
 	
 	
