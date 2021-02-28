@@ -80,7 +80,7 @@ public class Map {
 	public List<Actor> getActorsIn(Entity entity) {
 		List<Actor> aux = new ArrayList<>();
 		for (Actor e : actors) {
-			if (e.colliding(entity)) {
+			if (entity.colliding(e)) {
 				aux.add(e);
 			}
 		}
@@ -122,6 +122,20 @@ public class Map {
 		});
 
 		return aux;
+	}
+	
+	public void delete(Entity entity)
+	{
+		if (entities.contains(entity))
+			entities.remove(entity);
+		
+		if (actors.contains(entity))
+			actors.remove(entity);
+		
+	}
+
+	public void delete(List<Entity> entitiesIn) {
+		entitiesIn.stream().forEach(this::delete);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.EntityFinalType;
@@ -25,36 +26,30 @@ public class DrawableFactory {
 	private InitGameComponents initializer;
 	private Map<EntityFinalType, Color> entity_color;
 	private Map<EntityFinalType, Image> entity_image;
-	
-	enum ReadyToDraw
-	{
-		WITH_COLOR,
-		WITH_IMAGE
+
+	enum ReadyToDraw {
+		WITH_COLOR, WITH_IMAGE
 	}
 
-	public DrawableFactory()
-	{
+	public DrawableFactory() {
 		entity_color = new HashMap<>();
 		entity_image = new HashMap<>();
 		drawableEntities = new ArrayList<>();
 	}
-	
-	public void drawFromCanvas(boolean drawcanvas)
-	{
+
+	public void drawFromCanvas(boolean drawcanvas) {
 		initializer.setAutomaticMapInsert(drawcanvas);
 	}
-	
-	public InitGameComponents getInitGameComponents() throws NotInitializer
-	{
+
+	public InitGameComponents getInitGameComponents() throws NotInitializer {
 		if (initializer == null)
 			throw new NotInitializer("Initializer game was not initialize yet");
-		
+
 		return initializer;
 	}
-	
-	public void createRandomLevel()
-	{
-		//initializer.generateRandomMap(100);
+
+	public void createRandomLevel() {
+		// initializer.generateRandomMap(100);
 		initializer.generateSimpleMap();
 		initializer.getAllEntities().stream().forEach(x -> {
 			try {
@@ -67,34 +62,50 @@ public class DrawableFactory {
 	
 	}
 	
+	private Optional<DrawableEntity> getDrawableEntityIfExist(Entity entity)
+	{
+		Optional<DrawableEntity> opt = Optional.empty();
+		
+		for (DrawableEntity de : drawableEntities)
+		{
+			if (de.getEntity().equals(entity))
+			{
+				opt = Optional.of(de);
+				break;
+			}
+		}
+		
+		return opt;
+	}
+
 	public void loadGraphicsContext(GraphicsContext graphicsContext) {
 		this.graphicsContext = graphicsContext;
-		Dimension dim = new Dimension((int)graphicsContext.getCanvas().getWidth(), (int)graphicsContext.getCanvas().getHeight());
+		Dimension dim = new Dimension((int) graphicsContext.getCanvas().getWidth(),
+				(int) graphicsContext.getCanvas().getHeight());
 		initializer = new InitGameComponents(dim);
 	}
 
 	private void storeNewDrawableEntity(Entity entity) throws NotColorOrImageChosen {
 		DrawableEntity drawableEntity = null;
-		
+
 		EnumSet<ReadyToDraw> flag = EnumSet.noneOf(ReadyToDraw.class);
-		
-		if (entity_color.containsKey(entity.getEntityType()))
-		{
+
+		if (entity_color.containsKey(entity.getEntityType())) {
 			drawableEntity = new DrawableEntity(entity, entity_color.get(entity.getEntityType()));
 			flag.add(ReadyToDraw.WITH_COLOR);
 		}
 
-		if (entity_image.containsKey(entity.getEntityType()))
-		{
+		if (entity_image.containsKey(entity.getEntityType())) {
 			drawableEntity = new DrawableEntity(entity, entity_image.get(entity.getEntityType()));
 			flag.add(ReadyToDraw.WITH_IMAGE);
 		}
-		
+
 		if (flag.isEmpty())
-			throw new NotColorOrImageChosen("Entity drawable: " + entity.getEntityType().toString() + " was not set with any color or image");
+			throw new NotColorOrImageChosen(
+					"Entity drawable: " + entity.getEntityType().toString() + " was not set with any color or image");
 
 		drawableEntities.add(drawableEntity);
-	}	
+	}
 
 	public void setColor(EntityFinalType entityType, Color color) {
 		entity_color.put(entityType, color);
@@ -103,15 +114,14 @@ public class DrawableFactory {
 	public void setImage(EntityFinalType entityType, Image image) {
 		entity_image.put(entityType, image);
 	}
-	
-	public List<DrawableEntity> getDrawableEntities()
-	{
+
+	public List<DrawableEntity> getDrawableEntities() {
 		return drawableEntities;
 	}
-	
+
 	public void createWallEntity(Coordinates coord, Dimension dim) {
 		Entity wall = initializer.getNewWall(coord, dim);
-		
+
 		try {
 			storeNewDrawableEntity(wall);
 		} catch (NotColorOrImageChosen e) {
@@ -119,10 +129,10 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void createCellEntity(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
 		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
-		
+
 		try {
 			storeNewDrawableEntity(cell);
 		} catch (NotColorOrImageChosen e) {
@@ -130,10 +140,10 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil) {
 		Entity cell = initializer.getNewCell(coord, dim, hostil);
-		
+
 		try {
 			storeNewDrawableEntity(cell);
 		} catch (NotColorOrImageChosen e) {
@@ -144,7 +154,7 @@ public class DrawableFactory {
 
 	public void createSpikeEntity(Coordinates coord, Dimension dim) {
 		Entity spikes = initializer.getNewSpikes(coord, dim);
-		
+
 		try {
 			storeNewDrawableEntity(spikes);
 		} catch (NotColorOrImageChosen e) {
@@ -152,23 +162,37 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
-	
-	public void render()
-	{
+
+	public void render() {
 		graphicsContext.setFill(Color.BLACK);
 		graphicsContext.fillRect(0, 0, graphicsContext.getCanvas().getWidth(), graphicsContext.getCanvas().getHeight());
 		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
 	}
 
 	public void createFood(Coordinates coordinates, Dimension dimension) {
-Entity cell = initializer.getNewFood(coordinates, dimension);
-		
+		Entity cell = initializer.getNewFood(coordinates, dimension);
+
 		try {
 			storeNewDrawableEntity(cell);
 		} catch (NotColorOrImageChosen e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+	}
+
+	public void deleteIn(Coordinates coordinates) {
+		List<Entity> entities = initializer.getEntitiesIn(coordinates);
 		
+		
+		
+		for (Entity e : entities)
+		{
+			Optional<DrawableEntity> maybe_drawableEntity = getDrawableEntityIfExist(e);
+			if (maybe_drawableEntity.isPresent())
+				drawableEntities.remove(maybe_drawableEntity.get());
+		}
+		
+		initializer.deleteIn(coordinates);
 	}
 }

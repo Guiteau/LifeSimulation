@@ -16,6 +16,7 @@ import dad.lifesimulation.main.utils.EntityReport;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -40,6 +41,7 @@ public class App extends Application {
 
 		controller = new PrincipalComponent();
 		
+		
 		DrawableFactory levelGUI_creator = new DrawableFactory();
 		
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
@@ -61,15 +63,16 @@ public class App extends Application {
 		controller.setGUIGame(guigame);
 		controller.setFactory(levelGUI_creator);
 		
-		//Thread thread_drawer = new Thread(guigame, "thread_drawer");
-		
 		guigame.start();
 		
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");
 		
 		thread_thinker.start();
 		
+		//Platform.runLater(thread_thinker);
+
 		Scene escena = new Scene(controller.getView());
+		controller.setScene(escena);
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.show();
