@@ -65,13 +65,6 @@ public class App extends Application {
 		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
 		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
 		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
-		
-		
-		FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
-		 ObjectInputStream in = new ObjectInputStream(fileIn);
-		levelGUI_creator.loadLevel(in);
-
-		//levelGUI_creator.createRandomLevel();
 
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
@@ -196,6 +189,6 @@ public class App extends Application {
 			e.printStackTrace();
 
 		}
-		processingGame.spitMap();
+
 	}
 }

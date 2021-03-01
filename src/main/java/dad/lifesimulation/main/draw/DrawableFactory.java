@@ -1,5 +1,6 @@
 package dad.lifesimulation.main.draw;
 
+import java.io.File;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -49,7 +50,7 @@ public class DrawableFactory {
 		return initializer;
 	}
 	
-	public void loadLevel(ObjectInputStream binMap)
+	public void loadLevel(File binMap)
 	{
 		initializer.loadMap(binMap);
 		initializer.getAllEntities().stream().forEach(x -> {
