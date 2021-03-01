@@ -114,7 +114,7 @@ public class PrincipalComponent {
     		
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createCellEntity(coordinates, dimension, false);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.drawFromCanvas(false);
     		
     		
     		
@@ -127,7 +127,7 @@ public class PrincipalComponent {
     		
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createWallEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.drawFromCanvas(false);
     	}
     	
     	else if (btnAddFood.isSelected())
@@ -136,8 +136,8 @@ public class PrincipalComponent {
     		Dimension dimension = new Dimension(20, 20);
     		
     		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createFood(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.createFoodEntity(coordinates, dimension);
+    		drawableFactory.drawFromCanvas(false);
     	}
     	
     	else if (btnDeleteEntity.isSelected())
@@ -225,6 +225,7 @@ public class PrincipalComponent {
     	this.statsPane.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
     	this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
     	this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
+    	this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
     	System.out.println("Me bindeaste");
     }
     

@@ -3,6 +3,7 @@ package dad.lifesimulation.main.entities;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.world.maps.Map;
@@ -17,6 +18,8 @@ public abstract class Entity {
 	protected EntityFinalType entityType;
 	protected Map map;
 	protected PropertyChangeSupport support;
+	protected Boolean deletable;
+	protected Boolean traspasable;
 
 	public abstract void update();
 
@@ -29,6 +32,17 @@ public abstract class Entity {
 		this.drawable = false;
 		this.debugging = false;
 		this.support = new PropertyChangeSupport(this);
+		this.deletable = false;
+		this.traspasable = true;
+	}
+	
+	public abstract void interact(Entity entity);
+	
+	public abstract void interact(Actor actor);
+	
+	public void setDeletable(boolean deletable)
+	{
+		this.deletable = deletable; 
 	}
 
 	/**
@@ -40,11 +54,21 @@ public abstract class Entity {
 	 * @return True (si colisionan) , False (si no colisionan)
 	 */
 	public boolean colliding(Entity _entidad) {
-		return _entidad.tangible & this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+		return 	_entidad.tangible
+				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
 				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
 				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
 				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 
+	}
+	
+	public boolean overIt(Entity _entidad)
+	{
+		return _entidad.traspasable
+				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
+				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
+				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 	}
 
 	/**
@@ -118,6 +142,11 @@ public abstract class Entity {
 	public boolean isDebuggin() {
 		return debugging;
 	}
+	
+	public boolean isDeletable()
+	{
+		return deletable;
+	}
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
@@ -127,5 +156,8 @@ public abstract class Entity {
 		support.removePropertyChangeListener(listener);
 	}
 		
-	
+	public boolean isTraspasable()
+	{
+		return traspasable;
+	}
 }

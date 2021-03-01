@@ -5,6 +5,7 @@ import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.actor.Actor;
+import dad.lifesimulation.main.entities.element.Floor;
 import dad.lifesimulation.main.utils.DataProvider;
 import dad.lifesimulation.main.utils.Dimension;
 
@@ -12,10 +13,12 @@ public class Map {
 	protected Dimension dimension;
 	protected List<Entity> entities;
 	protected List<Actor> actors;
+	protected List<Floor> floors;
 
 	public Map() {
 		actors = new ArrayList<>();
 		entities = new ArrayList<>();
+		floors = new ArrayList<>();
 	}
 	
 	public void clear()
@@ -44,7 +47,26 @@ public class Map {
 
 	public void update() {
 
-		entities.stream().forEach(x -> x.update());
+		List<Entity> entitiesToDelete = new ArrayList<>();
+		
+		for (Entity e : entities)
+		{
+			if (e.isDeletable())
+				entitiesToDelete.add(e);
+			else		
+				e.update();
+		}
+		
+		if (!entitiesToDelete.isEmpty())
+			delete(entitiesToDelete);
+		
+	}
+	
+	public void insertEntity(Floor floor) {
+		System.out.println("Metiste un suelo" + floor.getClass());
+		
+		floors.add(floor);
+		insertEntity((Entity) floor);
 	}
 	
 	/**
@@ -86,6 +108,17 @@ public class Map {
 		}
 		return aux;
 	}
+	
+	public List<Entity> getImpenetrableEntities(Entity entity)
+	{
+		List<Entity> aux = new ArrayList<>();
+		for (Entity e : entities) {
+			if (entity.colliding(e) && !e.isTraspasable()) {
+				aux.add(e);
+			}
+		}
+		return aux;
+	}
 
 	/**
 	 * 
@@ -100,6 +133,18 @@ public class Map {
 				aux.add(e);
 			}
 		}
+		return aux;
+	}
+	
+	public List<Floor> getFloorsIn(Entity entity)
+	{
+		List<Floor> aux = new ArrayList<>();
+		for (Floor f : floors) {
+			if (entity.overIt(f)) {
+				aux.add(f);
+			}
+		}
+		
 		return aux;
 	}
 
@@ -132,10 +177,14 @@ public class Map {
 		if (actors.contains(entity))
 			actors.remove(entity);
 		
+		if (floors.contains(entity))
+			floors.remove(entity);
+		
 	}
 
 	public void delete(List<Entity> entitiesIn) {
-		entitiesIn.stream().forEach(this::delete);
+		for(Entity e: entitiesIn)
+			delete(e);
 	}
 
 }

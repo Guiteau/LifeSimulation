@@ -36,7 +36,7 @@ public class InitGameComponents extends GameFunctions {
 		map.insertEntity(getNewWall(new Coordinates(34, 11), new Dimension(52, 209)));
 		map.insertEntity(getNewWall(new Coordinates(54,250), new Dimension(212, 35)));
 		map.insertEntity(getNewWall(new Coordinates(90, 235), new Dimension(37, 152)));
-		map.insertEntity(getNewCell(new Coordinates(120, 100), new Dimension(100, 100), randomStatistics(8), false));
+		map.insertEntity(getNewCell(new Coordinates(120, 100), new Dimension(100, 100), randomStatistics(8), true));
 	}
 
 	public void generateRandomMap(int n_elements) {
@@ -227,8 +227,6 @@ public class InitGameComponents extends GameFunctions {
 	public Optional<Cell> getCellIn(Coordinates coordinates) {
 		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
 		List<Actor> actors = map.getActorsIn(dr);
-		
-		System.out.println(actors);
 		
 		for (Actor a : actors)
 		{
