@@ -1,5 +1,12 @@
 package dad.lifesimulation.main.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -212,6 +219,23 @@ public class InitGameComponents extends GameFunctions {
 		
 		return magicFood;
 	}
+	
+	public void spitMap(File f)
+	{
+		FileOutputStream fileOut;
+		try {
+			fileOut = new FileOutputStream(f);
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(map);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		         
+	}
 
 	public void deleteIn(Coordinates coordinates) {
 		DetectionRange dr = new DetectionRange(coordinates, new Dimension(1,1));
@@ -235,5 +259,17 @@ public class InitGameComponents extends GameFunctions {
 		}
 		
 		return Optional.empty();
+	}
+
+	public void loadMap(File binMap) {
+		try {
+			FileInputStream in = new FileInputStream(binMap);
+			ObjectInputStream oin = new ObjectInputStream(in);
+			map = (Map) oin.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

@@ -1,7 +1,9 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,13 +35,14 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import ourExceptions.NotInitializer;
 
 public class App extends Application {
 
 	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
-	public static final String DIRECTORY ="pdf";
+	public static final String DIRECTORY = "pdf";
 	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
 	DrawableFactory levelGUI_creator;
@@ -47,40 +50,36 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	
+
 		this.primaryStage = primaryStage;
-		
+
 		controller = new PrincipalComponent();
-		
-		
+
 		levelGUI_creator = new DrawableFactory();
-		
+
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
+
 		
 		levelGUI_creator.setColor(EntityFinalType.CELL, Color.AQUA);
 		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.GRAY);
 		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
 		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
 		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
-		
-		levelGUI_creator.createRandomLevel();
-				
-			
 
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
-		
+
 		controller.setGame(processingGame);
 		controller.setGUIGame(guigame);
 		controller.setFactory(levelGUI_creator);
-		
+
 		guigame.start();
-		
+
 		Thread thread_thinker = new Thread(processingGame, "thread_thinker");
-		
+
 		thread_thinker.start();
-		
-		//Platform.runLater(thread_thinker);
+
+		// Platform.runLater(thread_thinker);
 
 		Scene escena = new Scene(controller.getView());
 		controller.setScene(escena);
@@ -89,29 +88,29 @@ public class App extends Application {
 		primaryStage.setTitle("Life Simulation\t");
 		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
-	
-		
+
 	}
-	
+
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
-	public List<EntityReport> generateReportList(List<Entity> entitiesList){
-		
+	public List<EntityReport> generateReportList(List<Entity> entitiesList) {
+
 		List<EntityReport> listReportEntities = new ArrayList<>();
-		
-		for (Entity e: entitiesList) {
-			
-			EntityReport entityReport = new EntityReport(Integer.toString(e.getCoordinates().getX()), Integer.toString(e.getCoordinates().getY()), 
-					e.getTangible(), e.getDimension().getWidth(), e.getDimension().getWidth(), e.getEntityType());
-			
+
+		for (Entity e : entitiesList) {
+
+			EntityReport entityReport = new EntityReport(Integer.toString(e.getCoordinates().getX()),
+					Integer.toString(e.getCoordinates().getY()), e.getTangible(), e.getDimension().getWidth(),
+					e.getDimension().getWidth(), e.getEntityType());
+
 			listReportEntities.add(entityReport);
-			
+
 		}
-		
+
 		return listReportEntities;
-		
+
 	}
 
 	public static void generatePdf() throws JRException, IOException {
@@ -125,37 +124,33 @@ public class App extends Application {
 
 		JasperPrint print = JasperFillManager.fillReport(report, parameters,
 				new JRBeanCollectionDataSource(DataProvider.getEntitiesListDataProvider()));
-/*		File directoryCreationg =new File(DIRECTORY);
-		System.out.println(directoryCreationg.exists());
-		
-		if (!directoryCreationg.exists())
-			directoryCreationg.mkdir();
-		File pdfCreation = new File (PDF_FILE);
-		
-		if (!pdfCreation.exists()) 
-			pdfCreation.createNewFile();
-		
-		System.out.println(directoryCreationg.exists());*/
-		
+		/*
+		 * File directoryCreationg =new File(DIRECTORY);
+		 * System.out.println(directoryCreationg.exists());
+		 * 
+		 * if (!directoryCreationg.exists()) directoryCreationg.mkdir(); File
+		 * pdfCreation = new File (PDF_FILE);
+		 * 
+		 * if (!pdfCreation.exists()) pdfCreation.createNewFile();
+		 * 
+		 * System.out.println(directoryCreationg.exists());
+		 */
+
 		FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save PDF report");
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Report (.pdf)", ".pdf"));
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", ".*"));
-        File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage()); 
-        
-        JasperExportManager.exportReportToPdfFile(print, archivoGuardado.getPath());
-		
-	//	JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
+		fileChooser.setTitle("Save PDF report");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Report (.pdf)", ".pdf"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", ".*"));
+		File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage());
+
+		JasperExportManager.exportReportToPdfFile(print, archivoGuardado.getPath());
+
+		// JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
 		/**
-		try {
-		Desktop.getDesktop().open(pdfCreation);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
+		 * try { Desktop.getDesktop().open(pdfCreation); } catch (IOException e) {
+		 * e.printStackTrace(); }
+		 */
 
 	}
-
 
 	public static void main(String[] args) throws JRException, IOException {
 		launch(args);
@@ -168,31 +163,32 @@ public class App extends Application {
 
 		processingGame.toExit(true);
 		try {
-			DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));
-			
+			DataProvider.setEntitiesArrayData(
+					generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));
+
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Generar reporte");
 			alert.setHeaderText("");
 			alert.setContentText("\n¿Quisieras guardar un reporte de las entidades del mapa?");
-			
+
 			alert.getDialogPane().setGraphic(new ImageView("/images/dialogAlertIcon.png"));
-			
+
 			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 
 			stage.getIcons().add(new Image("/images/lifeSimulationIcon.png"));
-						
+
 			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK){
-				
-		        generatePdf();
-				
-			} 
-			
+			if (result.get() == ButtonType.OK) {
+
+				generatePdf();
+
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		
-	}	
 
-}
+		}
+
+	}
 }

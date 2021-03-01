@@ -2,8 +2,9 @@ package dad.lifesimulation.main.utils;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
-public class Dimension {
+public class Dimension implements Serializable {
 	private int height;
 	private int width;
 

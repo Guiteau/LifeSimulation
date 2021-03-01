@@ -11,33 +11,31 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class CellStatsViewEditable  implements Initializable {
+public class CellStatsViewEditable extends GridPane implements Initializable {
 
 	@FXML
-	private GridPane view;
-    @FXML
-    private CheckBox cellTypeCHB;
+	private CheckBox cellTypeCHB;
 
-    @FXML
-    private TextField healthPointsTF;
+	@FXML
+	private TextField healthPointsTF;
 
-    @FXML
-    private TextField energyPointsTF;
+	@FXML
+	private TextField energyPointsTF;
 
-    @FXML
-    private TextField armorPointsTF;
+	@FXML
+	private TextField armorPointsTF;
 
-    @FXML
-    private TextField xCoordTF;
+	@FXML
+	private TextField xCoordTF;
 
-    @FXML
-    private TextField yCoordTF;
+	@FXML
+	private TextField yCoordTF;
 
-    @FXML
-    private TextField widthTF;
+	@FXML
+	private TextField widthTF;
 
-    @FXML
-    private TextField heightTF;
+	@FXML
+	private TextField heightTF;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -47,10 +45,10 @@ public class CellStatsViewEditable  implements Initializable {
 	public CellStatsViewEditable() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CellStatsViewEditable.fxml"));
-			//loader.setRoot(this);
+			loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
-			this.xCoordTF.textProperty().set("se inicio correctamente");
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,9 +56,39 @@ public class CellStatsViewEditable  implements Initializable {
 	}
 
 	public GridPane getView() {
-		return this.view;
+		return this;
 	}
-	public String test() {
-		return this.xCoordTF.textProperty().get();
+
+	public CheckBox getCellTypeCHB() {
+		return cellTypeCHB;
 	}
+
+	public TextField getHealthPointsTF() {
+		return healthPointsTF;
+	}
+
+	public TextField getEnergyPointsTF() {
+		return energyPointsTF;
+	}
+
+	public TextField getArmorPointsTF() {
+		return armorPointsTF;
+	}
+
+	public TextField getxCoordTF() {
+		return xCoordTF;
+	}
+
+	public TextField getyCoordTF() {
+		return yCoordTF;
+	}
+
+	public TextField getWidthTF() {
+		return widthTF;
+	}
+
+	public TextField getHeightTF() {
+		return heightTF;
+	}
+
 }
