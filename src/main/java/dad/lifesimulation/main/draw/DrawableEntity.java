@@ -12,6 +12,12 @@ public class DrawableEntity implements Drawn_I {
 	protected Optional<Image> maybe_image;
 	protected Color color;
 	
+	/**
+	 * Constructor.
+	 * @param entity
+	 * @param color 
+	 */
+	
 	public DrawableEntity(Entity entity, Color color)
 	{
 		this.entity = entity;
@@ -20,6 +26,12 @@ public class DrawableEntity implements Drawn_I {
 		maybe_image = Optional.empty();
 	}
 	
+	/**
+	 * 
+	 * @param entity Entity (object type) to set
+	 * @param image Image (object type) to load
+	 */
+	
 	public DrawableEntity(Entity entity, Image image)
 	{
 		this.entity = entity;
@@ -27,13 +39,20 @@ public class DrawableEntity implements Drawn_I {
 		this.color = Color.BLACK;
 		loadImage(image);
 	}
+	
+	/**
+	 *  loads an image to a DrawableEntity (object type)
+	 */
 
 	@Override
 	public void loadImage(Image image) {
 		maybe_image = Optional.of(image);
 	}
 	
-
+	/**
+	 * @param gc GraphicsContext to be rendered
+	 */
+	
 	@Override
 	public void render(GraphicsContext gc) {
 		if (maybe_image.isPresent())
@@ -45,6 +64,11 @@ public class DrawableEntity implements Drawn_I {
 			
 		}
 	}
+	
+	/**
+	 * 
+	 * @return current Entity (object type)
+	 */
 	
 	public Entity getEntity()
 	{

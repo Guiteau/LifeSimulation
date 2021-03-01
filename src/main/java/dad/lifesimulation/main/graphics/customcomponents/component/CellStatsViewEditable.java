@@ -36,12 +36,22 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 
 	@FXML
 	private TextField heightTF;
+	
+	/**
+	 * 
+	 * @param location the path location
+	 * @param resources a resource from the project
+	 */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 	}
 
+	/**
+	 * Constructor.
+	 */
+	
 	public CellStatsViewEditable() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CellStatsViewEditable.fxml"));
@@ -54,38 +64,83 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @return the current GirdPane
+	 */
 
 	public GridPane getView() {
 		return this;
 	}
+	
+	/**
+	 * 
+	 * @return the current Checkbox of cell type
+	 */
 
 	public CheckBox getCellTypeCHB() {
 		return cellTypeCHB;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of health points
+	 */
 
 	public TextField getHealthPointsTF() {
 		return healthPointsTF;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of energy points
+	 */
 
 	public TextField getEnergyPointsTF() {
 		return energyPointsTF;
 	}
 
+	/**
+	 * 
+	 * @return the current TextField of armor points
+	 */
+	
 	public TextField getArmorPointsTF() {
 		return armorPointsTF;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of X coordinate
+	 */
 
 	public TextField getxCoordTF() {
 		return xCoordTF;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of Y coordinate
+	 */
 
 	public TextField getyCoordTF() {
 		return yCoordTF;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of the width
+	 */
 
 	public TextField getWidthTF() {
 		return widthTF;
 	}
+	
+	/**
+	 * 
+	 * @return the current TextField of the height
+	 */
 
 	public TextField getHeightTF() {
 		return heightTF;

@@ -47,6 +47,12 @@ public class App extends Application {
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
 	DrawableFactory levelGUI_creator;
 	private static Stage primaryStage;
+	
+	/**
+	 * The main entry point for all JavaFX applications.
+	 * The start method is called after the init method has returned,and after the system is ready for the application to begin running.
+	 * This method loads all initial entities and creates a random level in addition to starts a Thread to maintain the map updated
+	 */
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -90,10 +96,21 @@ public class App extends Application {
 		primaryStage.show();
 
 	}
-
+	
+	/**
+	 * 
+	 * @return current Stage container of JavaFX
+	 */
+	
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
+	
+	/**
+	 * 
+	 * @param entitiesList List of entities to take the values required of different types of entities
+	 * @return a filled list with all values taken from different types of entities and stored in EntityReport objects
+	 */
 
 	public List<EntityReport> generateReportList(List<Entity> entitiesList) {
 
@@ -112,8 +129,13 @@ public class App extends Application {
 		return listReportEntities;
 
 	}
+	
+	/**
+	 * 
+	 * @throws JRException if JasperReport actions fail trying to compile or filling the report
+	 */
 
-	public static void generatePdf() throws JRException, IOException {
+	public static void generatePdf() throws JRException {
 
 		JasperReport report = JasperCompileManager
 				.compileReport(Main.class.getResourceAsStream("/reports/entities.jrxml"));
@@ -152,10 +174,21 @@ public class App extends Application {
 
 	}
 
+	/**
+	 * Launchs the app calling the static method launch() that detects from witch class it is called
+	 * @param args The command line arguments.
+	 **/
+	
 	public static void main(String[] args) throws JRException, IOException {
+	
 		launch(args);
 	}
 
+	/**
+	 * Method called when the application should stop and generating an Alert Dialog asking user if would like to generate 
+	 * a PDF report filled with all entities from the map
+	 */
+	
 	@Override
 	public void stop() {
 		if (processingGame.isPaused())

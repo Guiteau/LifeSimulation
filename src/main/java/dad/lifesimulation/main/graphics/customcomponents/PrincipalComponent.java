@@ -85,6 +85,11 @@ public class PrincipalComponent {
 
 	@FXML
 	private CellStatsViewEditable editableStatsPane;
+	
+	/**
+	 * 
+	 * @param event when load button is clicked
+	 */
 
 	@FXML
 	void onCargarBTN(ActionEvent event) {
@@ -94,6 +99,11 @@ public class PrincipalComponent {
 		File archivoGuardado = fileChooser.showOpenDialog(App.getPrimaryStage());
 		drawableFactory.loadLevel(archivoGuardado);
 	}
+	
+	/**
+	 * 
+	 * @param event when save button is clicked
+	 */
 
 	@FXML
 	void onGuardarBTN(ActionEvent event) {
@@ -103,6 +113,11 @@ public class PrincipalComponent {
 		File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage());
 		processingGame.spitMap(archivoGuardado);
 	}
+	
+	/**
+	 * 
+	 * @param event when cell button is clicked
+	 */
 
 	@FXML
 	void onAddCell(ActionEvent event) {
@@ -112,6 +127,11 @@ public class PrincipalComponent {
 		} else
 			scene.setCursor(Cursor.DEFAULT);
 	}
+	
+	/**
+	 * 
+	 * @param event when button food is clicked
+	 */
 
 	@FXML
 	void onAddFood(ActionEvent event) {
@@ -121,6 +141,11 @@ public class PrincipalComponent {
 		} else
 			scene.setCursor(Cursor.DEFAULT);
 	}
+	
+	/**
+	 * 
+	 * @param event when spikes button is clicked
+	 */
 
 	@FXML
 	void onAddSpikes(ActionEvent event) {
@@ -131,6 +156,12 @@ public class PrincipalComponent {
 			scene.setCursor(Cursor.DEFAULT);
 	}
 
+	/**
+	 * 
+	 * @param event when left mouse button is clicked on Canvas
+	 */
+
+
 	@FXML
 	void onAddWall(ActionEvent event) {
 		if (btnAddWall.isSelected()) {
@@ -139,6 +170,11 @@ public class PrincipalComponent {
 		} else
 			scene.setCursor(Cursor.DEFAULT);
 	}
+	
+	/**
+	 * 
+	 * @param event when rubber button is clicked
+	 */
 
 	@FXML
 	void onDeleteTool(ActionEvent event) {
@@ -148,6 +184,12 @@ public class PrincipalComponent {
 		} else
 			scene.setCursor(Cursor.DEFAULT);
 	}
+
+	/**
+	 * If editor mode is enabled the entities can be placed on canvas
+	 * 
+	 * @param event when left mouse button is clicked
+	 */
 
 	private void editorMode(MouseEvent event) {
 
@@ -188,6 +230,11 @@ public class PrincipalComponent {
 
 	}
 
+	/**
+	* 
+	* @param event when edit button is clicked
+	*/
+
 	@FXML
 	void onEdit(ActionEvent event) {
 		btnAddCell.setDisable(!edit.isSelected());
@@ -199,6 +246,11 @@ public class PrincipalComponent {
 		if (!edit.isSelected())
 			scene.setCursor(Cursor.DEFAULT);
 	}
+
+	/**
+	 * 
+	 * @param event when play button is clicked
+	 */
 
 	@FXML
 	void onPlayPause(ActionEvent event) {
@@ -213,6 +265,12 @@ public class PrincipalComponent {
 				processingGame.toPause(false);
 		}
 	}
+	
+	/**
+	 * Captures the left click of the mouse over the canvas
+	 * 
+	 * @param event from left mouse button is clicked
+	 */
 
 	@FXML
 	void onPressedCanvas(MouseEvent event) {
@@ -227,6 +285,12 @@ public class PrincipalComponent {
 		}
 	}
 
+	/**
+	 * Binds the cell to statistics pane components
+	 * 
+	 * @param cell Cell entity (object type)
+	 */
+
 	private void bindCell(Cell cell) {
 		this.statsPane.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
 		this.statsPane.getDimensionProperty().setValue(cell.getDimension().toString());
@@ -235,7 +299,10 @@ public class PrincipalComponent {
 		this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
 		this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
 	}
-
+	
+	/**
+	 * Constructor.
+	 */
 	public PrincipalComponent() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principalComponent.fxml"));
@@ -249,6 +316,12 @@ public class PrincipalComponent {
 		}
 	}
 
+
+	/**
+	 * Initializes the FXML principalComponent and asserts the graphics components
+	 * present
+	 */
+
 	@FXML
 	void initialize() {
 
@@ -261,27 +334,58 @@ public class PrincipalComponent {
 		btnDeleteEntity.setDisable(!edit.isSelected());
 	}
 
+	/**
+	 * 
+	 * @return current Canvas (object type)
+	 */
+
 	public Canvas getCanvasElement() {
 		return canvas;
 	}
+
+	/**
+	 * 
+	 * @return current Parent (Gridpane type)
+	 */
 
 	public Parent getView() {
 		return view;
 	}
 
+	/**
+	 * 
+	 * @param processingGame InitGameComponents to set
+	 */
+
 	public void setGame(InitGameComponents processingGame) {
 		this.processingGame = processingGame;
 	}
+
+	/**
+	 * 
+	 * @param guiGame GUIGame to set
+	 */
 
 	public void setGUIGame(GUIGame guiGame) {
 		this.guigame = guiGame;
 	}
 
+	/**
+	 * 
+	 * @param levelGUI_creator DrawableFactory to set
+	 */
+
 	public void setFactory(DrawableFactory levelGUI_creator) {
 		this.drawableFactory = levelGUI_creator;
 	}
 
+	/**
+	 * 
+	 * @param scene Scene to set
+	 */
+
 	public void setScene(Scene scene) {
+
 		this.scene = scene;
 	}
 }

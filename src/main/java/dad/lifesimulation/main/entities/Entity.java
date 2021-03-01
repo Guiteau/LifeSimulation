@@ -28,8 +28,19 @@ public abstract class Entity  implements Serializable{
 	protected PropertyChangeSupport support;
 	protected Boolean deletable;
 	protected Boolean traspasable;
+	
+	/**
+	 * Updates the Entity values
+	 */
 
 	public abstract void update();
+	
+	/**
+	 * Constructor. 
+	 * @param _coordinates
+	 * @param _dimension
+	 * @param _tangible
+	 */
 
 	public Entity(Coordinates _coordinates, Dimension _dimension, Boolean _tangible) {
 		this.coordinates = _coordinates;
@@ -44,9 +55,24 @@ public abstract class Entity  implements Serializable{
 		this.traspasable = true;
 	}
 	
+	/**
+	 * 
+	 * @param entity (Object) to interact with another Entity
+	 */
+	
 	public abstract void interact(Entity entity);
 	
+	/**
+	 * 
+	 * @param actor (Object) to interact with another Entity
+	 */
+	
 	public abstract void interact(Actor actor);
+	
+	/**
+	 * 
+	 * @param deletable true for Entity be erasable, false if not
+	 */
 	
 	public void setDeletable(boolean deletable)
 	{
@@ -54,13 +80,11 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
-	 * recibe un objeto tipo entidad o un hijo de esta , para comprobar si la
-	 * entidad principal esta colisionando con la recibida, mediante un algoritmo de
-	 * deteccion de colisiones 2d
 	 * 
-	 * @param _entidad un objeto de tipo entidad
-	 * @return True (si colisionan) , False (si no colisionan)
+	 * @param _entidad Entity (object) to check if the main Entity is colliding with it applying a 2D colliding algorythm
+	 * @return true if collide, false if not
 	 */
+	
 	public boolean colliding(Entity _entidad) {
 		return 	_entidad.tangible
 				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
@@ -70,6 +94,12 @@ public abstract class Entity  implements Serializable{
 
 	}
 	
+	/**
+	 *  
+	 * @param _entidad Entity (object type) to check all the entities colliding with it applying a 2D colliding algorythm
+	 * @return true if collide, false if not
+	 */
+
 	public boolean collidingAll(Entity _entidad)
 	{
 		return 	
@@ -78,6 +108,12 @@ public abstract class Entity  implements Serializable{
 				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
 				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 	}
+
+	/**
+	 * 
+	 * @param _entidad Entity (object) to check if the main Entity is over it
+	 * @return true if Entity (object) is over main Entity, false if not
+	 */
 	
 	public boolean overIt(Entity _entidad)
 	{
@@ -89,7 +125,7 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
-	 * @return coordinates current Coordinates (X, Y)
+	 * @return coordinates current Coordinates object (X, Y)
 	 */
 
 	public Coordinates getCoordinates() {
@@ -98,7 +134,7 @@ public abstract class Entity  implements Serializable{
 
 	/**
 	 * 
-	 * @param coordinates Coordinates to set (Object type) 
+	 * @param coordinates Coordinates to set (object type) 
 	 */
 	public void setCoordinates(Coordinates _coordinates) {
 		
@@ -109,7 +145,7 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
-	 * @return dimension (Object type Dimension) las dimensiones de esta entidad
+	 * @return dimension (object type Dimension) las dimensiones de esta entidad
 	 */
 
 	public Dimension getDimension() {
@@ -118,7 +154,7 @@ public abstract class Entity  implements Serializable{
 
 	/**
 	 * 
-	 * @param dimension Dimension to set (Object type)
+	 * @param dimension Dimension (object type) to set
 	 */
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
@@ -126,7 +162,7 @@ public abstract class Entity  implements Serializable{
 
 	/**
 	 * 
-	 * @return true if the Entity can be touchable by others false if not 
+	 * @return true if the Entity can be touchable by others, false if not 
 	 */
 
 	public Boolean getTangible() {
@@ -144,7 +180,7 @@ public abstract class Entity  implements Serializable{
 	
 	/**
 	 * 
-	 * @param drawable drawable to set (true or false)
+	 * @param drawable Drawable (object type) to set (true or false)
 	 */
 
 	public void setDrawable(Boolean drawable) {
@@ -153,7 +189,7 @@ public abstract class Entity  implements Serializable{
 
 	/**
 	 * 
-	 * @return true entity can be drawable false if not
+	 * @return true if Entity can be drawable false if not
 	 */
 	
 	public boolean isDrawable() {
@@ -171,7 +207,7 @@ public abstract class Entity  implements Serializable{
 	
 	/**
 	 * 
-	 * @param map map to set (Object)
+	 * @param map Map to set (object)
 	 */
 
 	public void setMap(Map map) {
@@ -180,7 +216,7 @@ public abstract class Entity  implements Serializable{
 	
 	/**
 	 * 
-	 * @return true if entity is being debugging false if not
+	 * @return true if Entity (object) is being debugging false if not
 	 */
 
 	public boolean isDebugging() {
@@ -189,7 +225,7 @@ public abstract class Entity  implements Serializable{
 	
 	/**
 	 * 
-	 * @return 
+	 * @return true if Entity (object) can be erasable, false if not
 	 */
 	
 	public boolean isDeletable()
@@ -197,14 +233,29 @@ public abstract class Entity  implements Serializable{
 		return deletable;
 	}
 
+	/**
+	 * 
+	 * @param listener Add a PropertyChangeListener to the listener list. 
+	 * The same listener object may be added more than once, and will be calledas many times as it is added 
+	 */
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		support.addPropertyChangeListener(listener);
 	}
 
+	/**
+	 * 
+	 * @param listener Remove a PropertyChangeListener from the listener list.This removes a PropertyChangeListener that was registered for all properties.
+	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		support.removePropertyChangeListener(listener);
 	}
 		
+	/**
+	 * 
+	 * @return true Entity can be crossable by others, false if not
+	 */
+	
 	public boolean isTraspasable()
 	{
 		return traspasable;

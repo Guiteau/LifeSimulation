@@ -12,12 +12,20 @@ public class DetectionRange extends Entity{
 	}
 	
 
+	/**
+	 * Updates the DetectionRange values
+	 */
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * 
+	 * @param entity (Object) to interact with another Entity
+	 */
 
 	@Override
 	public void interact(Entity entity) {
@@ -25,6 +33,10 @@ public class DetectionRange extends Entity{
 		
 	}
 
+	/**
+	 * 
+	 * @param actor (Object) to interact with another Entity
+	 */
 
 	@Override
 	public void interact(Actor actor) {
