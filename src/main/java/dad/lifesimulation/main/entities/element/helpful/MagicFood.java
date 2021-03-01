@@ -18,6 +18,8 @@ public class MagicFood extends Floor {
 	public MagicFood(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, FloorType.HELPFUL);
 		entityType=EntityFinalType.FOOD;
+		tangible = true;
+		traspasable = true;
 	}
 
 	@Override
@@ -32,10 +34,11 @@ public class MagicFood extends Floor {
 
 	@Override
 	public void interact(Actor actor) {
+		System.out.println("Me están comiendo");
 		actor.getStatistics().healthReceive(HEALTH_BONUS);
 		actor.getStatistics().armorReceive(ARMOR_BONUS);
 		actor.getStatistics().energyReceive(ENERGY_BONUS);
-		
+		deletable = true;
 	}
 	
 }

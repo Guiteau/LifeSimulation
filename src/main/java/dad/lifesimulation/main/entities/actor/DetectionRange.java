@@ -8,7 +8,7 @@ public class DetectionRange extends Entity{
 
 	public DetectionRange(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, false);
-		// TODO Auto-generated constructor stub
+		traspasable = true;
 	}
 	
 

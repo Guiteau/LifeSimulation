@@ -67,7 +67,7 @@ public class Statistics {
 	 */
 
 	public void damageReceive(int _dmg) {
-		this.setDamage(this.getHealth() + _dmg);
+		this.setHealth(this.getHealth() - _dmg);
 	}
 
 	/**

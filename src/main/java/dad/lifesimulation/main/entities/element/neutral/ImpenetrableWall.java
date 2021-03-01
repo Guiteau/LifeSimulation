@@ -12,6 +12,7 @@ public class ImpenetrableWall extends Entity{
 		super(_coordinates, _dimension, true);
 		entityType = EntityFinalType.WALL;
 		drawable = true;
+		traspasable = false;
 	}
 
 	@Override

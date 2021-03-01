@@ -54,11 +54,21 @@ public abstract class Entity {
 	 * @return True (si colisionan) , False (si no colisionan)
 	 */
 	public boolean colliding(Entity _entidad) {
-		return _entidad.tangible & this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+		return (_entidad.tangible & !_entidad.traspasable)
+				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
 				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
 				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
 				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 
+	}
+	
+	public boolean overIt(Entity _entidad)
+	{
+		return _entidad.traspasable
+				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
+				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
+				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 	}
 
 	/**
@@ -146,5 +156,8 @@ public abstract class Entity {
 		support.removePropertyChangeListener(listener);
 	}
 		
-	
+	public boolean isTraspasable()
+	{
+		return traspasable;
+	}
 }

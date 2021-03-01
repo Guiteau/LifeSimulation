@@ -184,10 +184,10 @@ public class DrawableFactory {
 		{
 			if (de.getEntity().isDeletable())
 				drawableEntities.remove(de);
-			else
-				de.render(graphicsContext);
 		}
-		drawableEntities.stream().forEach(de -> de.render(graphicsContext));
+		
+		drawableEntities.stream().forEach(x->x.render(graphicsContext));
+		
 	}
 
 
