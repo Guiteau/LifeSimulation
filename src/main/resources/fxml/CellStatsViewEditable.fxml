@@ -19,7 +19,6 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
 	</rowConstraints>
    <children>
       <Label maxWidth="1.7976931348623157E308" text="Cell Type :" />
@@ -30,15 +29,8 @@
       <TextField fx:id="healthPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="energyPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="armorPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label maxWidth="1.7976931348623157E308" text="Coordinates" GridPane.rowIndex="4" />
-      <Label maxWidth="1.7976931348623157E308" text="Dimension" GridPane.rowIndex="5" />
+      <Label maxWidth="1.7976931348623157E308" text="Dimension" GridPane.rowIndex="4" />
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <children>
-            <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" fx:id="xCoordTF" />
-            <TextField fx:id="yCoordTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <children>
             <TextField fx:id="widthTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
             <TextField fx:id="heightTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
