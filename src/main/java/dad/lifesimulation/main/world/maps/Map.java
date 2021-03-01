@@ -1,5 +1,6 @@
 package dad.lifesimulation.main.world.maps;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,11 @@ import dad.lifesimulation.main.entities.element.Floor;
 import dad.lifesimulation.main.utils.DataProvider;
 import dad.lifesimulation.main.utils.Dimension;
 
-public class Map {
+public class Map implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1816945806286216523L;
 	protected Dimension dimension;
 	protected List<Entity> entities;
 	protected List<Actor> actors;

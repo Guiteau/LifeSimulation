@@ -2,8 +2,9 @@ package dad.lifesimulation.main.utils;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
-public class Statistics {
+public class Statistics implements Serializable {
 	private int energy;
 	private int health;
 	private int armor;

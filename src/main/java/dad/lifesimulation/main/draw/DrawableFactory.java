@@ -1,5 +1,6 @@
 package dad.lifesimulation.main.draw;
 
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -46,6 +47,19 @@ public class DrawableFactory {
 			throw new NotInitializer("Initializer game was not initialize yet");
 
 		return initializer;
+	}
+	
+	public void loadLevel(ObjectInputStream binMap)
+	{
+		initializer.loadMap(binMap);
+		initializer.getAllEntities().stream().forEach(x -> {
+			try {
+				storeNewDrawableEntity(x);
+			} catch (NotColorOrImageChosen e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 	}
 
 	public void createRandomLevel() {
