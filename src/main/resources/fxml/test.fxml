@@ -45,7 +45,7 @@
          <children>
             <ToggleButton fx:id="pause" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayPause" text="play/pause" GridPane.columnIndex="1" />
             <Button fx:id="fastForward" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btFastForward" text="fast forward" GridPane.columnIndex="2" />
-            <ToggleButton fx:id="edit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Editar" />
+            <ToggleButton fx:id="edit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEdit" text="Editar" />
          </children>
          <GridPane.margin>
             <Insets />
@@ -104,7 +104,7 @@
             <Image url="@../images/lifeSimulation.png" />
          </image>
       </ImageView>
-      <Canvas fx:id="canvas" height="612.0" onMouseClicked="#onClickedCanvas" onMousePressed="#onPressedCanvas" width="953.0" GridPane.columnSpan="4" GridPane.rowSpan="5">
+      <Canvas fx:id="canvas" height="612.0" onMousePressed="#onPressedCanvas" width="953.0" GridPane.columnSpan="4" GridPane.rowSpan="5">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Canvas>

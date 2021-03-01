@@ -19,11 +19,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -101,8 +101,8 @@ public class PrincipalComponent {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				Image cursorImage = new Image(getClass().getResource("/fxml/test.fxml").toString());
-				scene.setCursor(Cursor.CROSSHAIR);
+				Image cursorImage = new Image(getClass().getResource("/images/cellResized.png").toString());
+				scene.setCursor(new ImageCursor(cursorImage));
 				System.out.println("cambio");
 			}
 		});
@@ -115,9 +115,6 @@ public class PrincipalComponent {
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createCellEntity(coordinates, dimension, false);
     		drawableFactory.drawFromCanvas(false);
-    		
-    		
-    		
     	}
     	
     	else if (btnAddWall.isSelected())
@@ -153,7 +150,7 @@ public class PrincipalComponent {
     		
     		drawableFactory.drawFromCanvas(true);
     		drawableFactory.createSpikeEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
+    		drawableFactory.drawFromCanvas(false);
     	}
     	
     	
@@ -165,25 +162,20 @@ public class PrincipalComponent {
 
 
 
-
-	@FXML
-	void onClickedCanvas(MouseEvent event) {
-
-		// ditor(event);
-	}
-
-
-
 	@FXML
 	void onEdit(ActionEvent event) {
-		//this.pane=cellEditable.getView();
-		//cellEditable.test();
+		
+		btnAddCell.setDisable(!edit.isSelected());
+		btnAddSpikes.setDisable(!edit.isSelected());
+		btnAddFood.setDisable(!edit.isSelected());
+		btnAddWall.setDisable(!edit.isSelected());
+		btnDeleteEntity.setDisable(!edit.isSelected());
+		
 	}
 
 	@FXML
 	void onPlayPause(ActionEvent event) {
 		if (pause.isSelected()) {
-
 			guigame.stop();
 			if (!processingGame.isPaused())
 				processingGame.toPause(true);
@@ -202,7 +194,14 @@ public class PrincipalComponent {
 	@FXML
     void onPressedCanvas(MouseEvent event) {
     	if (edit.isSelected())
+    	{
+    		
+    		
+    		
+    		
     		editorMode(event);
+    		
+    	}
     	else
     	{
     		
@@ -226,13 +225,12 @@ public class PrincipalComponent {
     	this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
     	this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
     	this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
-    	System.out.println("Me bindeaste");
     }
     
     public PrincipalComponent() {
     	try {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
-			//FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent.fxml"));
+			//FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent2.fxml"));
 			//loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
@@ -266,6 +264,11 @@ public class PrincipalComponent {
 		cellView = new CellStatsView();
 		//this.editableTab.setContent(cellEditable.getView());
 		//this.visualizeTab.setContent(cellView.getView());
+		btnAddCell.setDisable(!edit.isSelected());
+		btnAddSpikes.setDisable(!edit.isSelected());
+		btnAddFood.setDisable(!edit.isSelected());
+		btnAddWall.setDisable(!edit.isSelected());
+		btnDeleteEntity.setDisable(!edit.isSelected());
 	}
 
 	public Canvas getCanvasElement() {
