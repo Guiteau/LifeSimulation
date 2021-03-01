@@ -10,12 +10,22 @@ public class Dimension implements Serializable {
 
 	private PropertyChangeSupport support;
 	
+	/**
+	 * Constructor
+	 * @param _width
+	 * @param _height
+	 */
+	
 	public Dimension(int _width, int _height) {
 		this.height = _height;
 		this.width = _width;
 		support = new PropertyChangeSupport(this);
 	}
 
+	/**
+	 * Constructor.
+	 */
+	
 	public Dimension() {
 		this.height = 1;
 		this.width = 1;
@@ -24,7 +34,7 @@ public class Dimension implements Serializable {
 	
 	/**
 	 * 
-	 * @return altura de un objeto
+	 * @return current height (int value)
 	 */
 
 	public int getHeight() {
@@ -33,7 +43,7 @@ public class Dimension implements Serializable {
 	
 	/**
 	 * 
-	 * @param height altura a establecer en un objeto
+	 * @param height height to set (int value)
 	 */
 
 	public void setHeight(int height) {
@@ -44,7 +54,7 @@ public class Dimension implements Serializable {
 	
 	/**
 	 * 
-	 * @return anchura de un objeto
+	 * @return current width (int value)
 	 */
 
 	public int getWidth() {
@@ -53,7 +63,7 @@ public class Dimension implements Serializable {
 
 	/**
 	 * 
-	 * @param _width anchura a establecer en un objeto
+	 * @param _width width to set (int value)
 	 */
 	
 	public void setWidth(int width) {
@@ -62,13 +72,30 @@ public class Dimension implements Serializable {
 		support.firePropertyChange("width", oldWidth, width);
 	}
 	
+	/**
+	 * Adds a new PropertyChangeListener to the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be added
+	 */
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+	/**
+	 * Removes a PropertyChangeListener present in the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be removed
+	 */
+	
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
+    
+    /**
+     * @return an String with the width and the height
+     */
+    
     public String toString() {
     	return "Width = "+this.width+" Height = "+this.height;
     }

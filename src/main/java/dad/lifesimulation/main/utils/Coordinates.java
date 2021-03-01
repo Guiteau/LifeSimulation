@@ -10,12 +10,22 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 	
 	private PropertyChangeSupport support;
 	
+	/**
+	 * Constructor.
+	 */
 	
 	public Coordinates() {
 		this.Y = 0;
 		this.X = 0;
 		support = new PropertyChangeSupport(this);
 	}
+	
+	/**
+	 * Constructor.
+	 * 
+	 * @param _posX
+	 * @param _posY
+	 */
 	
 	public Coordinates(int _posX, int _posY) {
 		this.Y = _posY;
@@ -25,7 +35,7 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 
 	/**
 	 * 
-	 * @return valor de coordenada X
+	 * @return value of the X coordinate
 	 */
 
 	public int getX() {
@@ -39,7 +49,7 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 
 	/**
 	 * 
-	 * @return valor de coordenada Y
+	 * @return value of the coordinate Y
 	 */
 
 	public int getY() {
@@ -48,7 +58,7 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 
 	/**
 	 * 
-	 * @param x valor de coordenada X
+	 * @param coordinate X to set (int value)
 	 */
 
 	public void setX(int X) {
@@ -59,7 +69,7 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 
 	/**
 	 * 
-	 * @param y valor de coordenada Y
+	 * @param y coordinate Y to set (int value)
 	 */
 
 	public void setY(int Y) {
@@ -69,8 +79,8 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 	}
 
 	/**
-	 * @param otherCoordinate objeto coordenadas
-	 * @return 1 si los valores de la coordenada X,Y coinciden, 0 si no coinciden
+	 * @param otherCoordinate Coordinates (object type)
+	 * @return 1 if the values of coordinate X and Y matches, 0 if not 
 	 */
 
 	@Override
@@ -81,18 +91,30 @@ public class Coordinates implements Comparable<Coordinates>, Serializable{
 	/**
 	 * metodo que recibe dos parametros y los suma a  los valores X e Y
 	 * 
-	 * @param _addX (int) valor entero para sumar al atributo this.X
-	 * @param _addY (int) valor entero para sumar al atributo this.Y
+	 * @param _addX coordinate X to set (int value)
+	 * @param _addY coordinate Y to set (int value)
 	 */
 	public void addToCoordinates(int _addX, int _addY) {
 		this.setX(this.getX()+_addX);
 		this.setY(this.getY()+_addY);
 	}
+	
+	/**
+	 * Adds a new PropertyChangeListener to the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be added
+	 */
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+	/**
+	 * Removes a PropertyChangeListener present in the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be removed
+	 */
+	
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }

@@ -7,6 +7,12 @@ import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 
 public class ImpenetrableWall extends Entity{
+	
+	/**
+	 * Constructor.
+	 * @param _coordinates
+	 * @param _dimension
+	 */
 
 	public ImpenetrableWall(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, true);
@@ -15,17 +21,31 @@ public class ImpenetrableWall extends Entity{
 		traspasable = false;
 	}
 
+	/**
+	 * Updates the ImpenetrableWall values
+	 */
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * 
+	 * @param entity (Object) to interact with the ImpenetrableWall entity
+	 */
 
 	@Override
 	public void interact(Entity entity) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * 
+	 * @param actor (Object) to interact with the ImpenetrableWall entity
+	 */
 
 	@Override
 	public void interact(Actor actor) {
