@@ -44,7 +44,7 @@
          <children>
             <ToggleButton fx:id="pause" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayPause" text="play/pause" GridPane.columnIndex="1" />
             <Button fx:id="fastForward" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btFastForward" text="fast forward" GridPane.columnIndex="2" />
-            <ToggleButton fx:id="edit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="ToggleButton" />
+            <ToggleButton fx:id="edit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Editar" />
          </children>
       </GridPane>
       <ToggleButton fx:id="btnAddCell" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="4">

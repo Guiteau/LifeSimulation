@@ -33,6 +33,7 @@ public class App extends Application {
 	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
+	public static final String DIRECTORY ="pdf";
 	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
 
@@ -77,8 +78,8 @@ public class App extends Application {
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
+	
 		
-		generatePdf();
 		
 	}
 	
@@ -110,11 +111,21 @@ public class App extends Application {
 
 		JasperPrint print = JasperFillManager.fillReport(report, parameters,
 				new JRBeanCollectionDataSource(DataProvider.getEntitiesListDataProvider()));
-
-		JasperExportManager.exportReportToPdfFile(print, PDF_FILE);
+		File directoryCreationg =new File(DIRECTORY);
+		System.out.println(directoryCreationg.exists());
+		
+		if (!directoryCreationg.exists())
+			directoryCreationg.mkdir();
+		File pdfCreation = new File (PDF_FILE);
+		
+		if (!pdfCreation.exists()) 
+			pdfCreation.createNewFile();
+		
+		System.out.println(directoryCreationg.exists());
+		JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
 
 		try {
-			Desktop.getDesktop().open(new File(PDF_FILE));
+			Desktop.getDesktop().open(pdfCreation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -131,6 +142,15 @@ public class App extends Application {
 			processingGame.toPause(false);
 
 		processingGame.toExit(true);
-	}
+		try {
+			generatePdf();
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
 
 }
