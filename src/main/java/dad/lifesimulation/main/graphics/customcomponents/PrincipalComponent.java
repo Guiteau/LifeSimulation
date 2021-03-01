@@ -225,6 +225,7 @@ public class PrincipalComponent {
     	this.statsPane.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
     	this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
     	this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
+    	this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
     	System.out.println("Me bindeaste");
     }
     

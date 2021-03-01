@@ -31,6 +31,11 @@ public abstract class Actor extends Entity {
 		detectionRangeList = new ArrayList<>();
 		generateDetectionRange();
 	}
+	
+	public boolean isHostile()
+	{
+		return hostilToOthers;
+	}
 
 	private void generateDetectionRange() {
 		// North

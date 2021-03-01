@@ -171,8 +171,12 @@ public class CellStatsView2 extends GridPane implements Initializable {
 	public final void setEnergyProperty(final String energyProperty) {
 		this.energyPropertyProperty().set(energyProperty);
 	}
-		
 
+	public CheckBox getCellTypeCHB() {
+		return cellTypeCHB;
+	}
+		
+	
 	
 	
 
