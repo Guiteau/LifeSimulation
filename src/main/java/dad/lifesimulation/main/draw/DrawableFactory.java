@@ -32,16 +32,31 @@ public class DrawableFactory {
 	enum ReadyToDraw {
 		WITH_COLOR, WITH_IMAGE
 	}
+	
+	/**
+	 * Constructor.
+	 */
 
 	public DrawableFactory() {
 		entity_color = new HashMap<>();
 		entity_image = new HashMap<>();
 		drawableEntities = new ArrayList<>();
 	}
+	
+	/**
+	 * 
+	 * @param drawcanvas true to automatical insertions on map
+	 */
 
 	public void drawFromCanvas(boolean drawcanvas) {
 		initializer.setAutomaticMapInsert(drawcanvas);
 	}
+	
+	/**
+	 * 
+	 * @return current InitGameComponents (object type)
+	 * @throws NotInitializer if the initializaer is null
+	 */
 
 	public InitGameComponents getInitGameComponents() throws NotInitializer {
 		if (initializer == null)
@@ -49,6 +64,12 @@ public class DrawableFactory {
 
 		return initializer;
 	}
+	
+
+	/**
+	 * 
+	 * @param binMap File (object type) with a map stored to load it 
+	 */
 	
 	public void loadLevel(File binMap)
 	{
@@ -63,6 +84,10 @@ public class DrawableFactory {
 		});
 	}
 
+	/**
+	 *  Generates a random level with a simple map and several entities on it
+	 */
+
 	public void createRandomLevel() {
 		// initializer.generateRandomMap(100);
 		initializer.generateSimpleMap();
@@ -76,6 +101,12 @@ public class DrawableFactory {
 		});
 	
 	}
+	
+	/**
+	 * 
+	 * @param entity Entity to check if exists in the Drawable entities list
+	 * @return Optional empty if there is not present the Entity as drawable
+	 */
 	
 	private Optional<DrawableEntity> getDrawableEntityIfExist(Entity entity)
 	{
@@ -92,6 +123,12 @@ public class DrawableFactory {
 		
 		return opt;
 	}
+	
+	/**
+	 * Set a GraphicContext (object type) and initializes the InitGameComponents
+	 * 
+	 * @param graphicsContext to set
+	 */
 
 	public void loadGraphicsContext(GraphicsContext graphicsContext) {
 		this.graphicsContext = graphicsContext;
@@ -99,6 +136,14 @@ public class DrawableFactory {
 				(int) graphicsContext.getCanvas().getHeight());
 		initializer = new InitGameComponents(dim);
 	}
+	
+	/**
+	 * 
+	 * Add a new DrawableEntity (object type) to the list of the drawable entities
+	 * 
+	 * @param entity Entity to be added
+	 * @throws NotColorOrImageChosen if the entity does not have an image or a color
+	 */
 
 	private void storeNewDrawableEntity(Entity entity) throws NotColorOrImageChosen {
 		DrawableEntity drawableEntity = null;
@@ -121,18 +166,41 @@ public class DrawableFactory {
 
 		drawableEntities.add(drawableEntity);
 	}
+	
+	/**
+	 * 
+	 * @param entityType Entity to be set with a color (CELL, SPIKE, WALL, FOOD, UNKNOWN)
+	 * @param color to set (Color object type)
+	 */
 
 	public void setColor(EntityFinalType entityType, Color color) {
 		entity_color.put(entityType, color);
 	}
+	
+	/**
+	 *  
+	 * @param entityType Entity to be set with an image (CELL, SPIKE, WALL, FOOD, UNKNOWN)
+	 * @param image to set (Image object type)
+	 */
 
 	public void setImage(EntityFinalType entityType, Image image) {
 		entity_image.put(entityType, image);
 	}
+	
+	/**
+	 * 
+	 * @return the list of drawable entities stored
+	 */
 
 	public List<DrawableEntity> getDrawableEntities() {
 		return drawableEntities;
 	}
+	
+	/**
+	 * 
+	 * @param coord Coordinates (object type) for the wall
+	 * @param dim  Dimension (object type) for the wall
+	 */
 
 	public void createWallEntity(Coordinates coord, Dimension dim) {
 		Entity wall = initializer.getNewWall(coord, dim);
@@ -144,6 +212,14 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param coord coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param stats Statistics (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param hostil true if cell object can damage others, false if not
+	 */
 
 	public void createCellEntity(Coordinates coord, Dimension dim, Statistics stats, boolean hostil) {
 		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
@@ -155,6 +231,13 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param hostil true if cell object can damage others, false if not
+	 */
 
 	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil) {
 		Entity cell = initializer.getNewCell(coord, dim, hostil);
@@ -167,6 +250,14 @@ public class DrawableFactory {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param hostil true if cell object can damage others, false if not,
+   * @param stats Statistics (object type) to set the stats in the new actor
+	 */
+
 	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil, Statistics stats) {
 		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
 
@@ -177,6 +268,13 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+  
+  /**
+	 * 
+	 * @param coord Coordinates (object type) of the new food Entity (object type) to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new food Entity (object type) to be stored on the drawable entities list
+	 */
+
 	
 	public void createFoodEntity(Coordinates coord, Dimension dim)
 	{
@@ -189,6 +287,12 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 
+	 * @param coord Coordinates (object type) of the new Spikes object to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new Spikes object to be stored on the drawable entities list
+	 */
 
 	public void createSpikeEntity(Coordinates coord, Dimension dim) {
 		Entity spikes = initializer.getNewSpikes(coord, dim);
@@ -200,6 +304,10 @@ public class DrawableFactory {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * render the graphic context
+	 */
 
 	public void render() {
 		
@@ -216,7 +324,10 @@ public class DrawableFactory {
 		
 	}
 
-
+	/**
+	 * 
+	 * @param coordinates Coordinates (object type) to delete in the drawable entities list stored
+	 */
 
 	public void deleteIn(Coordinates coordinates) {
 		List<Entity> entities = initializer.getEntitiesIn(coordinates);

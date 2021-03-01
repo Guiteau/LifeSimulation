@@ -17,6 +17,11 @@ public class CanvasExample{
 
     @FXML
     private Canvas canvasElement;
+    
+    /** 
+     * Constructor.
+     * @throws IOException if FXML file fails
+     */
 
 	public CanvasExample() throws IOException {
 		
@@ -24,11 +29,21 @@ public class CanvasExample{
 		loader.setController(this);
 		loader.load();
 	}
+	
+	/**
+	 * 
+	 * @return the main view of the FXML
+	 */
 
 	public AnchorPane getView() {
 		return anchorPane;
 	}
 
+	/**
+	 * 
+	 * @return the Canvas present in the FXML
+	 */
+	
 	public Canvas getCanvasElement() {
 		return canvasElement;
 	}

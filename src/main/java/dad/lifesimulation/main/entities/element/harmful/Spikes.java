@@ -12,6 +12,12 @@ import dad.lifesimulation.main.utils.Dimension;
 
 public class Spikes extends Floor {
 	private final int DAMAGE = 5;
+	
+	/**
+	 * Constructor.
+	 * @param _coordinates
+	 * @param _dimension
+	 */
 
 	public Spikes(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, FloorType.HARMFUL);
@@ -21,8 +27,7 @@ public class Spikes extends Floor {
 	}
 
 	/**
-	 * Se carga una lista de entidades de tipo actor que estén colisionando con el
-	 * objeto Spikes y se le aplica el daño (5)
+	 * A list of actor entities that are colliding with the Spikes object is loaded and the damage (5) is applied.
 	 */
 
 	public void update() {
@@ -32,11 +37,21 @@ public class Spikes extends Floor {
 			actor.getStatistics().damageReceive(DAMAGE);
 	}
 
+	/**
+	 * 
+	 * @param entity (Object) to interact with the spikes entity
+	 */
+	
 	@Override
 	public void interact(Entity entity) {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * 
+	 * @param actor (Object) to interact with the spikes entity
+	 */
 
 	@Override
 	public void interact(Actor actor) {
