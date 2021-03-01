@@ -122,8 +122,6 @@ public class PrincipalComponent {
     	else
     		scene.setCursor(Cursor.DEFAULT);
     }
-
-
   
     @FXML
     void onAddWall(ActionEvent event) {

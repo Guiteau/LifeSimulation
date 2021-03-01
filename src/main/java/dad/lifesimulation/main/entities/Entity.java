@@ -2,16 +2,24 @@ package dad.lifesimulation.main.entities;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.world.maps.Map;
 
-public abstract class Entity {
+public abstract class Entity  implements Serializable{
 
 	protected Coordinates coordinates;
 	protected Dimension dimension;
+	@Override
+	public String toString() {
+		return "Entity [coordinates=" + coordinates + ", dimension=" + dimension + ", tangible=" + tangible
+				+ ", drawable=" + drawable + ", debugging=" + debugging + ", entityType=" + entityType + ", support="
+				+ support + ", deletable=" + deletable + ", traspasable=" + traspasable + "]";
+	}
+
 	protected Boolean tangible;
 	protected Boolean drawable;
 	protected Boolean debugging;
@@ -60,6 +68,15 @@ public abstract class Entity {
 				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
 				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 
+	}
+	
+	public boolean collidingAll(Entity _entidad)
+	{
+		return 	
+				this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
+				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
+				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
 	}
 	
 	public boolean overIt(Entity _entidad)

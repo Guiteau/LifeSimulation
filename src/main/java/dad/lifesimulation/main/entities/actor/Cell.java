@@ -20,6 +20,17 @@ public class Cell extends Actor{
 	}
 
 	@Override
+	public String toString() {
+		return "Cell [cell_id=" + cell_id + ", statistics=" + statistics + ", orientation=" + orientation
+				+ ", hostilToOthers=" + hostilToOthers + ", detectionRangeNorth=" + detectionRangeNorth
+				+ ", detectionRangeSouth=" + detectionRangeSouth + ", detectionRangeWest=" + detectionRangeWest
+				+ ", detectionRangeEast=" + detectionRangeEast + ", detectionRangeList=" + detectionRangeList
+				+ ", coordinates=" + coordinates + ", dimension=" + dimension + ", tangible=" + tangible + ", drawable="
+				+ drawable + ", debugging=" + debugging + ", entityType=" + entityType + ", support=" + support
+				+ ", deletable=" + deletable + ", traspasable=" + traspasable + "]";
+	}
+
+	@Override
 	public void interact(Entity entity) {
 		// TODO Auto-generated method stub
 		
