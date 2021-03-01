@@ -7,15 +7,12 @@ import java.util.ResourceBundle;
 
 import dad.lifesimulation.main.draw.DrawableFactory;
 import dad.lifesimulation.main.entities.actor.Cell;
-import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView2;
-import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsViewEditable;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -35,13 +32,7 @@ public class PrincipalComponent {
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
-	/**
-	 * @FXML private Tab visualizeTab;
-	 * 
-	 * @FXML private Tab editableTab;
-	 **/
-	private CellStatsView cellView;
-	private CellStatsViewEditable cellEditable;
+
 
 	private Scene scene;
 	@FXML
@@ -63,7 +54,10 @@ public class PrincipalComponent {
 	private ToggleButton edit;
 
 	@FXML
-	private Button fastForward;
+    private Button guardar;
+
+    @FXML
+    private Button cargar;
 
 	@FXML
 	private ToggleButton btnAddCell;
@@ -86,10 +80,15 @@ public class PrincipalComponent {
 	@FXML
 	private CellStatsView2 statsPane;
 
-	@FXML
-	void btFastForward(ActionEvent event) {
+    @FXML
+    void onCargarBTN(ActionEvent event) {
 
-	}
+    }
+    
+    @FXML
+    void onGuardarBTN(ActionEvent event) {
+
+    }
 	
     @FXML
     void onAddCell(ActionEvent event) {
@@ -236,42 +235,22 @@ public class PrincipalComponent {
 
 	public PrincipalComponent() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
-			// FXMLLoader loader = new
-			// FXMLLoader(getClass().getResource("/fxml/PrincipalComponent2.fxml"));
-			// loader.setRoot(this);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principalComponent.fxml"));
+			
 			loader.setController(this);
 			loader.load();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	void initialize() {
-		assert view != null : "fx:id=\"view\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert pause != null : "fx:id=\"pause\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert edit != null : "fx:id=\"play\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert fastForward != null
-				: "fx:id=\"fastForward\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddCell != null
-				: "fx:id=\"btnAddCell\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddSpikes != null
-				: "fx:id=\"btnAddSpikes\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddWall != null
-				: "fx:id=\"btnAddWall\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddFood != null
-				: "fx:id=\"btnAddFood\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnDeleteEntity != null
-				: "fx:id=\"btnDeleteEntity\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert canvas != null : "fx:id=\"canvas\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
+		
 		System.out.println("_Inicializado");
-		cellEditable = new CellStatsViewEditable();
-		cellView = new CellStatsView();
-		// this.editableTab.setContent(cellEditable.getView());
-		// this.visualizeTab.setContent(cellView.getView());
+
 		btnAddCell.setDisable(!edit.isSelected());
 		btnAddSpikes.setDisable(!edit.isSelected());
 		btnAddFood.setDisable(!edit.isSelected());
