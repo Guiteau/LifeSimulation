@@ -27,6 +27,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import ourExceptions.NotInitializer;
 
 public class App extends Application {
 
@@ -36,6 +37,7 @@ public class App extends Application {
 	public static final String DIRECTORY ="pdf";
 	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
+	DrawableFactory levelGUI_creator;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -43,7 +45,7 @@ public class App extends Application {
 		controller = new PrincipalComponent();
 		
 		
-		DrawableFactory levelGUI_creator = new DrawableFactory();
+		levelGUI_creator = new DrawableFactory();
 		
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
 		
@@ -55,7 +57,7 @@ public class App extends Application {
 		
 		levelGUI_creator.createRandomLevel();
 				
-		DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));	
+			
 
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
@@ -123,12 +125,13 @@ public class App extends Application {
 		
 		System.out.println(directoryCreationg.exists());
 		JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
-
+		/**
 		try {
-			Desktop.getDesktop().open(pdfCreation);
+		Desktop.getDesktop().open(pdfCreation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 
 	}
 
@@ -143,14 +146,13 @@ public class App extends Application {
 
 		processingGame.toExit(true);
 		try {
+			DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));
 			generatePdf();
-		} catch (JRException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}	
 
+}
 }
