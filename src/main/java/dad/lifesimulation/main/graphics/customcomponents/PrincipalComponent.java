@@ -19,11 +19,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -35,16 +35,14 @@ public class PrincipalComponent {
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
- /**
-    @FXML
-    private Tab visualizeTab;
-
-    @FXML
-    private Tab editableTab;
-**/
+	/**
+	 * @FXML private Tab visualizeTab;
+	 * 
+	 * @FXML private Tab editableTab;
+	 **/
 	private CellStatsView cellView;
 	private CellStatsViewEditable cellEditable;
-	
+
 	private Scene scene;
 	@FXML
 	private ToggleGroup editor;
@@ -82,161 +80,171 @@ public class PrincipalComponent {
 	@FXML
 	private ToggleButton btnDeleteEntity;
 
-
 	@FXML
 	private Canvas canvas;
-	
-	@FXML  
-	private CellStatsView2 statsPane;
-
-    @FXML
-    void btFastForward(ActionEvent event) {
-
-    }
-    
-    private void editorMode (MouseEvent event)
-    {
-    	
-    	btnAddCell.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				Image cursorImage = new Image(getClass().getResource("/fxml/test.fxml").toString());
-				scene.setCursor(Cursor.CROSSHAIR);
-				System.out.println("cambio");
-			}
-		});
-    	
-    	if (btnAddCell.isSelected())
-    	{
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		Dimension dimension = new Dimension(20, 20);
-    		
-    		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createCellEntity(coordinates, dimension, false);
-    		drawableFactory.drawFromCanvas(false);
-    		
-    		
-    		
-    	}
-    	
-    	else if (btnAddWall.isSelected())
-    	{
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		Dimension dimension = new Dimension(20, 20);
-    		
-    		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createWallEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(false);
-    	}
-    	
-    	else if (btnAddFood.isSelected())
-    	{
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		Dimension dimension = new Dimension(20, 20);
-    		
-    		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createFoodEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(false);
-    	}
-    	
-    	else if (btnDeleteEntity.isSelected())
-    	{
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		drawableFactory.deleteIn(coordinates);
-    	}
-    	
-    	else if (btnAddSpikes.isSelected())
-    	{
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		Dimension dimension = new Dimension(20, 20);
-    		
-    		drawableFactory.drawFromCanvas(true);
-    		drawableFactory.createSpikeEntity(coordinates, dimension);
-    		drawableFactory.drawFromCanvas(true);
-    	}
-    	
-    	
-    	else
-    	{
-    		scene.setCursor(Cursor.DEFAULT);
-    	}
-    }
-
-
-
 
 	@FXML
-	void onClickedCanvas(MouseEvent event) {
+	private CellStatsView2 statsPane;
 
-		// ditor(event);
+	@FXML
+	void btFastForward(ActionEvent event) {
+
 	}
+	
+    @FXML
+    void onAddCell(ActionEvent event) {
+    	if (btnAddCell.isSelected())
+    	{
+    		Image image = new Image(getClass().getResource("/images/cellResized.png").toString());
+    		scene.setCursor(new ImageCursor(image));
+    	}
+    	else
+    		scene.setCursor(Cursor.DEFAULT);
+    }
+
+    @FXML
+    void onAddFood(ActionEvent event) {
+    	if (btnAddFood.isSelected())
+    	{
+    		Image image = new Image(getClass().getResource("/images/foodResized.png").toString());
+    		scene.setCursor(new ImageCursor(image));
+    	}
+    	else
+    		scene.setCursor(Cursor.DEFAULT);
+    }
+    
+    @FXML
+    void onAddSpikes(ActionEvent event) {
+    	if (btnAddSpikes.isSelected())
+    	{
+    		Image image = new Image(getClass().getResource("/images/spikeVerticalResized.png").toString());
+    		scene.setCursor(new ImageCursor(image));
+    	}
+    	else
+    		scene.setCursor(Cursor.DEFAULT);
+    }
 
 
+  
+    @FXML
+    void onAddWall(ActionEvent event) {
+    	if (btnAddWall.isSelected())
+    	{
+    		Image image = new Image(getClass().getResource("/images/wall_resized.png").toString());
+    		scene.setCursor(new ImageCursor(image));
+    	}
+    	else
+    		scene.setCursor(Cursor.DEFAULT);
+    }
+
+    @FXML
+    void onDeleteTool(ActionEvent event) {
+    	if (btnDeleteEntity.isSelected())
+    	{
+    		Image image = new Image(getClass().getResource("/images/rubberResized.png").toString());
+    		scene.setCursor(new ImageCursor(image));
+    	}
+    	else
+    		scene.setCursor(Cursor.DEFAULT);
+    }
+
+	private void editorMode(MouseEvent event) {
+
+		if (!btnDeleteEntity.isSelected()) {
+			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
+			Dimension dimension = new Dimension(20, 20);
+			coordinates.setX(coordinates.getX() - dimension.getWidth()/2);
+			coordinates.setY(coordinates.getY() - dimension.getHeight()/2);
+			
+			if (btnAddCell.isSelected()) {
+				drawableFactory.drawFromCanvas(true);
+				drawableFactory.createCellEntity(coordinates, dimension, false);
+				drawableFactory.drawFromCanvas(false);
+			}
+
+			else if (btnAddWall.isSelected()) {
+
+				drawableFactory.drawFromCanvas(true);
+				drawableFactory.createWallEntity(coordinates, dimension);
+				drawableFactory.drawFromCanvas(false);
+			}
+
+			else if (btnAddFood.isSelected()) {
+
+				drawableFactory.drawFromCanvas(true);
+				drawableFactory.createFoodEntity(coordinates, dimension);
+				drawableFactory.drawFromCanvas(false);
+			}
+
+			else if (btnAddSpikes.isSelected()) {
+
+				drawableFactory.drawFromCanvas(true);
+				drawableFactory.createSpikeEntity(coordinates, dimension);
+				drawableFactory.drawFromCanvas(false);
+			}
+		}
+		else
+			drawableFactory.deleteIn(new Coordinates((int)event.getX(), (int)event.getY()));
+
+	}
 
 	@FXML
 	void onEdit(ActionEvent event) {
-		//this.pane=cellEditable.getView();
-		//cellEditable.test();
+		btnAddCell.setDisable(!edit.isSelected());
+		btnAddSpikes.setDisable(!edit.isSelected());
+		btnAddFood.setDisable(!edit.isSelected());
+		btnAddWall.setDisable(!edit.isSelected());
+		btnDeleteEntity.setDisable(!edit.isSelected());
+		
+		if (!edit.isSelected())
+	    	scene.setCursor(Cursor.DEFAULT);
 	}
 
 	@FXML
 	void onPlayPause(ActionEvent event) {
 		if (pause.isSelected()) {
-
 			guigame.stop();
 			if (!processingGame.isPaused())
 				processingGame.toPause(true);
 		} else {
-
 			guigame.start();
 
 			if (processingGame.isPaused())
 				processingGame.toPause(false);
 		}
-
 	}
 
-	
-
 	@FXML
-    void onPressedCanvas(MouseEvent event) {
-    	if (edit.isSelected())
-    		editorMode(event);
-    	else
-    	{
-    		
-    		Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
-    		
-    		Optional<Cell> maybe_cell = processingGame.getCellIn(coordinates);
-    		if (maybe_cell.isPresent())
-    		{
-    			System.out.println("cogí una célula");
-    			bindCell(maybe_cell.get());
-    		}
-    	}
-    }
-    
-    
-    private void bindCell(Cell cell)
-    {		
-    	this.statsPane.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
-    	this.statsPane.getDimensionProperty().setValue(cell.getDimension().toString());
-    	this.statsPane.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
-    	this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
-    	this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
-    	this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
-    	System.out.println("Me bindeaste");
-    }
-    
-    public PrincipalComponent() {
-    	try {
-    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
-			//FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PrincipalComponent.fxml"));
-			//loader.setRoot(this);
+	void onPressedCanvas(MouseEvent event) {
+		if (edit.isSelected())
+			editorMode(event);
+		else {
+			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
+			Optional<Cell> maybe_cell = processingGame.getCellIn(coordinates);
+
+			if (maybe_cell.isPresent())
+				bindCell(maybe_cell.get());
+		}
+	}
+
+	private void bindCell(Cell cell) {
+		this.statsPane.getCoordinatesProperty().setValue(cell.getCoordinates().toString());
+		this.statsPane.getDimensionProperty().setValue(cell.getDimension().toString());
+		this.statsPane.setArmorProperty((Integer.toString(cell.getStatistics().getArmor())));
+		this.statsPane.setEnergyProperty((Integer.toString(cell.getStatistics().getEnergy())));
+		this.statsPane.setHealthPointsProperty((Integer.toString(cell.getStatistics().getHealth())));
+		this.statsPane.getCellTypeCHB().setSelected(cell.isHostile());
+	}
+
+	public PrincipalComponent() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
+			// FXMLLoader loader = new
+			// FXMLLoader(getClass().getResource("/fxml/PrincipalComponent2.fxml"));
+			// loader.setRoot(this);
 			loader.setController(this);
 			loader.load();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -264,8 +272,13 @@ public class PrincipalComponent {
 		System.out.println("_Inicializado");
 		cellEditable = new CellStatsViewEditable();
 		cellView = new CellStatsView();
-		//this.editableTab.setContent(cellEditable.getView());
-		//this.visualizeTab.setContent(cellView.getView());
+		// this.editableTab.setContent(cellEditable.getView());
+		// this.visualizeTab.setContent(cellView.getView());
+		btnAddCell.setDisable(!edit.isSelected());
+		btnAddSpikes.setDisable(!edit.isSelected());
+		btnAddFood.setDisable(!edit.isSelected());
+		btnAddWall.setDisable(!edit.isSelected());
+		btnDeleteEntity.setDisable(!edit.isSelected());
 	}
 
 	public Canvas getCanvasElement() {
@@ -287,9 +300,8 @@ public class PrincipalComponent {
 	public void setFactory(DrawableFactory levelGUI_creator) {
 		this.drawableFactory = levelGUI_creator;
 	}
-	
-	public void setScene(Scene scene)
-	{
+
+	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
 }

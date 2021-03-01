@@ -1,6 +1,5 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
