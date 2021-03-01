@@ -2,6 +2,7 @@ package dad.lifesimulation.main.entities.element.helpful;
 
 import java.util.List;
 
+import dad.lifesimulation.main.entities.Entity;
 import dad.lifesimulation.main.entities.EntityFinalType;
 import dad.lifesimulation.main.entities.actor.Actor;
 import dad.lifesimulation.main.entities.element.Floor;
@@ -17,19 +18,27 @@ public class MagicFood extends Floor {
 	public MagicFood(Coordinates _coordinates, Dimension _dimension) {
 		super(_coordinates, _dimension, FloorType.HELPFUL);
 		entityType=EntityFinalType.FOOD;
+		tangible = true;
+		traspasable = true;
 	}
 
 	@Override
 	public void update() {
-
-		List<Actor> temporalList = map.getActorsIn(this);
-
-		for (Actor actor : temporalList) {
-			actor.getStatistics().healthReceive(HEALTH_BONUS);
-			actor.getStatistics().armorReceive(ARMOR_BONUS);
-			actor.getStatistics().energyReceive(ENERGY_BONUS);
-
-		}
-
 	}
+
+	@Override
+	public void interact(Entity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void interact(Actor actor) {
+		System.out.println("Me están comiendo");
+		actor.getStatistics().healthReceive(HEALTH_BONUS);
+		actor.getStatistics().armorReceive(ARMOR_BONUS);
+		actor.getStatistics().energyReceive(ENERGY_BONUS);
+		deletable = true;
+	}
+	
 }

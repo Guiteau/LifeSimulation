@@ -82,7 +82,6 @@ public class App extends Application {
 		primaryStage.show();
 	
 		
-		
 	}
 	
 	public List<EntityReport> generateReportList(List<Entity> entitiesList){
