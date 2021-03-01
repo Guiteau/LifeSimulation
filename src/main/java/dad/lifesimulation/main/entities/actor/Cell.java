@@ -38,7 +38,11 @@ public class Cell extends Actor{
 
 	@Override
 	public void interact(Actor actor) {
-		// TODO Auto-generated method stub
+		if (hostilToOthers)
+		{
+			System.out.println("Pegando");
+			actor.getStatistics().damageReceive(getStatistics().getDamage());
+		}
 		
 	}
 	

@@ -165,9 +165,8 @@ public class PrincipalComponent {
 				int energy = Integer.parseInt(editableStatsPane.getEnergyPointsTF().textProperty().get());
 				int health = Integer.parseInt(editableStatsPane.getHealthPointsTF().textProperty().get());
 				int armor = Integer.parseInt(editableStatsPane.getArmorPointsTF().textProperty().get());
+				int damage = Integer.parseInt(editableStatsPane.getDamagePointsTF().textProperty().get());
 				
-				
-				int damage = Integer.parseInt(editableStatsPane.get.textProperty().get());
 				
 				
 				Statistics stats = new Statistics(energy, health, armor, damage);

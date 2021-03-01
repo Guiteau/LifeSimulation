@@ -107,7 +107,7 @@ public class Map implements Serializable {
 	public List<Actor> getActorsIn(Entity entity) {
 		List<Actor> aux = new ArrayList<>();
 		for (Actor e : actors) {
-			if (entity.colliding(e)) {
+			if (entity.colliding(e) && !(entity == e)) {
 				aux.add(e);
 			}
 		}

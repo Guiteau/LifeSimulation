@@ -143,12 +143,19 @@ public abstract class Actor extends Entity {
 	{		
 		floors.stream().forEach(f->f.interact(this));
 	}
+	
+	protected void stepOnActors(List<Actor> actors)
+	{
+		actors.stream().forEach(a->this.interact(a));
+	}
 
 	@Override
 	public void update() {
 		randomMove();
 		
 		stepOnFloor(map.getFloorsIn(this));
+		
+		stepOnActors(map.getActorsIn(this));
 		
 		if (statistics.getHealth() < 0)
 			deletable = true;
