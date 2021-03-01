@@ -10,8 +10,10 @@
 		<maven.compiler.target>14</maven.compiler.target>
 		<maven.compiler.source>14</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<exec.mainClass>dad.lifesimulation.main.graphics.customcomponents.Main</exec.mainClass>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -31,4 +33,36 @@
 			<version>6.11.0</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+
+
+			<plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<name>lifeSimulation</name>
+							<platform>auto</platform>
+							<createZipball>true</createZipball>
+							<bundleJre>true</bundleJre>
+							<customizedJre>false</customizedJre>
+							<generateInstaller>true</generateInstaller>
+							<winConfig>
+								<!-- <headerType>console</headerType> -->
+								<generateMsi>false</generateMsi>
+							</winConfig>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
