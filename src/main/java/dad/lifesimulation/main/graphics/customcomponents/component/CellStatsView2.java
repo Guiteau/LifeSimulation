@@ -19,29 +19,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class CellStatsView2 extends GridPane implements Initializable {
-	Cell auxCell ;
+
 	
-	private StringProperty cellTypeProperty = new SimpleStringProperty();
+
 	private StringProperty healthPointsProperty = new SimpleStringProperty();
 	private StringProperty armorProperty = new SimpleStringProperty();
 	private StringProperty energyProperty = new SimpleStringProperty();
 	private StringProperty coordinatesProperty = new SimpleStringProperty();
 	
-	public StringProperty getCoordinatesProperty() {
-		return coordinatesProperty;
-	}
 
-	public StringProperty getDimensionProperty() {
-		return dimensionProperty;
-	}
-
-	public void setCoordinatesProperty(StringProperty coordinatesProperty) {
-		this.coordinatesProperty = coordinatesProperty;
-	}
-
-	public void setDimensionProperty(StringProperty dimensionProperty) {
-		this.dimensionProperty = dimensionProperty;
-	}
 
 
 	private StringProperty dimensionProperty = new SimpleStringProperty();
@@ -79,7 +65,7 @@ public class CellStatsView2 extends GridPane implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -91,91 +77,113 @@ public class CellStatsView2 extends GridPane implements Initializable {
 		this.dimensionProperty.bindBidirectional(dimensionLB.textProperty());
 	}
 	
-	
-	@SuppressWarnings("unchecked") //bad api
-	public void loadCell(Cell _cell) {
 
-		
-		JavaBeanObjectProperty<Coordinates> propCoordinates;
-		try {
-			propCoordinates= JavaBeanObjectPropertyBuilder.create().bean(_cell.getCoordinates()).name("coordinates").build();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		
-		
-	}
-	
+	/**
+	 * return the view of this object
+	 * @return this (Object Type GridPane)
+	 */
 	public GridPane getView() {
 		return this;
 		
 	}
 
-	public final StringProperty cellTypePropertyProperty() {
-		return this.cellTypeProperty;
-	}
-	
 
-	public final String getCellTypeProperty() {
-		return this.cellTypePropertyProperty().get();
-	}
-	
 
-	public final void setCellTypeProperty(final String cellTypeProperty) {
-		this.cellTypePropertyProperty().set(cellTypeProperty);
-	}
-	
-
+	/**
+	 * returns the  health property of this component
+	 * @return healthProperty (Object type StringProperty)
+	 */
 	public final StringProperty healthPointsPropertyProperty() {
 		return this.healthPointsProperty;
 	}
 	
 
-	public final String getHealthPointsProperty() {
-		return this.healthPointsPropertyProperty().get();
-	}
-	
 
+	
+	/**
+	 * Receives a string that will be pass to the StringProperty health
+	 * @param healthProperty (Object type String)
+	 */
 	public final void setHealthPointsProperty(final String healthPointsProperty) {
 		this.healthPointsPropertyProperty().set(healthPointsProperty);
 	}
 	
-
+	/**
+	 * returns the armor property of this component
+	 * @return armorProperty (Object type StringProperty)
+	 */
 	public final StringProperty armorPropertyProperty() {
 		return this.armorProperty;
 	}
 	
 
-	public final String getArmorProperty() {
-		return this.armorPropertyProperty().get();
-	}
-	
 
+	/**
+	 * Receives a string that will be pass to the StringProperty armor
+	 * @param armorProperty (Object type String)
+	 */
 	public final void setArmorProperty(final String armorProperty) {
 		this.armorPropertyProperty().set(armorProperty);
 	}
 	
-
+	/**
+	 * returns the energy property of  this component
+	 * @return energyProperty (Object type StringProperty)
+	 */
+	 
 	public final StringProperty energyPropertyProperty() {
 		return this.energyProperty;
 	}
 	
 
-	public final String getEnergyProperty() {
-		return this.energyPropertyProperty().get();
-	}
 	
-
+	
+	/**
+	 * Receives a string that will be pass to the StringProperty energy
+	 * @param energyProperty (Object type String)
+	 */
 	public final void setEnergyProperty(final String energyProperty) {
 		this.energyPropertyProperty().set(energyProperty);
 	}
-
+	
+	/**
+	 * returns the cell type of this component
+	 * @return cellTypeCHB (Object type CheckBox)
+	 */
+	 
 	public CheckBox getCellTypeCHB() {
 		return cellTypeCHB;
 	}
-		
+	/**
+	 * returns the coordinates property of  this component
+	 * @return coordinateProperty (Object type StringProperty)
+	 */
+	 
+	public StringProperty getCoordinatesProperty() {
+		return coordinatesProperty;
+	}
+	/**
+	 * returns the dimension property of  this component
+	 * @return dimensionProperty (Object type StringProperty)
+	 */
+	 
+	public StringProperty getDimensionProperty() {
+		return dimensionProperty;
+	}
+	/**
+	 * Receives a string that will be pass to the StringProperty Coordinates
+	 * @param coordinateProperty (Object type String)
+	 */
+	public void setCoordinatesProperty(StringProperty coordinatesProperty) {
+		this.coordinatesProperty = coordinatesProperty;
+	}
+	/**
+	 * Receives a string that will be pass to the StringProperty Dimension
+	 * @param dimensionProperty (Object type String)
+	 */
+	public void setDimensionProperty(StringProperty dimensionProperty) {
+		this.dimensionProperty = dimensionProperty;
+	}
 	
 	
 	
