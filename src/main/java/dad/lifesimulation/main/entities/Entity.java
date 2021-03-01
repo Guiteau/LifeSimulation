@@ -72,8 +72,7 @@ public abstract class Entity {
 	}
 
 	/**
-	 * @return coordiantes (object type coordinates ) las coordenadas de esta
-	 *         entidad
+	 * @return coordinates current Coordinates (X, Y)
 	 */
 
 	public Coordinates getCoordinates() {
@@ -82,8 +81,7 @@ public abstract class Entity {
 
 	/**
 	 * 
-	 * @param coordinates (object type Coordinates ) asigna las coordenadas
-	 *                    recibidas a esta entidad
+	 * @param coordinates Coordinates to set (Object type) 
 	 */
 	public void setCoordinates(Coordinates _coordinates) {
 		
@@ -103,8 +101,7 @@ public abstract class Entity {
 
 	/**
 	 * 
-	 * @param dimension (Object type Dimension)asigna las dimensiones recibidas a
-	 *                  esta entidad
+	 * @param dimension Dimension to set (Object type)
 	 */
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
@@ -112,36 +109,71 @@ public abstract class Entity {
 
 	/**
 	 * 
-	 * @return tangible (Object type Boolean ) true (si es tra)
+	 * @return true if the Entity can be touchable by others false if not 
 	 */
 
 	public Boolean getTangible() {
 		return tangible;
 	}
 
+	/**
+	 * 
+	 * @param tangible tangible to set (true or false)
+	 */
+	
 	public void setTangible(Boolean tangible) {
 		this.tangible = tangible;
 	}
+	
+	/**
+	 * 
+	 * @param drawable drawable to set (true or false)
+	 */
 
 	public void setDrawable(Boolean drawable) {
 		this.drawable = drawable;
 	}
 
+	/**
+	 * 
+	 * @return true entity can be drawable false if not
+	 */
+	
 	public boolean isDrawable() {
 		return this.drawable;
 	}
+	
+	/**
+	 * 
+	 * @return entity type (CELL, SPIKE, WALL, FOOD or UNKNOWN) 
+	 */
 
 	public EntityFinalType getEntityType() {
 		return this.entityType;
 	}
+	
+	/**
+	 * 
+	 * @param map map to set (Object)
+	 */
 
 	public void setMap(Map map) {
 		this.map = map;
 	}
+	
+	/**
+	 * 
+	 * @return true if entity is being debugging false if not
+	 */
 
-	public boolean isDebuggin() {
+	public boolean isDebugging() {
 		return debugging;
 	}
+	
+	/**
+	 * 
+	 * @return 
+	 */
 	
 	public boolean isDeletable()
 	{

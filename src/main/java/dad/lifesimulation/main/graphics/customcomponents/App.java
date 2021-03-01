@@ -16,17 +16,16 @@ import dad.lifesimulation.main.utils.EntityReport;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -34,7 +33,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import ourExceptions.NotInitializer;
 
 public class App extends Application {
 
@@ -175,8 +173,14 @@ public class App extends Application {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Generar reporte");
 			alert.setHeaderText("");
-			alert.setContentText("¿Quisieras guardar un reporte de las entidades del mapa?");
+			alert.setContentText("\n¿Quisieras guardar un reporte de las entidades del mapa?");
+			
+			alert.getDialogPane().setGraphic(new ImageView("/images/dialogAlertIcon.png"));
+			
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 
+			stage.getIcons().add(new Image("/images/lifeSimulationIcon.png"));
+						
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK){
 				
