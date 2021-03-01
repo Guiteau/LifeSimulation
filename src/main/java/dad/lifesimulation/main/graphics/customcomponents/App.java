@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import dad.lifesimulation.main.draw.DrawableFactory;
 import dad.lifesimulation.main.entities.Entity;
@@ -18,8 +19,15 @@ import dad.lifesimulation.main.utils.InitGameComponents;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -38,10 +46,13 @@ public class App extends Application {
 	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
 	DrawableFactory levelGUI_creator;
+	private static Stage primaryStage;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 	
+		this.primaryStage = primaryStage;
+		
 		controller = new PrincipalComponent();
 		
 		
@@ -77,13 +88,18 @@ public class App extends Application {
 		Scene escena = new Scene(controller.getView());
 		controller.setScene(escena);
 		primaryStage.setScene(escena);
-		primaryStage.setTitle("Canvas Ejemplo\t");
+		primaryStage.getIcons().add(new Image("/images/lifeSimulationIcon.png"));
+		primaryStage.setTitle("Life Simulation\t");
 		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
 	
 		
 	}
 	
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
 	public List<EntityReport> generateReportList(List<Entity> entitiesList){
 		
 		List<EntityReport> listReportEntities = new ArrayList<>();
@@ -112,7 +128,7 @@ public class App extends Application {
 
 		JasperPrint print = JasperFillManager.fillReport(report, parameters,
 				new JRBeanCollectionDataSource(DataProvider.getEntitiesListDataProvider()));
-		File directoryCreationg =new File(DIRECTORY);
+/*		File directoryCreationg =new File(DIRECTORY);
 		System.out.println(directoryCreationg.exists());
 		
 		if (!directoryCreationg.exists())
@@ -122,8 +138,17 @@ public class App extends Application {
 		if (!pdfCreation.exists()) 
 			pdfCreation.createNewFile();
 		
-		System.out.println(directoryCreationg.exists());
-		JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
+		System.out.println(directoryCreationg.exists());*/
+		
+		FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save PDF report");
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Report (.pdf)", ".pdf"));
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", ".*"));
+        File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage()); 
+        
+        JasperExportManager.exportReportToPdfFile(print, archivoGuardado.getPath());
+		
+	//	JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
 		/**
 		try {
 		Desktop.getDesktop().open(pdfCreation);
@@ -133,6 +158,7 @@ public class App extends Application {
 		*/
 
 	}
+
 
 	public static void main(String[] args) throws JRException, IOException {
 		launch(args);
@@ -146,7 +172,19 @@ public class App extends Application {
 		processingGame.toExit(true);
 		try {
 			DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));
-			generatePdf();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Generar reporte");
+			alert.setHeaderText("");
+			alert.setContentText("¿Quisieras guardar un reporte de las entidades del mapa?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK){
+				
+		        generatePdf();
+				
+			} 
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
