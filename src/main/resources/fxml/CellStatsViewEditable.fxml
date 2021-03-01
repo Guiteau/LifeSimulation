@@ -19,22 +19,25 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
 	</rowConstraints>
    <children>
       <Label maxWidth="1.7976931348623157E308" text="Cell Type :" />
       <Label maxWidth="1.7976931348623157E308" text="Health Points :" GridPane.rowIndex="1" />
       <Label maxWidth="1.7976931348623157E308" text="Energy Points:" GridPane.rowIndex="2" />
-      <Label maxWidth="1.7976931348623157E308" text="Armor Points:" GridPane.rowIndex="3" />
+      <Label maxWidth="1.7976931348623157E308" text="Armor Points:" GridPane.rowIndex="4" />
       <CheckBox fx:id="cellTypeCHB" mnemonicParsing="false" text="Agressive" GridPane.columnIndex="1" />
       <TextField fx:id="healthPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="energyPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="armorPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label maxWidth="1.7976931348623157E308" text="Dimension" GridPane.rowIndex="4" />
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <TextField fx:id="armorPointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label maxWidth="1.7976931348623157E308" text="Dimension" GridPane.rowIndex="5" />
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <children>
             <TextField fx:id="widthTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
             <TextField fx:id="heightTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
          </children>
       </HBox>
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Damage Points:" GridPane.rowIndex="3" />
+      <TextField fx:id="damagePointsTF" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </fx:root>
