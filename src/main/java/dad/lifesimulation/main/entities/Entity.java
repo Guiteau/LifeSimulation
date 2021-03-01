@@ -54,7 +54,7 @@ public abstract class Entity {
 	 * @return True (si colisionan) , False (si no colisionan)
 	 */
 	public boolean colliding(Entity _entidad) {
-		return (_entidad.tangible & !_entidad.traspasable)
+		return 	_entidad.tangible
 				& this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
 				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
 				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()

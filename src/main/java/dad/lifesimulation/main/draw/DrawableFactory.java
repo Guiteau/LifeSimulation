@@ -195,8 +195,6 @@ public class DrawableFactory {
 	public void deleteIn(Coordinates coordinates) {
 		List<Entity> entities = initializer.getEntitiesIn(coordinates);
 		
-		
-		
 		for (Entity e : entities)
 		{
 			Optional<DrawableEntity> maybe_drawableEntity = getDrawableEntityIfExist(e);
