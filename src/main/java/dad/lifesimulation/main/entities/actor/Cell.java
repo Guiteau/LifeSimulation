@@ -10,6 +10,15 @@ public class Cell extends Actor{
 
 	private String cell_id;
 	
+	/**
+	 * Constructor.
+	 * @param _coordinates
+	 * @param _dimension
+	 * @param _statistics
+	 * @param hostilToOthers
+	 * @param _orientation
+	 */
+	
 	public Cell(Coordinates _coordinates, Dimension _dimension, Statistics _statistics, Boolean hostilToOthers,
 			Orientation _orientation) {
 		super(_coordinates, _dimension, _statistics, hostilToOthers, _orientation);
@@ -18,7 +27,11 @@ public class Cell extends Actor{
 		tangible = true;
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/**
+	 * @param entity (Object) to interact with another Entity
+	 */
+	
 	@Override
 	public String toString() {
 		return "Cell [cell_id=" + cell_id + ", statistics=" + statistics + ", orientation=" + orientation
@@ -35,6 +48,10 @@ public class Cell extends Actor{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * @param actor (Object) to interact with another Actor
+	 */
 
 	@Override
 	public void interact(Actor actor) {

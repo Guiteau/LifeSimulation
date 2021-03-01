@@ -21,6 +21,15 @@ public abstract class Actor extends Entity {
 	protected DetectionRange detectionRangeWest;
 	protected DetectionRange detectionRangeEast;
 	protected List<DetectionRange> detectionRangeList;	
+	
+	/**
+	 * Constructor.
+	 * @param _coordinates
+	 * @param _dimension
+	 * @param _statistics
+	 * @param hostilToOthers
+	 * @param _orientation
+	 */
 
 	public Actor(Coordinates _coordinates, Dimension _dimension, Statistics _statistics, Boolean hostilToOthers,
 			Orientation _orientation) {
@@ -32,10 +41,19 @@ public abstract class Actor extends Entity {
 		generateDetectionRange();
 	}
 	
+	/**
+	 * 
+	 * @return true if Actor (Entity) can damage other entities
+	 */
+	
 	public boolean isHostile()
 	{
 		return hostilToOthers;
 	}
+	
+	/**
+	 * set DetectionRange (object) for north, south, west and east orientation
+	 */
 
 	private void generateDetectionRange() {
 		// North
@@ -66,8 +84,7 @@ public abstract class Actor extends Entity {
 
 	/**
 	 * 
-	 * @return objeto de tipo estadísticas de la entidad Actor(contiene atributos
-	 *         con valores enteros)
+	 * @return Statistics (object) of the Actor (object) entity. Int values. 
 	 */
 
 	public Statistics getStatistics() {
@@ -75,8 +92,8 @@ public abstract class Actor extends Entity {
 	}
 
 	/**
-	 * 
-	 * */
+	 * The Actor (object) to any free location on the map
+	 */
 
 	protected void randomMove() {
 		List<Orientation> availablePlaces = freePlaces();
@@ -85,6 +102,11 @@ public abstract class Actor extends Entity {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @return the free locations around the Actor (object)
+	 */
 
 	private List<Orientation> freePlaces() {
 		List<Orientation> freeDirections = new ArrayList<>();
@@ -101,6 +123,12 @@ public abstract class Actor extends Entity {
 		return freeDirections;
 	}
 
+	/**
+	 * Actor can move to north, south, west or east direction
+	 * 
+	 * @param _orientation to indicate Actor where to moves
+	 */
+	
 	private void move(Orientation _orientation) {
 
 		switch (_orientation) {
@@ -135,14 +163,29 @@ public abstract class Actor extends Entity {
 
 	}
 
+	/**
+	 * 
+	 * @return Orientation (object)
+	 */
+	
 	public Orientation getOrientation() {
 		return orientation;
 	}
+	
+	/**
+	 * 
+	 * @param floors list of Floor (object) to interact with the Actor
+	 */
 	
 	protected void stepOnFloor(List<Floor> floors)
 	{		
 		floors.stream().forEach(f->f.interact(this));
 	}
+	
+	/**
+	 * Update the movement of the Actor (object), step on the floor and is removed if health is equals zero
+	 * 
+	 */
 
 	@Override
 	public void update() {

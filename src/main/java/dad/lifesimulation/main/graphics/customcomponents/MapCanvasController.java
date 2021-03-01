@@ -19,6 +19,10 @@ public class MapCanvasController {
 
     @FXML
     private Canvas canvas;
+    
+    /**
+     * Initializes the FXML maptest and asserts the Pane and the Canvas
+     */
 
     @FXML
     void initialize() {

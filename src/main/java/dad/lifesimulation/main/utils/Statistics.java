@@ -10,10 +10,22 @@ public class Statistics implements Serializable {
 	private int armor;
 	private int damage;
 	private PropertyChangeSupport support;
+	
+	/**
+	 * Constructor.
+	 */
 
 	public Statistics() {
 		support = new PropertyChangeSupport(this);
 	}
+	
+	/**
+	 * Constructor.
+	 * @param energy
+	 * @param health
+	 * @param armor
+	 * @param damage
+	 */
 	
 	public Statistics(int energy, int health, int armor, int damage) {
 		this.energy = energy;
@@ -26,7 +38,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @return energía que tiene un objeto
+	 * @return energy current energy of an Entity (int value)
 	 */
 
 	public int getEnergy() {
@@ -36,7 +48,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @return health que tiene un objeto
+	 * @return health current health of an Entity (int value)
 	 */
 
 	public int getHealth() {
@@ -45,7 +57,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @return armadura que tiene un objeto
+	 * @return armor current armor of an Entity (int value)
 	 */
 
 	public int getArmor() {
@@ -55,7 +67,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @return damage que aplica sobre un objeto
+	 * @return damage current damage an Entity (object type) can cause
 	 */
 
 	public int getDamage() {
@@ -64,7 +76,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param _dmg cantidad de daño que recibe un objeto
+	 * @param _dmg amount of damage an Entity (object type) receives
 	 */
 
 	public void damageReceive(int _dmg) {
@@ -73,7 +85,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param _health cantidad de vida que recibe un objeto
+	 * @param _health amount of health an Entity (object type) receives 
 	 */
 
 	public void healthReceive(int _health) {
@@ -82,7 +94,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param _armor cantidad de armadura que recibe un objeto
+	 * @param _armor amount of armor an Entity (object type) receives
 	 */
 
 	public void armorReceive(int _armor) {
@@ -91,17 +103,16 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param _energy cantidad de energía que recibe un objeto
+	 * @param _energy amount of enerfy an Entity (object type) receives
 	 */
 
 	public void energyReceive(int energy) {
 		this.setEnergy(this.getEnergy() + energy);
 	}
 
-	
 	/**
 	 * 
-	 * @param damage a establecer en un objeto
+	 * @param damage damage to set (int value)
 	 */
 
 	public void setDamage(int damage) {
@@ -112,7 +123,7 @@ public class Statistics implements Serializable {
 	
 	/**
 	 * 
-	 * @param armor a establecer en un objeto
+	 * @param armor armor to set (int value)
 	 */
 
 	public void setArmor(int armor) {
@@ -123,7 +134,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param health a establecer en un objeto
+	 * @param health health to set (int value)
 	 */
 
 	public void setHealth(int health) {
@@ -134,7 +145,7 @@ public class Statistics implements Serializable {
 
 	/**
 	 * 
-	 * @param energy a establecer en un objeto
+	 * @param energy energy to set (int value)
 	 */
 
 	public void setEnergy(int energy) {
@@ -143,10 +154,23 @@ public class Statistics implements Serializable {
 		support.firePropertyChange("damage", oldEnergy, energy);
 	}
 	
+	/**
+	 * Adds a new PropertyChangeListener to the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be added
+	 */
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
 
+	
+	/**
+	 * Removes a PropertyChangeListener present in the initial PropertyChangeListener
+	 * 
+	 * @param listener PropertyChangeListener to be removed
+	 */
+	
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
     }
