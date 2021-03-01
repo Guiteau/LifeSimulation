@@ -167,6 +167,17 @@ public class DrawableFactory {
 		}
 	}
 	
+	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil, Statistics stats) {
+		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
+
+		try {
+			storeNewDrawableEntity(cell);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void createFoodEntity(Coordinates coord, Dimension dim)
 	{
 		Entity food = initializer.getNewFood(coord, dim);

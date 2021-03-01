@@ -14,6 +14,7 @@ import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
 import dad.lifesimulation.main.utils.InitGameComponents;
+import dad.lifesimulation.main.utils.Statistics;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -152,14 +153,27 @@ public class PrincipalComponent {
 	private void editorMode(MouseEvent event) {
 
 		if (!btnDeleteEntity.isSelected()) {
-			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
-			Dimension dimension = new Dimension(20, 20);
+			
+			int w = Integer.parseInt(editableStatsPane.getWidthTF().textProperty().get());
+			int h = Integer.parseInt(editableStatsPane.getHeightTF().textProperty().get());
+			Coordinates coordinates = new Coordinates((int)event.getX(), (int)event.getY());
+			Dimension dimension = new Dimension(w, h);
 			coordinates.setX(coordinates.getX() - dimension.getWidth() / 2);
 			coordinates.setY(coordinates.getY() - dimension.getHeight() / 2);
 
 			if (btnAddCell.isSelected()) {
+				int energy = Integer.parseInt(editableStatsPane.getEnergyPointsTF().textProperty().get());
+				int health = Integer.parseInt(editableStatsPane.getHealthPointsTF().textProperty().get());
+				int armor = Integer.parseInt(editableStatsPane.getArmorPointsTF().textProperty().get());
+				
+				
+				int damage = Integer.parseInt(editableStatsPane.get.textProperty().get());
+				
+				
+				Statistics stats = new Statistics(energy, health, armor, damage);
+				
 				drawableFactory.drawFromCanvas(true);
-				drawableFactory.createCellEntity(coordinates, dimension, false);
+				drawableFactory.createCellEntity(coordinates, dimension, editableStatsPane.getCellTypeCHB().isSelected(), stats);
 				drawableFactory.drawFromCanvas(false);
 			}
 

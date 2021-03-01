@@ -63,8 +63,9 @@ public class App extends Application {
 		levelGUI_creator.setColor(EntityFinalType.CELL, Color.AQUA);
 		levelGUI_creator.setColor(EntityFinalType.SPIKE, Color.GRAY);
 		levelGUI_creator.setColor(EntityFinalType.WALL, Color.FUCHSIA);
-		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.RED);
+		levelGUI_creator.setColor(EntityFinalType.FOOD, Color.GREEN);
 		levelGUI_creator.setColor(EntityFinalType.UNKNOWN, Color.YELLOW);
+		levelGUI_creator.setColor(EntityFinalType.AGGRESSIVE_CELL, Color.ORANGE);
 
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);

@@ -26,9 +26,6 @@ public class CellStatsView2 extends GridPane implements Initializable {
 	private StringProperty armorProperty = new SimpleStringProperty();
 	private StringProperty energyProperty = new SimpleStringProperty();
 	private StringProperty coordinatesProperty = new SimpleStringProperty();
-	
-
-
 
 	private StringProperty dimensionProperty = new SimpleStringProperty();
 	 
