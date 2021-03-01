@@ -24,7 +24,7 @@
       <Label maxWidth="1.7976931348623157E308" text="Health Points :" GridPane.rowIndex="1" />
       <Label maxWidth="1.7976931348623157E308" text="Energy Points:" GridPane.rowIndex="2" />
       <Label maxWidth="1.7976931348623157E308" text="Armor Points:" GridPane.rowIndex="3" />
-      <CheckBox fx:id="cellTypeCHB" mnemonicParsing="false" text="Agressive" GridPane.columnIndex="1" />
+      <CheckBox fx:id="cellTypeCHB" disable="true" mnemonicParsing="false" text="Agressive" GridPane.columnIndex="1" />
       <Label maxWidth="1.7976931348623157E308" text="Coordinates" GridPane.rowIndex="4" />
       <Label maxWidth="1.7976931348623157E308" text="Dimension" GridPane.rowIndex="5" />
       <Label fx:id="healthPointsLB" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

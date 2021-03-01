@@ -27,14 +27,17 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import ourExceptions.NotInitializer;
 
 public class App extends Application {
 
 	private PrincipalComponent controller;
 	private GUIGame guigame;
 	private InitGameComponents processingGame;
+	public static final String DIRECTORY ="pdf";
 	public static final String PDF_FILE = "pdf/entitiesLifeSimulation.pdf";
 	public static final String JRXML_FILE = "/reports/entities.jrxml";
+	DrawableFactory levelGUI_creator;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -42,7 +45,7 @@ public class App extends Application {
 		controller = new PrincipalComponent();
 		
 		
-		DrawableFactory levelGUI_creator = new DrawableFactory();
+		levelGUI_creator = new DrawableFactory();
 		
 		levelGUI_creator.loadGraphicsContext(controller.getCanvasElement().getGraphicsContext2D());
 		
@@ -54,7 +57,7 @@ public class App extends Application {
 		
 		levelGUI_creator.createRandomLevel();
 				
-		DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));	
+			
 
 		processingGame = levelGUI_creator.getInitGameComponents();
 		guigame = new GUIGame(levelGUI_creator);
@@ -77,8 +80,7 @@ public class App extends Application {
 		primaryStage.setTitle("Canvas Ejemplo\t");
 		primaryStage.setResizable(false); /// linea nueva
 		primaryStage.show();
-		
-		generatePdf();
+	
 		
 	}
 	
@@ -110,14 +112,25 @@ public class App extends Application {
 
 		JasperPrint print = JasperFillManager.fillReport(report, parameters,
 				new JRBeanCollectionDataSource(DataProvider.getEntitiesListDataProvider()));
-
-		JasperExportManager.exportReportToPdfFile(print, PDF_FILE);
-
+		File directoryCreationg =new File(DIRECTORY);
+		System.out.println(directoryCreationg.exists());
+		
+		if (!directoryCreationg.exists())
+			directoryCreationg.mkdir();
+		File pdfCreation = new File (PDF_FILE);
+		
+		if (!pdfCreation.exists()) 
+			pdfCreation.createNewFile();
+		
+		System.out.println(directoryCreationg.exists());
+		JasperExportManager.exportReportToPdfFile(print, pdfCreation.getPath());
+		/**
 		try {
-			Desktop.getDesktop().open(new File(PDF_FILE));
+		Desktop.getDesktop().open(pdfCreation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 
 	}
 
@@ -131,6 +144,14 @@ public class App extends Application {
 			processingGame.toPause(false);
 
 		processingGame.toExit(true);
-	}
+		try {
+			DataProvider.setEntitiesArrayData(generateReportList(levelGUI_creator.getInitGameComponents().getAllEntities()));
+			generatePdf();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+	}	
 
+}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dad.lifesimulation.main.entities.Entity;
+import dad.lifesimulation.main.entities.EntityFinalType;
+import dad.lifesimulation.main.entities.element.Floor;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Die;
 import dad.lifesimulation.main.utils.Dimension;
@@ -28,7 +30,11 @@ public abstract class Actor extends Entity {
 		this.orientation = _orientation;
 		detectionRangeList = new ArrayList<>();
 		generateDetectionRange();
-		
+	}
+	
+	public boolean isHostile()
+	{
+		return hostilToOthers;
 	}
 
 	private void generateDetectionRange() {
@@ -83,17 +89,14 @@ public abstract class Actor extends Entity {
 	private List<Orientation> freePlaces() {
 		List<Orientation> freeDirections = new ArrayList<>();
 
-		if (map.getEntitiesIn(this.detectionRangeNorth).isEmpty())
+		if (map.getImpenetrableEntities(this.detectionRangeNorth).isEmpty())
 			freeDirections.add(Orientation.NORTH);
-		if (map.getEntitiesIn(this.detectionRangeSouth).isEmpty())
+		if (map.getImpenetrableEntities(this.detectionRangeSouth).isEmpty())
 			freeDirections.add(Orientation.SOUTH);
-		if (map.getEntitiesIn(this.detectionRangeEast).isEmpty())
+		if (map.getImpenetrableEntities(this.detectionRangeEast).isEmpty())
 			freeDirections.add(Orientation.EAST);
-		if (map.getEntitiesIn(this.detectionRangeWest).isEmpty())
+		if (map.getImpenetrableEntities(this.detectionRangeWest).isEmpty())
 			freeDirections.add(Orientation.WEST);
-
-		if (freeDirections.size() < 4)
-			System.out.println("detecté algo");
 		
 		return freeDirections;
 	}
@@ -135,10 +138,20 @@ public abstract class Actor extends Entity {
 	public Orientation getOrientation() {
 		return orientation;
 	}
+	
+	protected void stepOnFloor(List<Floor> floors)
+	{		
+		floors.stream().forEach(f->f.interact(this));
+	}
 
 	@Override
 	public void update() {
 		randomMove();
+		
+		stepOnFloor(map.getFloorsIn(this));
+		
+		if (statistics.getHealth() < 0)
+			deletable = true;
 	}
 
 }
