@@ -51,7 +51,7 @@
             <Insets />
          </GridPane.margin>
       </GridPane>
-      <ToggleButton fx:id="btnAddCell" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" GridPane.columnIndex="4">
+      <ToggleButton fx:id="btnAddCell" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddCell" GridPane.columnIndex="4">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,7 +63,7 @@
             <ToggleGroup fx:id="editor" />
          </toggleGroup>
       </ToggleButton>
-      <ToggleButton fx:id="btnAddSpikes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" toggleGroup="$editor" GridPane.columnIndex="5">
+      <ToggleButton fx:id="btnAddSpikes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddSpikes" toggleGroup="$editor" GridPane.columnIndex="5">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,7 +72,7 @@
             </ImageView>
          </graphic>
       </ToggleButton>
-      <ToggleButton fx:id="btnAddWall" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" toggleGroup="$editor" GridPane.columnIndex="4" GridPane.rowIndex="1">
+      <ToggleButton fx:id="btnAddWall" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddWall" toggleGroup="$editor" GridPane.columnIndex="4" GridPane.rowIndex="1">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -81,7 +81,7 @@
             </ImageView>
          </graphic>
       </ToggleButton>
-      <ToggleButton fx:id="btnAddFood" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" toggleGroup="$editor" GridPane.columnIndex="5" GridPane.rowIndex="1">
+      <ToggleButton fx:id="btnAddFood" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddFood" toggleGroup="$editor" GridPane.columnIndex="5" GridPane.rowIndex="1">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
@@ -90,7 +90,7 @@
             </ImageView>
          </graphic>
       </ToggleButton>
-      <ToggleButton fx:id="btnDeleteEntity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" toggleGroup="$editor" GridPane.columnIndex="4" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+      <ToggleButton fx:id="btnDeleteEntity" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDeleteTool" toggleGroup="$editor" GridPane.columnIndex="4" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
          <graphic>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
