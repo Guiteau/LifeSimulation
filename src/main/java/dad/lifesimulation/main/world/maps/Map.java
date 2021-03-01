@@ -129,7 +129,7 @@ public class Map {
 	public List<Entity> getEntitiesIn(Entity entity) {
 		List<Entity> aux = new ArrayList<>();
 		for (Entity e : entities) {
-			if (entity.colliding(e)) {
+			if (entity.collidingAll(e)) {
 				aux.add(e);
 			}
 		}
@@ -149,7 +149,6 @@ public class Map {
 	}
 
 	public void setEntities(List<Entity> listEntities) {
-		//listEntities.stream().forEach(this::insertEntity);
 		for (Entity e : listEntities)
 		{
 			insertEntity(e);

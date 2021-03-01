@@ -62,6 +62,15 @@ public abstract class Entity {
 
 	}
 	
+	public boolean collidingAll(Entity _entidad)
+	{
+		return 	
+				this.coordinates.getX() < _entidad.coordinates.getX() + _entidad.dimension.getWidth()
+				& _entidad.coordinates.getX() < this.coordinates.getX() + this.dimension.getWidth()
+				& this.coordinates.getY() < _entidad.coordinates.getY() + _entidad.dimension.getHeight()
+				& _entidad.coordinates.getY() < this.coordinates.getY() + this.dimension.getHeight();
+	}
+	
 	public boolean overIt(Entity _entidad)
 	{
 		return _entidad.traspasable
