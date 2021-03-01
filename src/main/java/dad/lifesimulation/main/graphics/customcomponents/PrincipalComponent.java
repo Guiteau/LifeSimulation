@@ -54,7 +54,10 @@ public class PrincipalComponent {
 	private ToggleButton edit;
 
 	@FXML
-	private Button randomMap;
+    private Button guardar;
+
+    @FXML
+    private Button cargar;
 
 	@FXML
 	private ToggleButton btnAddCell;
@@ -77,10 +80,15 @@ public class PrincipalComponent {
 	@FXML
 	private CellStatsView2 statsPane;
 
-	@FXML
-	void btnRandomMap(ActionEvent event) {
+    @FXML
+    void onCargarBTN(ActionEvent event) {
 
-	}
+    }
+    
+    @FXML
+    void onGuardarBTN(ActionEvent event) {
+
+    }
 	
     @FXML
     void onAddCell(ActionEvent event) {
@@ -229,7 +237,7 @@ public class PrincipalComponent {
 
 	public PrincipalComponent() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/test.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principalComponent.fxml"));
 			
 			loader.setController(this);
 			loader.load();
@@ -242,22 +250,7 @@ public class PrincipalComponent {
 
 	@FXML
 	void initialize() {
-		assert view != null : "fx:id=\"view\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert pause != null : "fx:id=\"pause\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert edit != null : "fx:id=\"play\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert randomMap != null
-				: "fx:id=\"randomMap\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddCell != null
-				: "fx:id=\"btnAddCell\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddSpikes != null
-				: "fx:id=\"btnAddSpikes\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddWall != null
-				: "fx:id=\"btnAddWall\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnAddFood != null
-				: "fx:id=\"btnAddFood\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert btnDeleteEntity != null
-				: "fx:id=\"btnDeleteEntity\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
-		assert canvas != null : "fx:id=\"canvas\" was not injected: check your FXML file 'PrincipalComponent.fxml'.";
+		
 		System.out.println("_Inicializado");
 
 		btnAddCell.setDisable(!edit.isSelected());
