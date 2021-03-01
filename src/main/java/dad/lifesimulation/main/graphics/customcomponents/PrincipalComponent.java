@@ -1,5 +1,6 @@
 package dad.lifesimulation.main.graphics.customcomponents;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -26,6 +27,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class PrincipalComponent {
 
@@ -82,12 +85,21 @@ public class PrincipalComponent {
 
     @FXML
     void onCargarBTN(ActionEvent event) {
-
+    	FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save Map");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
+		File archivoGuardado = fileChooser.showOpenDialog(App.getPrimaryStage());
+		drawableFactory.loadLevel(archivoGuardado);
     }
     
     @FXML
     void onGuardarBTN(ActionEvent event) {
-
+    	FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save Map");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
+		//fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", ".*"));
+		File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage());
+		processingGame.spitMap(archivoGuardado);
     }
 	
     @FXML

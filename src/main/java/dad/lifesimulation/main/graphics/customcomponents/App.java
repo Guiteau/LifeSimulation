@@ -69,7 +69,7 @@ public class App extends Application {
 		
 		FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
 		 ObjectInputStream in = new ObjectInputStream(fileIn);
-		levelGUI_creator.loadLevel(in);
+		
 
 		//levelGUI_creator.createRandomLevel();
 
@@ -196,6 +196,6 @@ public class App extends Application {
 			e.printStackTrace();
 
 		}
-		processingGame.spitMap();
+
 	}
 }
