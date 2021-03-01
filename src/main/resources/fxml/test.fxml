@@ -44,12 +44,15 @@
         </rowConstraints>
          <children>
             <ToggleButton fx:id="pause" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onPlayPause" text="play/pause" GridPane.columnIndex="1" />
-            <Button fx:id="fastForward" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btFastForward" text="fast forward" GridPane.columnIndex="2" />
+            <Button fx:id="randomMap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnRandomMap" text="random Map" GridPane.columnIndex="2" />
             <ToggleButton fx:id="edit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onEdit" text="Editar" />
          </children>
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
+         <opaqueInsets>
+            <Insets top="5.0" />
+         </opaqueInsets>
       </GridPane>
       <ToggleButton fx:id="btnAddCell" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddCell" GridPane.columnIndex="4">
          <graphic>
@@ -108,9 +111,9 @@
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Canvas>
-      <CellStatsView2 fx:id="statsPane" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
+      <CellStatsView2 fx:id="statsPane" maxWidth="304.0" minHeight="-Infinity" minWidth="-Infinity" prefWidth="304.0" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
          <GridPane.margin>
-            <Insets />
+            <Insets top="5.0" />
          </GridPane.margin></CellStatsView2>
    </children>
    <padding>
