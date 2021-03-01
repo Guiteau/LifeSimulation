@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import dad.lifesimulation.main.draw.DrawableFactory;
 import dad.lifesimulation.main.entities.actor.Cell;
 import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsView2;
+import dad.lifesimulation.main.graphics.customcomponents.component.CellStatsViewEditable;
 import dad.lifesimulation.main.utils.Coordinates;
 import dad.lifesimulation.main.utils.Dimension;
 import dad.lifesimulation.main.utils.GUIGame;
@@ -36,7 +37,6 @@ public class PrincipalComponent {
 	private InitGameComponents processingGame;
 	private DrawableFactory drawableFactory;
 
-
 	private Scene scene;
 	@FXML
 	private ToggleGroup editor;
@@ -57,10 +57,10 @@ public class PrincipalComponent {
 	private ToggleButton edit;
 
 	@FXML
-    private Button guardar;
+	private Button guardar;
 
-    @FXML
-    private Button cargar;
+	@FXML
+	private Button cargar;
 
 	@FXML
 	private ToggleButton btnAddCell;
@@ -83,88 +83,80 @@ public class PrincipalComponent {
 	@FXML
 	private CellStatsView2 statsPane;
 
-    @FXML
-    void onCargarBTN(ActionEvent event) {
-    	FileChooser fileChooser = new FileChooser();
+	@FXML
+	private CellStatsViewEditable editableStatsPane;
+
+	@FXML
+	void onCargarBTN(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save Map");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
 		File archivoGuardado = fileChooser.showOpenDialog(App.getPrimaryStage());
 		drawableFactory.loadLevel(archivoGuardado);
-    }
-    
-    @FXML
-    void onGuardarBTN(ActionEvent event) {
-    	FileChooser fileChooser = new FileChooser();
+	}
+
+	@FXML
+	void onGuardarBTN(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save Map");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
-		//fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", ".*"));
 		File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage());
 		processingGame.spitMap(archivoGuardado);
-    }
-	
-    @FXML
-    void onAddCell(ActionEvent event) {
-    	if (btnAddCell.isSelected())
-    	{
-    		Image image = new Image(getClass().getResource("/images/cellResized.png").toString());
-    		scene.setCursor(new ImageCursor(image));
-    	}
-    	else
-    		scene.setCursor(Cursor.DEFAULT);
-    }
+	}
 
-    @FXML
-    void onAddFood(ActionEvent event) {
-    	if (btnAddFood.isSelected())
-    	{
-    		Image image = new Image(getClass().getResource("/images/foodResized.png").toString());
-    		scene.setCursor(new ImageCursor(image));
-    	}
-    	else
-    		scene.setCursor(Cursor.DEFAULT);
-    }
-    
-    @FXML
-    void onAddSpikes(ActionEvent event) {
-    	if (btnAddSpikes.isSelected())
-    	{
-    		Image image = new Image(getClass().getResource("/images/spikeVerticalResized.png").toString());
-    		scene.setCursor(new ImageCursor(image));
-    	}
-    	else
-    		scene.setCursor(Cursor.DEFAULT);
-    }
-  
-    @FXML
-    void onAddWall(ActionEvent event) {
-    	if (btnAddWall.isSelected())
-    	{
-    		Image image = new Image(getClass().getResource("/images/wall_resized.png").toString());
-    		scene.setCursor(new ImageCursor(image));
-    	}
-    	else
-    		scene.setCursor(Cursor.DEFAULT);
-    }
+	@FXML
+	void onAddCell(ActionEvent event) {
+		if (btnAddCell.isSelected()) {
+			Image image = new Image(getClass().getResource("/images/cellResized.png").toString());
+			scene.setCursor(new ImageCursor(image));
+		} else
+			scene.setCursor(Cursor.DEFAULT);
+	}
 
-    @FXML
-    void onDeleteTool(ActionEvent event) {
-    	if (btnDeleteEntity.isSelected())
-    	{
-    		Image image = new Image(getClass().getResource("/images/rubberResized.png").toString());
-    		scene.setCursor(new ImageCursor(image));
-    	}
-    	else
-    		scene.setCursor(Cursor.DEFAULT);
-    }
+	@FXML
+	void onAddFood(ActionEvent event) {
+		if (btnAddFood.isSelected()) {
+			Image image = new Image(getClass().getResource("/images/foodResized.png").toString());
+			scene.setCursor(new ImageCursor(image));
+		} else
+			scene.setCursor(Cursor.DEFAULT);
+	}
+
+	@FXML
+	void onAddSpikes(ActionEvent event) {
+		if (btnAddSpikes.isSelected()) {
+			Image image = new Image(getClass().getResource("/images/spikeVerticalResized.png").toString());
+			scene.setCursor(new ImageCursor(image));
+		} else
+			scene.setCursor(Cursor.DEFAULT);
+	}
+
+	@FXML
+	void onAddWall(ActionEvent event) {
+		if (btnAddWall.isSelected()) {
+			Image image = new Image(getClass().getResource("/images/wall_resized.png").toString());
+			scene.setCursor(new ImageCursor(image));
+		} else
+			scene.setCursor(Cursor.DEFAULT);
+	}
+
+	@FXML
+	void onDeleteTool(ActionEvent event) {
+		if (btnDeleteEntity.isSelected()) {
+			Image image = new Image(getClass().getResource("/images/rubberResized.png").toString());
+			scene.setCursor(new ImageCursor(image));
+		} else
+			scene.setCursor(Cursor.DEFAULT);
+	}
 
 	private void editorMode(MouseEvent event) {
 
 		if (!btnDeleteEntity.isSelected()) {
 			Coordinates coordinates = new Coordinates((int) event.getX(), (int) event.getY());
 			Dimension dimension = new Dimension(20, 20);
-			coordinates.setX(coordinates.getX() - dimension.getWidth()/2);
-			coordinates.setY(coordinates.getY() - dimension.getHeight()/2);
-			
+			coordinates.setX(coordinates.getX() - dimension.getWidth() / 2);
+			coordinates.setY(coordinates.getY() - dimension.getHeight() / 2);
+
 			if (btnAddCell.isSelected()) {
 				drawableFactory.drawFromCanvas(true);
 				drawableFactory.createCellEntity(coordinates, dimension, false);
@@ -191,9 +183,8 @@ public class PrincipalComponent {
 				drawableFactory.createSpikeEntity(coordinates, dimension);
 				drawableFactory.drawFromCanvas(false);
 			}
-		}
-		else
-			drawableFactory.deleteIn(new Coordinates((int)event.getX(), (int)event.getY()));
+		} else
+			drawableFactory.deleteIn(new Coordinates((int) event.getX(), (int) event.getY()));
 
 	}
 
@@ -204,9 +195,9 @@ public class PrincipalComponent {
 		btnAddFood.setDisable(!edit.isSelected());
 		btnAddWall.setDisable(!edit.isSelected());
 		btnDeleteEntity.setDisable(!edit.isSelected());
-		
+
 		if (!edit.isSelected())
-	    	scene.setCursor(Cursor.DEFAULT);
+			scene.setCursor(Cursor.DEFAULT);
 	}
 
 	@FXML
@@ -248,19 +239,19 @@ public class PrincipalComponent {
 	public PrincipalComponent() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/principalComponent.fxml"));
-			
+
 			loader.setController(this);
 			loader.load();
 
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	void initialize() {
-		
+
 		System.out.println("_Inicializado");
 
 		btnAddCell.setDisable(!edit.isSelected());
