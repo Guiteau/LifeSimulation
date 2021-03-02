@@ -14,6 +14,7 @@ public class DrawableEntity implements Drawn_I {
 	
 	/**
 	 * Constructor.
+	 * 
 	 * @param entity
 	 * @param color 
 	 */
@@ -27,6 +28,7 @@ public class DrawableEntity implements Drawn_I {
 	}
 	
 	/**
+	 * Constructor.
 	 * 
 	 * @param entity Entity (object type) to set
 	 * @param image Image (object type) to load
@@ -41,7 +43,7 @@ public class DrawableEntity implements Drawn_I {
 	}
 	
 	/**
-	 *  loads an image to a DrawableEntity (object type)
+	 *  Loads an image into a DrawableEntity (object type)
 	 */
 
 	@Override
@@ -50,6 +52,8 @@ public class DrawableEntity implements Drawn_I {
 	}
 	
 	/**
+	 * Renders images and colors in the graphic context 
+	 * 
 	 * @param gc GraphicsContext to be rendered
 	 */
 	

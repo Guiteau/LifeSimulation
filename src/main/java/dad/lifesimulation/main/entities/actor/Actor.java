@@ -52,7 +52,7 @@ public abstract class Actor extends Entity {
 	}
 	
 	/**
-	 * set DetectionRange (object) for north, south, west and east orientation
+	 * Generates the DetectionRange (object) for north, south, west and east orientation
 	 */
 
 	private void generateDetectionRange() {
@@ -104,6 +104,7 @@ public abstract class Actor extends Entity {
 	}
 	
 	/**
+	 * Finds all the free places on the map
 	 * 
 	 * @return the free locations around the Actor (object)
 	 */
@@ -173,6 +174,7 @@ public abstract class Actor extends Entity {
 	}
 	
 	/**
+	 * Relation between a list of floors (object type) and the Actor (object type)
 	 * 
 	 * @param floors list of Floor (object) to interact with the Actor
 	 */

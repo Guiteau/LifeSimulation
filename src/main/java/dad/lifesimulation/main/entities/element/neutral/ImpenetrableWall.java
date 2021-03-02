@@ -22,7 +22,7 @@ public class ImpenetrableWall extends Entity{
 	}
 
 	/**
-	 * Updates the ImpenetrableWall values
+	 * Updates the ImpenetrableWall actions
 	 */
 	
 	@Override
@@ -32,8 +32,9 @@ public class ImpenetrableWall extends Entity{
 	}
 	
 	/**
+	 * Relation between the Entity (object type) and the wall
 	 * 
-	 * @param entity (Object) to interact with the ImpenetrableWall entity
+	 * @param entity (object type) to interact with the ImpenetrableWall entity
 	 */
 
 	@Override
@@ -43,8 +44,9 @@ public class ImpenetrableWall extends Entity{
 	}
 	
 	/**
+	 * Relation between the Actor (object type) and the wall
 	 * 
-	 * @param actor (Object) to interact with the ImpenetrableWall entity
+	 * @param actor (object type) to interact with the ImpenetrableWall entity
 	 */
 
 	@Override
