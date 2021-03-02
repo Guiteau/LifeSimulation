@@ -20,10 +20,12 @@ public abstract class Actor extends Entity {
 	protected DetectionRange detectionRangeSouth;
 	protected DetectionRange detectionRangeWest;
 	protected DetectionRange detectionRangeEast;
-	protected List<DetectionRange> detectionRangeList;	
-	
+	protected List<DetectionRange> detectionRangeList;
+	private Orientation heading=null;
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param _coordinates
 	 * @param _dimension
 	 * @param _statistics
@@ -39,20 +41,21 @@ public abstract class Actor extends Entity {
 		this.orientation = _orientation;
 		detectionRangeList = new ArrayList<>();
 		generateDetectionRange();
+
 	}
-	
+
 	/**
 	 * 
 	 * @return true if Actor (Entity) can damage other entities
 	 */
-	
-	public boolean isHostile()
-	{
+
+	public boolean isHostile() {
 		return hostilToOthers;
 	}
-	
+
 	/**
-	 * Generates the DetectionRange (object) for north, south, west and east orientation
+	 * Generates the DetectionRange (object) for north, south, west and east
+	 * orientation
 	 */
 
 	private void generateDetectionRange() {
@@ -84,7 +87,7 @@ public abstract class Actor extends Entity {
 
 	/**
 	 * 
-	 * @return Statistics (object) of the Actor (object) entity. Int values. 
+	 * @return Statistics (object) of the Actor (object) entity. Int values.
 	 */
 
 	public Statistics getStatistics() {
@@ -97,12 +100,18 @@ public abstract class Actor extends Entity {
 
 	protected void randomMove() {
 		List<Orientation> availablePlaces = freePlaces();
-		if (!availablePlaces.isEmpty()) {
-			move(availablePlaces.get(Die.getDiscretValue(0, availablePlaces.size() - 1)));
-		}
+		if (heading != null) {
+			if (!availablePlaces.contains(heading))
+				heading = availablePlaces.get(Die.getDiscretValue(0, availablePlaces.size() - 1));
+		}else
+			heading = availablePlaces.get(Die.getDiscretValue(0, availablePlaces.size() - 1));
 
+		if (!availablePlaces.isEmpty()) {
+
+			move(heading);
+		}
 	}
-	
+
 	/**
 	 * Finds all the free places on the map
 	 * 
@@ -120,7 +129,7 @@ public abstract class Actor extends Entity {
 			freeDirections.add(Orientation.EAST);
 		if (map.getImpenetrableEntities(this.detectionRangeWest).isEmpty())
 			freeDirections.add(Orientation.WEST);
-		
+
 		return freeDirections;
 	}
 
@@ -129,7 +138,7 @@ public abstract class Actor extends Entity {
 	 * 
 	 * @param _orientation to indicate Actor where to moves
 	 */
-	
+
 	private void move(Orientation _orientation) {
 
 		switch (_orientation) {
@@ -168,43 +177,39 @@ public abstract class Actor extends Entity {
 	 * 
 	 * @return Orientation (object)
 	 */
-	
+
 	public Orientation getOrientation() {
 		return orientation;
 	}
-	
+
 	/**
 	 * Relation between a list of floors (object type) and the Actor (object type)
 	 * 
 	 * @param floors list of Floor (object) to interact with the Actor
 	 */
-	
-	protected void stepOnFloor(List<Floor> floors)
-	{		
-		floors.stream().forEach(f->f.interact(this));
-	}
-	
 
-
-
-	protected void stepOnActors(List<Actor> actors)
-	{
-		actors.stream().forEach(a->this.interact(a));
+	protected void stepOnFloor(List<Floor> floors) {
+		floors.stream().forEach(f -> f.interact(this));
 	}
 
-  /**
-	 * Update the movement of the Actor (object), step on the floor and is removed if health is equals zero
+	protected void stepOnActors(List<Actor> actors) {
+		actors.stream().forEach(a -> this.interact(a));
+	}
+
+	/**
+	 * Update the movement of the Actor (object), step on the floor and is removed
+	 * if health is equals zero
 	 * 
 	 */
 
 	@Override
 	public void update() {
 		randomMove();
-		
+
 		stepOnFloor(map.getFloorsIn(this));
-		
+
 		stepOnActors(map.getActorsIn(this));
-		
+
 		if (statistics.getHealth() < 0)
 			deletable = true;
 	}
