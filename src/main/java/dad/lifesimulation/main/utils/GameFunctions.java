@@ -41,7 +41,7 @@ public abstract class GameFunctions implements Runnable{
 	}
 
 	/**
-	 * Recovers the game operation
+	 * Recovers the game process
 	 */
 	
 	private void resume() {

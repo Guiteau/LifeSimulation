@@ -35,6 +35,7 @@ public class MagicFood extends Floor {
 	}
 	
 	/**
+	 * Relation between the Entity (object type) and the MagicFood (object type)
 	 * 
 	 * @param entity (Object) to interact with the MagicFood entity
 	 */
@@ -46,6 +47,7 @@ public class MagicFood extends Floor {
 	}
 	
 	/**
+	 * Relation between the Actor (object type) and the MagicFood (object type)
 	 * 
 	 * @param actor (Object) to update their statistics (health, armor and energy)
 	 */
