@@ -28,9 +28,6 @@ public class Cell extends Actor{
 		// TODO Auto-generated constructor stub
 	}
 	
-	/**
-	 * @param entity (Object) to interact with another Entity
-	 */
 	
 	@Override
 	public String toString() {
@@ -42,6 +39,12 @@ public class Cell extends Actor{
 				+ drawable + ", debugging=" + debugging + ", entityType=" + entityType + ", support=" + support
 				+ ", deletable=" + deletable + ", traspasable=" + traspasable + "]";
 	}
+	
+	/**
+	 * Relation between the Entity (object type) and the Cell (object type)
+	 * 
+	 * @param entitiy 
+	 */
 
 	@Override
 	public void interact(Entity entity) {
@@ -50,6 +53,8 @@ public class Cell extends Actor{
 	}
 	
 	/**
+	 * Relation between the Actor (object type) and the Cell (object type)
+	 * 
 	 * @param actor (Object) to interact with another Actor
 	 */
 

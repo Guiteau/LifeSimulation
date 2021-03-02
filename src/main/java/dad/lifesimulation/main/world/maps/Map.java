@@ -70,7 +70,7 @@ public class Map implements Serializable {
 	}
 
 	/**
-	 * Updates the list of entities of the map
+	 * Updates the list of entities of the map and deletes all the deletable entities
 	 */
 
 	public void update() {
@@ -91,6 +91,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Adds a new Floor object to the lists of entities
 	 * 
 	 * @param floor Floor (object type) to be added to the list of the entities of the map
 	 */
@@ -103,6 +104,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Adds a new Actor object to the lists of entities
 	 * 
 	 * @param actor Actor (object type) to be added to the actors list
 	 */
@@ -115,6 +117,7 @@ public class Map implements Serializable {
 	}
 
 	/**
+	 * Adds a new Entity object to the lists of entities
 	 * 
 	 * @param entity Entity (object type) to be added to the list of entities
 	 */
@@ -178,6 +181,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Returns all the floors below the entity 
 	 * 
 	 * @param entity 
 	 * @return the list of floors (object types) on the map
@@ -196,6 +200,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Populates with new entities the entities available on the map
 	 * 
 	 * @param listEntities A list of entities to be inserted in the map
 	 */
@@ -226,6 +231,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Remove an entity of the map
 	 * 
 	 * @param entity Entity (object type) to be removed from the list of entities
 	 */
@@ -244,6 +250,7 @@ public class Map implements Serializable {
 	}
 	
 	/**
+	 * Removes all entities from the map passed by parameter
 	 * 
 	 * @param entitiesIn A list of entities to be removed from the list of entities
 	 */

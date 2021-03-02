@@ -23,6 +23,7 @@ public class DetectionRange extends Entity{
 	}
 
 	/**
+	 * Relation between the Entity (object type) and the DetectionRange (object type)
 	 * 
 	 * @param entity (Object) to interact with another Entity
 	 */
@@ -34,6 +35,7 @@ public class DetectionRange extends Entity{
 	}
 
 	/**
+	 * Relation between the Actor (object type) and the DetectionRange (object type)
 	 * 
 	 * @param actor (Object) to interact with another Entity
 	 */

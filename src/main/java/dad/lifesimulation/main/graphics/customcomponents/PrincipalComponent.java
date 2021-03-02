@@ -87,6 +87,7 @@ public class PrincipalComponent {
 	private CellStatsViewEditable editableStatsPane;
 	
 	/**
+	 * Loads a map saved with all the entities recorded
 	 * 
 	 * @param event when load button is clicked
 	 */
@@ -101,6 +102,7 @@ public class PrincipalComponent {
 	}
 	
 	/**
+	 * Save the game map with the entities in a file
 	 * 
 	 * @param event when save button is clicked
 	 */
@@ -115,6 +117,7 @@ public class PrincipalComponent {
 	}
 	
 	/**
+	 * Enables the cell tool
 	 * 
 	 * @param event when cell button is clicked
 	 */
@@ -129,6 +132,7 @@ public class PrincipalComponent {
 	}
 	
 	/**
+	 * Enables the food tool
 	 * 
 	 * @param event when button food is clicked
 	 */
@@ -143,6 +147,7 @@ public class PrincipalComponent {
 	}
 	
 	/**
+	 * Enables the spikes tool
 	 * 
 	 * @param event when spikes button is clicked
 	 */
@@ -157,6 +162,7 @@ public class PrincipalComponent {
 	}
 
 	/**
+	 * Enables the wall tool
 	 * 
 	 * @param event when left mouse button is clicked on Canvas
 	 */
@@ -172,6 +178,7 @@ public class PrincipalComponent {
 	}
 	
 	/**
+	 * Enables the eraser tool
 	 * 
 	 * @param event when rubber button is clicked
 	 */
@@ -231,6 +238,7 @@ public class PrincipalComponent {
 	}
 
 	/**
+	* Enables the edition mode
 	* 
 	* @param event when edit button is clicked
 	*/
@@ -248,6 +256,7 @@ public class PrincipalComponent {
 	}
 
 	/**
+	 * Pauses the game
 	 * 
 	 * @param event when play button is clicked
 	 */
@@ -286,7 +295,7 @@ public class PrincipalComponent {
 	}
 
 	/**
-	 * Binds the cell to statistics pane components
+	 * Binds the cell to the statistics pane components
 	 * 
 	 * @param cell Cell entity (object type)
 	 */
@@ -302,6 +311,7 @@ public class PrincipalComponent {
 	
 	/**
 	 * Constructor.
+	 * Loadas the principalComponent.fxml
 	 */
 	public PrincipalComponent() {
 		try {

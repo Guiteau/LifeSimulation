@@ -50,6 +50,7 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 
 	/**
 	 * Constructor.
+	 * Loads the CellStatsViewEditable.fxml
 	 */
 	
 	public CellStatsViewEditable() {

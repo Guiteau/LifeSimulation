@@ -44,6 +44,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Enables automatic insertion in the map
 	 * 
 	 * @param drawcanvas true to automatical insertions on map
 	 */
@@ -53,6 +54,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Indicates whether the level is started
 	 * 
 	 * @return current InitGameComponents (object type)
 	 * @throws NotInitializer if the initializaer is null
@@ -67,6 +69,7 @@ public class DrawableFactory {
 	
 
 	/**
+	 * Starts game level
 	 * 
 	 * @param binMap File (object type) with a map stored to load it 
 	 */
@@ -103,6 +106,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Checks if Entity exists in the drawable entities stored list 
 	 * 
 	 * @param entity Entity to check if exists in the Drawable entities list
 	 * @return Optional empty if there is not present the Entity as drawable
@@ -197,6 +201,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Creates a new Wall (object type) entity with new dimensions and coordinates
 	 * 
 	 * @param coord Coordinates (object type) for the wall
 	 * @param dim  Dimension (object type) for the wall
@@ -214,6 +219,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Creates a new Cell (object type) entity with new dimensions, statistics, coordinates and hostile feature if true
 	 * 
 	 * @param coord coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
 	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
@@ -233,7 +239,8 @@ public class DrawableFactory {
 	}
 	
 	/**
-	 * 
+	 * Creates a new Cell (object type) entity with new dimensions, coordinates and hostile feature if true
+	 *  
 	 * @param coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
 	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
 	 * @param hostil true if cell object can damage others, false if not
@@ -251,6 +258,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Creates a new Food (object type) entity with new dimensions and coordinates
 	 * 
 	 * @param coord Coordinates (object type) of the new food Entity (object type) to be stored on the drawable entities list
 	 * @param dim Dimension (object type) of the new food Entity (object type) to be stored on the drawable entities list
@@ -269,6 +277,7 @@ public class DrawableFactory {
 	}
 	
 	/**
+	 * Creates a new Spikes (object type) entity with new dimensions and coordinates
 	 * 
 	 * @param coord Coordinates (object type) of the new Spikes object to be stored on the drawable entities list
 	 * @param dim Dimension (object type) of the new Spikes object to be stored on the drawable entities list
@@ -286,7 +295,7 @@ public class DrawableFactory {
 	}
 	
 	/**
-	 * render the graphic context
+	 * Render the graphic context
 	 */
 
 	public void render() {
@@ -305,8 +314,9 @@ public class DrawableFactory {
 	}
 
 	/**
+	 *  Deletes an Entity (object type) in the drawable entities list stored
 	 * 
-	 * @param coordinates Coordinates (object type) to delete in the drawable entities list stored
+	 * @param coordinates Coordinates (object type) 
 	 */
 
 	public void deleteIn(Coordinates coordinates) {

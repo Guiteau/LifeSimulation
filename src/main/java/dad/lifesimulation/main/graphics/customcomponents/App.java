@@ -107,6 +107,7 @@ public class App extends Application {
 	}
 	
 	/**
+	 * Populates a list with all the entities report (type object) for the Jasper Report
 	 * 
 	 * @param entitiesList List of entities to take the values required of different types of entities
 	 * @return a filled list with all values taken from different types of entities and stored in EntityReport objects
@@ -131,6 +132,7 @@ public class App extends Application {
 	}
 	
 	/**
+	 * Generates the PDF report file
 	 * 
 	 * @throws JRException if JasperReport actions fail trying to compile or filling the report
 	 */

@@ -39,6 +39,7 @@ public class InitGameComponents extends GameFunctions {
 	}
 	
 	/**
+	 * Enables automatic insertion in the map
 	 * 
 	 * @param automaticMapInsert automaticMapInsert to set (true or false)
 	 */
@@ -88,7 +89,7 @@ public class InitGameComponents extends GameFunctions {
 	}
 	
 	/**
-	 * Empties the map of its entities
+	 * Empties the map of all its entities
 	 */
 
 	public void clearMap() {

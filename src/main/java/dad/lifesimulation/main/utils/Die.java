@@ -3,6 +3,7 @@ package dad.lifesimulation.main.utils;
 public class Die {
 	
 	/**
+	 * Generates a value between two values defined
 	 * 
 	 * @param start initial value
 	 * @param end highest value

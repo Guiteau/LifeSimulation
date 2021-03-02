@@ -27,7 +27,7 @@ public class Spikes extends Floor {
 	}
 
 	/**
-	 * A list of actor entities that are colliding with the Spikes object is loaded and the damage (5) is applied.
+	 * Updates a list of actor entities that are colliding with the Spikes object is loaded and the damage (5) is applied.
 	 */
 
 	public void update() {
@@ -38,8 +38,9 @@ public class Spikes extends Floor {
 	}
 
 	/**
+	 * Relation between the Entity (object type) and the Spikes (object type)
 	 * 
-	 * @param entity (Object) to interact with the spikes entity
+	 * @param entity (object type) to interact with the spikes entity
 	 */
 	
 	@Override
@@ -49,8 +50,9 @@ public class Spikes extends Floor {
 	}
 	
 	/**
+	 * Relation between the Actor (object type) and the Spikes (object type)
 	 * 
-	 * @param actor (Object) to interact with the spikes entity
+	 * @param actor (object type) to interact with the spikes entity
 	 */
 
 	@Override
