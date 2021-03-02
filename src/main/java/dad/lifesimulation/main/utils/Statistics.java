@@ -75,6 +75,7 @@ public class Statistics implements Serializable {
 	}
 
 	/**
+	 * Inflicts damage to an Entity (object type)
 	 * 
 	 * @param _dmg amount of damage an Entity (object type) receives
 	 */
@@ -84,6 +85,7 @@ public class Statistics implements Serializable {
 	}
 
 	/**
+	 * Gives health to the Entity 
 	 * 
 	 * @param _health amount of health an Entity (object type) receives 
 	 */
@@ -93,6 +95,7 @@ public class Statistics implements Serializable {
 	}
 
 	/**
+	 * Gives armor to the Entity 
 	 * 
 	 * @param _armor amount of armor an Entity (object type) receives
 	 */

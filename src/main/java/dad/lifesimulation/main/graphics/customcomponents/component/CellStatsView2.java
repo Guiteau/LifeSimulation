@@ -80,7 +80,7 @@ public class CellStatsView2 extends GridPane implements Initializable {
 	}
 
 	/**
-	 * return the view of this object
+	 * return the main view of this object
 	 * 
 	 * @return this (Object Type GridPane)
 	 */

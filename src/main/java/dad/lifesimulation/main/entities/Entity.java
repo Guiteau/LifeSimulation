@@ -56,6 +56,7 @@ public abstract class Entity  implements Serializable{
 	}
 	
 	/**
+	 * Relation between a Entity (object type) and the Entity (object type)
 	 * 
 	 * @param entity (Object) to interact with another Entity
 	 */
@@ -63,6 +64,7 @@ public abstract class Entity  implements Serializable{
 	public abstract void interact(Entity entity);
 	
 	/**
+	 * Relation between the Actor (object type) and the Entity (object type)
 	 * 
 	 * @param actor (Object) to interact with another Entity
 	 */
@@ -80,8 +82,9 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
+	 * Checks if the main Entity is colliding with it applying a 2D colliding algorythm
 	 * 
-	 * @param _entidad Entity (object) to check if the main Entity is colliding with it applying a 2D colliding algorythm
+	 * @param _entidad Entity (object type) 
 	 * @return true if collide, false if not
 	 */
 	
@@ -95,8 +98,9 @@ public abstract class Entity  implements Serializable{
 	}
 	
 	/**
+	 *  Checks all the entities colliding with it applying a 2D colliding algorythm
 	 *  
-	 * @param _entidad Entity (object type) to check all the entities colliding with it applying a 2D colliding algorythm
+	 * @param _entidad Entity (object type) 
 	 * @return true if collide, false if not
 	 */
 
@@ -110,6 +114,7 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
+	 * True if Entity (object type) is over another Entity
 	 * 
 	 * @param _entidad Entity (object) to check if the main Entity is over it
 	 * @return true if Entity (object) is over main Entity, false if not
@@ -234,9 +239,10 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
+	 * Add a PropertyChangeListener to the listener list. 
+	 * The same listener object may be added more than once, and will be calledas many times as it is added.
 	 * 
-	 * @param listener Add a PropertyChangeListener to the listener list. 
-	 * The same listener object may be added more than once, and will be calledas many times as it is added 
+	 * @param listener PropertyChangeListener
 	 */
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -244,8 +250,9 @@ public abstract class Entity  implements Serializable{
 	}
 
 	/**
+	 * Remove a PropertyChangeListener from the listener list.This removes a PropertyChangeListener that was registered for all properties.
 	 * 
-	 * @param listener Remove a PropertyChangeListener from the listener list.This removes a PropertyChangeListener that was registered for all properties.
+	 * @param listener PropertyChangeListener 
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		support.removePropertyChangeListener(listener);
