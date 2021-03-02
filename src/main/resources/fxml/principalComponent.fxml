@@ -144,7 +144,7 @@
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Canvas>
-      <TabPane prefHeight="224.0" prefWidth="309.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
+      <TabPane prefHeight="234.0" prefWidth="318.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2147483647">
         <tabs>
           <Tab text="Visualizar">
                <content>
