@@ -96,8 +96,9 @@ public class PrincipalComponent {
 	@FXML
 	void onCargarBTN(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Save Map");
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
+		fileChooser.setTitle("Load Map");
+	//	fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
+
 		File archivoGuardado = fileChooser.showOpenDialog(App.getPrimaryStage());
 		drawableFactory.loadLevel(archivoGuardado);
 	}
@@ -113,6 +114,7 @@ public class PrincipalComponent {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Save Map");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Map (.map)", ".map"));
+		
 		File archivoGuardado = fileChooser.showSaveDialog(App.getPrimaryStage());
 		processingGame.spitMap(archivoGuardado);
 	}
@@ -277,11 +279,11 @@ public class PrincipalComponent {
 	@FXML
 	void onPlayPause(ActionEvent event) {
 		if (pause.isSelected()) {
-			guigame.stop();
+			//guigame.stop();
 			if (!processingGame.isPaused())
 				processingGame.toPause(true);
 		} else {
-			guigame.start();
+			//guigame.start();
 
 			if (processingGame.isPaused())
 				processingGame.toPause(false);
