@@ -9,4 +9,4 @@ Para poder simular un cultivo de células con diferentes estadísticas en difere
 ## Obtener el componente
 Para instalar puede descargar el proyecto y ejecutarlo como el maven. (Para desarrolladores).
 
-O puedes descargar el instalador _standalone_ (sólo para windows).
+O puedes descargar el instalador _standalone_ (sólo para windows). [Descargar aquí](https://github.com/dam-dad/LifeSimulation/releases/download/1.0.0/lifeSimulation_0.0.1.exe)
