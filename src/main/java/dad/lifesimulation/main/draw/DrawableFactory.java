@@ -260,9 +260,29 @@ public class DrawableFactory {
 	/**
 	 * Creates a new Food (object type) entity with new dimensions and coordinates
 	 * 
+	 * @param coord Coordinates (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param dim Dimension (object type) of the new Cell object to be stored on the drawable entities list
+	 * @param hostil true if cell object can damage others, false if not,
+   * @param stats Statistics (object type) to set the stats in the new actor
+	 */
+
+	public void createCellEntity(Coordinates coord, Dimension dim, boolean hostil, Statistics stats) {
+		Entity cell = initializer.getNewCell(coord, dim, stats, hostil);
+
+		try {
+			storeNewDrawableEntity(cell);
+		} catch (NotColorOrImageChosen e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+  
+  /**
+	 * 
 	 * @param coord Coordinates (object type) of the new food Entity (object type) to be stored on the drawable entities list
 	 * @param dim Dimension (object type) of the new food Entity (object type) to be stored on the drawable entities list
 	 */
+
 	
 	public void createFoodEntity(Coordinates coord, Dimension dim)
 	{

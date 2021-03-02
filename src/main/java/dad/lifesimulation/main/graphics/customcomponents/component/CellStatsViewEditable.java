@@ -24,12 +24,9 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 
 	@FXML
 	private TextField armorPointsTF;
-
+	
 	@FXML
-	private TextField xCoordTF;
-
-	@FXML
-	private TextField yCoordTF;
+	private TextField damagePointsTF;
 
 	@FXML
 	private TextField widthTF;
@@ -111,24 +108,7 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 		return armorPointsTF;
 	}
 	
-	/**
-	 * 
-	 * @return the current TextField of X coordinate
-	 */
 
-	public TextField getxCoordTF() {
-		return xCoordTF;
-	}
-	
-	/**
-	 * 
-	 * @return the current TextField of Y coordinate
-	 */
-
-	public TextField getyCoordTF() {
-		return yCoordTF;
-	}
-	
 	/**
 	 * 
 	 * @return the current TextField of the width
@@ -146,5 +126,10 @@ public class CellStatsViewEditable extends GridPane implements Initializable {
 	public TextField getHeightTF() {
 		return heightTF;
 	}
+
+	public TextField getDamagePointsTF() {
+		return damagePointsTF;
+	}
+	
 
 }

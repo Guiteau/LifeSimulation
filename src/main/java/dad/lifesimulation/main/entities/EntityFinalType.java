@@ -5,5 +5,6 @@ public enum EntityFinalType {
 	SPIKE,
 	WALL,
 	FOOD,
+	AGGRESSIVE_CELL,
 	UNKNOWN
 }
