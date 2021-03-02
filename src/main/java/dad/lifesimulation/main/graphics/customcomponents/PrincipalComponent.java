@@ -277,11 +277,11 @@ public class PrincipalComponent {
 	@FXML
 	void onPlayPause(ActionEvent event) {
 		if (pause.isSelected()) {
-			guigame.stop();
+			//guigame.stop();
 			if (!processingGame.isPaused())
 				processingGame.toPause(true);
 		} else {
-			guigame.start();
+			//guigame.start();
 
 			if (processingGame.isPaused())
 				processingGame.toPause(false);
